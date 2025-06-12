@@ -213,3 +213,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Speech bubble animation
+const speechBubble = document.querySelector('.speech-bubble');
+
+function showSpeechBubble() {
+    if (speechBubble) {
+        speechBubble.classList.add('show');
+        setTimeout(() => {
+            speechBubble.classList.remove('show');
+        }, 5000); // Hide after 5 seconds
+    }
+}
+
+// Show initially after a short delay
+setTimeout(showSpeechBubble, 1000);
+
+// Show every 10 seconds
+setInterval(showSpeechBubble, 10000);

@@ -732,3 +732,64 @@ html {
     font-size: 0.8rem;
   }
 }
+
+.speech-bubble {
+  position: absolute;
+  background: #B983FF;
+  color: #232336;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  top: -40px;
+  right: -20px;
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: bottom right;
+  z-index: 3;
+  animation: none;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  right: 25px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #B983FF;
+}
+
+.speech-bubble.show {
+  animation: bounceIn 0.5s ease forwards, bounceOut 0.5s ease 4.5s forwards;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
