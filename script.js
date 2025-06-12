@@ -231,3 +231,49 @@ setTimeout(showSpeechBubble, 1000);
 
 // Show every 10 seconds
 setInterval(showSpeechBubble, 10000);
+
+// Custom cursor
+document.addEventListener('DOMContentLoaded', () => {
+    const cursor = document.querySelector('.custom-cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    let cursorDotX = 0;
+    let cursorDotY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+    
+    function animate() {
+        // Smooth movement for main cursor
+        cursorX += (mouseX - cursorX) * 0.1;
+        cursorY += (mouseY - cursorY) * 0.1;
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+        
+        // Faster movement for cursor dot
+        cursorDotX += (mouseX - cursorDotX) * 0.5;
+        cursorDotY += (mouseY - cursorDotY) * 0.5;
+        cursorDot.style.left = cursorDotX + 'px';
+        cursorDot.style.top = cursorDotY + 'px';
+        
+        requestAnimationFrame(animate);
+    }
+    animate();
+    
+    // Hide cursor when mouse leaves window
+    document.addEventListener('mouseleave', () => {
+        cursor.style.display = 'none';
+        cursorDot.style.display = 'none';
+    });
+    
+    document.addEventListener('mouseenter', () => {
+        cursor.style.display = 'block';
+        cursorDot.style.display = 'block';
+    });
+});
