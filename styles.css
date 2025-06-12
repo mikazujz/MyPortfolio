@@ -413,44 +413,54 @@ html {
     right: 0;
     background: #181828;
     z-index: 999;
-    padding: 0.5rem !important;
+    padding: 0.7rem 1rem !important;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,0.15);
-  }
-
-  .sidebar-fixed.hide-profile .profile-pic,
-  .sidebar-fixed.hide-profile h1,
-  .sidebar-fixed.hide-profile h5,
-  .sidebar-fixed.hide-profile p,
-  .sidebar-fixed.hide-profile div:not(nav),
-  .sidebar-fixed.hide-profile > div:first-child,
-  .sidebar-fixed.hide-profile .mt-0.mt-md-auto {
-    display: none !important;
+    display: flex;
+    min-height: 3.5rem;
   }
 
   .sidebar-fixed.hide-profile nav {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100%;
+    display: none;
+    position: fixed;
+    top: 3.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    background: #181828;
+    padding: 0.8rem !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border: 1px solid rgba(185,131,255,0.1);
+  }
+
+  .sidebar-fixed.hide-profile nav.show {
+    display: block;
   }
 
   .sidebar-fixed.hide-profile nav ul {
-    flex-direction: row !important;
-    justify-content: center !important;
+    flex-direction: column !important;
+    gap: 0.2rem !important;
+    align-items: center;
     width: 100%;
-    gap: 1.5rem !important;
+    padding: 0 !important;
     margin: 0 !important;
-    padding: 0.3rem !important;
   }
 
   .sidebar-fixed.hide-profile .nav-link {
-    font-size: 1rem;
-    padding: 0.3rem 0.5rem;
-    opacity: 0.85;
+    font-size: 1.1rem;
+    padding: 0.8rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+    border-radius: 6px;
+    transition: all 0.2s ease;
     font-weight: 500;
+    opacity: 0.85;
   }
 
   .sidebar-fixed.hide-profile .nav-link:hover,
   .sidebar-fixed.hide-profile .nav-link.active {
+    background: rgba(185,131,255,0.1);
     opacity: 1;
     color: #b983ff;
   }
@@ -460,76 +470,59 @@ html {
     background: none;
     border: none;
     color: #fff;
-    font-size: 1.5rem;
+    padding: 0.5rem;
     cursor: pointer;
-    padding: 0.3rem;
     z-index: 1000;
   }
 
-  .mobile-nav-toggle .bars {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    transition: transform 0.3s ease;
-  }
+  @media (max-width: 900px) {
+    .mobile-nav-toggle {
+      display: block;
+      position: absolute;
+      right: 1.2rem;
+      top: 1.2rem;
+    }
 
-  .mobile-nav-toggle .bar {
-    width: 24px;
-    height: 2px;
-    background: #fff;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
+    .sidebar-fixed.hide-profile {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #181828;
+      z-index: 999;
+      padding: 0.7rem 1rem !important;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.15);
+      display: flex;
+      min-height: 3.5rem;
+    }
 
-  .mobile-nav-toggle.active .bars {
-    transform: rotate(45deg);
-  }
+    .sidebar-fixed.hide-profile .mobile-nav-toggle {
+      position: fixed;
+      right: 1.2rem;
+      top: 0.7rem;
+    }
 
-  .mobile-nav-toggle.active .bar:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
+    .mobile-nav-toggle .bars {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      width: 26px;
+    }
 
-  .mobile-nav-toggle.active .bar:nth-child(2) {
-    opacity: 0;
-  }
+    .mobile-nav-toggle .bar {
+      width: 26px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
 
-  .mobile-nav-toggle.active .bar:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
-
-  .sidebar-fixed.hide-profile nav {
-    display: none;
-    position: fixed;
-    top: 3rem;
-    left: 0;
-    right: 0;
-    background: #181828;
-    padding: 1rem !important;
-    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.15);
-  }
-
-  .sidebar-fixed.hide-profile nav.show {
-    display: block;
-  }
-
-  .sidebar-fixed.hide-profile nav ul {
-    flex-direction: column !important;
-    gap: 0.8rem !important;
-    align-items: center;
-  }
-
-  .sidebar-fixed.hide-profile .nav-link {
-    font-size: 1.1rem;
-    padding: 0.5rem 1rem;
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
-
-  .sidebar-fixed.hide-profile .nav-link:hover {
-    background: rgba(185,131,255,0.1);
+    .mobile-nav-toggle:hover .bar {
+      background: #b983ff;
+    }
   }
 }
+
 .project-list {
   max-width: 600px;
   margin-left: 180px;
