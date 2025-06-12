@@ -193,6 +193,16 @@ document.addEventListener('DOMContentLoaded', function() {
   }, 3000); // Add 'done' class after first line finishes typing
 });
 
+// Handle typewriter cursor transition
+document.addEventListener('DOMContentLoaded', () => {
+  const firstLine = document.querySelector('.typewriter');
+  if (firstLine) {
+    setTimeout(() => {
+      firstLine.classList.add('typed');
+    }, 3500); // Same as the first animation duration
+  }
+});
+
 // Toggle background on profile picture click
 document.addEventListener('DOMContentLoaded', () => {
     const profileContainer = document.querySelector('.profile-pic-container');
