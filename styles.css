@@ -552,7 +552,6 @@ html {
   display: inline-block;
   z-index: 2;
   cursor: pointer;
-  overflow: visible;
 }
 
 .profile-pic-container::before {
@@ -565,52 +564,15 @@ html {
   width: 100vw;
   height: 100vh;
   background: url('image/bg.jpg') center/cover no-repeat;
+  filter: blur(4px);
   opacity: 0;
+  transition: opacity 0.3s ease;
   pointer-events: none;
   z-index: -1;
-  transform-origin: var(--x) var(--y);
 }
 
 .profile-pic-container.show-background::before {
-  animation: radialExpand 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-}
-
-@keyframes radialExpand {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-    clip-path: circle(0% at var(--x) var(--y));
-  }
-  40% {
-    opacity: 0.4;
-    transform: scale(1.1);
-  }
-  70% {
-    opacity: 0.35;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0.3;
-    transform: scale(1);
-    clip-path: circle(150% at var(--x) var(--y));
-  }
-}
-
-.profile-pic-container:not(.show-background)::before {
-  animation: radialCollapse 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes radialCollapse {
-  0% {
-    opacity: 0.3;
-    transform: scale(1);
-    clip-path: circle(150% at var(--x) var(--y));
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0);
-    clip-path: circle(0% at var(--x) var(--y));
-  }
+  opacity: 0.3;
 }
 
 .profile-pic {
