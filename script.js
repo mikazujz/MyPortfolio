@@ -164,24 +164,29 @@ window.addEventListener('scroll', function() {
 let lastScrollTop = 0;
 const sidebar = document.querySelector('.sidebar-fixed');
 const techLink = document.querySelector('a[href="#technologies"]');
+const aboutLink = document.querySelector('a[href="#about"]');
 
 function isMobile() {
   return window.innerWidth <= 900;
 }
 
 window.addEventListener('scroll', function() {
-  if (!sidebar || !isMobile() || !techLink) return;
+  if (!sidebar || !isMobile() || !techLink || !aboutLink) return;
   let st = window.scrollY || document.documentElement.scrollTop;
   
-  // Check if Technologies link is active
-  const isTechActive = techLink.classList.contains('active');
+  // Check if we're in Technologies section or below
+  const isPastTech = !aboutLink.classList.contains('active');
   
-  if (st > lastScrollTop && isTechActive) {
-    // Scrolling down and Technologies is active
+  if (st > lastScrollTop && isPastTech) {
+    // Scrolling down and past About section
     sidebar.classList.add('hide-on-scroll');
-  } else {
-    // Scrolling up or Technologies not active yet
+  } else if (st < lastScrollTop && aboutLink.classList.contains('active')) {
+    // Scrolling up and reached About section
+    sidebar.classList.remove('hide-on-scroll');
+  } else if (st < lastScrollTop) {
+    // Scrolling up, temporarily show header
     sidebar.classList.remove('hide-on-scroll');
   }
+  
   lastScrollTop = st <= 0 ? 0 : st;
 });
