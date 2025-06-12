@@ -478,9 +478,46 @@ html {
   @media (max-width: 900px) {
     .mobile-nav-toggle {
       display: block;
+      background: none;
+      border: none;
+      color: #fff;
+      padding: 0.5rem;
+      cursor: pointer;
+      z-index: 1000;
+      width: 40px;
+      height: 40px;
+      position: relative;
+    }
+
+    .mobile-nav-toggle .bars {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 24px;
       position: absolute;
-      right: 1.2rem;
-      top: 1.2rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .mobile-nav-toggle .bar {
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-nav-toggle.active .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .mobile-nav-toggle.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-nav-toggle.active .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
     }
 
     .sidebar-fixed.hide-profile {
@@ -492,33 +529,52 @@ html {
       z-index: 999;
       padding: 0.7rem 1rem !important;
       box-shadow: 0 2px 8px 0 rgba(0,0,0,0.15);
-      display: flex;
       min-height: 3.5rem;
-    }
-
-    .sidebar-fixed.hide-profile .mobile-nav-toggle {
-      position: fixed;
-      right: 1.2rem;
-      top: 0.7rem;
-    }
-
-    .mobile-nav-toggle .bars {
       display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      width: 26px;
+      justify-content: flex-end;
     }
 
-    .mobile-nav-toggle .bar {
-      width: 26px;
-      height: 2px;
-      background: #fff;
-      border-radius: 2px;
-      transition: all 0.3s ease;
+    .sidebar-fixed.hide-profile nav {
+      display: none;
+      position: fixed;
+      top: 3.5rem;
+      left: 0;
+      right: 0;
+      background: #181828;
+      padding: 1.2rem 2rem !important;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.15);
     }
 
-    .mobile-nav-toggle:hover .bar {
-      background: #b983ff;
+    .sidebar-fixed.hide-profile nav.show {
+      display: block;
+    }
+
+    .sidebar-fixed.hide-profile nav ul {
+      flex-direction: column !important;
+      gap: 1.2rem !important;
+      align-items: center;
+      width: 100%;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: none !important;
+    }
+
+    .sidebar-fixed.hide-profile .nav-link {
+      font-size: 1.1rem;
+      padding: 0.5rem;
+      display: block;
+      width: 100%;
+      text-align: center;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      opacity: 0.85;
+      color: #fff;
+    }
+
+    .sidebar-fixed.hide-profile .nav-link:hover,
+    .sidebar-fixed.hide-profile .nav-link.active {
+      opacity: 1;
+      color: #b983ff;
     }
   }
 }

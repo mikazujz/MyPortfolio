@@ -191,7 +191,8 @@ const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
 const nav = document.querySelector('.sidebar-fixed nav');
 
 if (mobileNavToggle && nav) {
-  mobileNavToggle.addEventListener('click', function() {
+  mobileNavToggle.addEventListener('click', function(e) {
+    e.stopPropagation();
     this.classList.toggle('active');
     nav.classList.toggle('show');
   });
