@@ -163,14 +163,21 @@ window.addEventListener('scroll', function() {
 // Hide header/sidebar on scroll down, show on scroll up
 let lastScrollTop = 0;
 const sidebar = document.querySelector('.sidebar-fixed');
+const trigger = document.querySelector('#about'); // Section after header
+function getTriggerOffset() {
+  if (!trigger) return 0;
+  const rect = trigger.getBoundingClientRect();
+  return rect.top + window.scrollY - 20; // 20px buffer
+}
 window.addEventListener('scroll', function() {
   if (!sidebar) return;
   let st = window.scrollY || document.documentElement.scrollTop;
-  if (st > lastScrollTop && st > 40) {
-    // Scrolling down
+  const triggerOffset = getTriggerOffset();
+  if (st > lastScrollTop && st > triggerOffset) {
+    // Scrolling down past the about section
     sidebar.classList.add('hide-on-scroll');
   } else {
-    // Scrolling up
+    // Scrolling up or above trigger
     sidebar.classList.remove('hide-on-scroll');
   }
   lastScrollTop = st <= 0 ? 0 : st;
