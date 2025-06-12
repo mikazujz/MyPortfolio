@@ -454,6 +454,81 @@ html {
     opacity: 1;
     color: #b983ff;
   }
+
+  .mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.3rem;
+    z-index: 1000;
+  }
+
+  .mobile-nav-toggle .bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-nav-toggle .bar {
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nav-toggle.active .bars {
+    transform: rotate(45deg);
+  }
+
+  .mobile-nav-toggle.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .mobile-nav-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-nav-toggle.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  .sidebar-fixed.hide-profile nav {
+    display: none;
+    position: fixed;
+    top: 3rem;
+    left: 0;
+    right: 0;
+    background: #181828;
+    padding: 1rem !important;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.15);
+  }
+
+  .sidebar-fixed.hide-profile nav.show {
+    display: block;
+  }
+
+  .sidebar-fixed.hide-profile nav ul {
+    flex-direction: column !important;
+    gap: 0.8rem !important;
+    align-items: center;
+  }
+
+  .sidebar-fixed.hide-profile .nav-link {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .sidebar-fixed.hide-profile .nav-link:hover {
+    background: rgba(185,131,255,0.1);
+  }
 }
 .project-list {
   max-width: 600px;
