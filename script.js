@@ -159,3 +159,19 @@ window.addEventListener('scroll', function() {
     sidebar.classList.remove('sticky');
   }
 });
+
+// Hide header/sidebar on scroll down, show on scroll up
+let lastScrollTop = 0;
+const sidebar = document.querySelector('.sidebar-fixed');
+window.addEventListener('scroll', function() {
+  if (!sidebar) return;
+  let st = window.scrollY || document.documentElement.scrollTop;
+  if (st > lastScrollTop && st > 40) {
+    // Scrolling down
+    sidebar.classList.add('hide-on-scroll');
+  } else {
+    // Scrolling up
+    sidebar.classList.remove('hide-on-scroll');
+  }
+  lastScrollTop = st <= 0 ? 0 : st;
+});
