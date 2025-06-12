@@ -629,3 +629,68 @@ html {
   padding: 0;
   pointer-events: none;
 }
+
+/* Typewriter animations */
+.typewriter, .typewriter-2 {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0;
+  width: 0;
+  display: inline-block;
+  position: relative;
+}
+
+.typewriter::after, .typewriter-2::after {
+  content: '|';
+  position: absolute;
+  right: -2px;
+  top: 0;
+  color: #b983ff;
+  animation: blink-caret .75s step-end infinite;
+}
+
+.typewriter {
+  animation: typing 2s steps(40, end) 1s forwards;
+}
+
+.typewriter-2 {
+  animation: typing 2s steps(40, end) 3s forwards;
+  opacity: 0;
+  animation-fill-mode: both;
+}
+
+.typewriter.done::after {
+  display: none;
+}
+
+.typewriter-2 {
+  margin-left: 0;
+}
+
+@keyframes typing {
+  from { 
+    width: 0;
+    opacity: 1;
+  }
+  to { 
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes blink-caret {
+  from, to { opacity: 0 }
+  50% { opacity: 1 }
+}
+
+@media (max-width: 900px) {
+  .typewriter, .typewriter-2 {
+    white-space: normal;
+    animation: none;
+    width: auto;
+    opacity: 1;
+  }
+  .typewriter::after, .typewriter-2::after {
+    display: none;
+  }
+}

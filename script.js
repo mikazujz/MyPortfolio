@@ -185,3 +185,10 @@ window.addEventListener('scroll', function() {
     }
   }
 });
+
+// Handle typewriter animation cursor
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(() => {
+    document.querySelector('.typewriter').classList.add('done');
+  }, 3000); // Add 'done' class after first line finishes typing
+});
