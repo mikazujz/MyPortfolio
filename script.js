@@ -164,10 +164,10 @@ window.addEventListener('scroll', function() {
 let lastScrollTop = 0;
 const sidebar = document.querySelector('.sidebar-fixed');
 const trigger = document.querySelector('#technologies');
-function getTriggerOffset() {
+function getTriggerBottomOffset() {
   if (!trigger) return 0;
   const rect = trigger.getBoundingClientRect();
-  return rect.top + window.scrollY;
+  return rect.bottom + window.scrollY;
 }
 function isMobile() {
   return window.innerWidth <= 900;
@@ -175,8 +175,8 @@ function isMobile() {
 window.addEventListener('scroll', function() {
   if (!sidebar || !isMobile()) return;
   let st = window.scrollY || document.documentElement.scrollTop;
-  const triggerOffset = getTriggerOffset();
-  if (st > lastScrollTop && st > triggerOffset) {
+  const triggerBottom = getTriggerBottomOffset();
+  if (st > lastScrollTop && st > triggerBottom) {
     sidebar.classList.add('hide-on-scroll');
   } else {
     sidebar.classList.remove('hide-on-scroll');
