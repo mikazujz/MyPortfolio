@@ -215,3 +215,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// Handle scroll behavior for header
+document.addEventListener('DOMContentLoaded', function() {
+  const sidebar = document.querySelector('.sidebar-fixed');
+  const technologies = document.getElementById('technologies');
+  
+  window.addEventListener('scroll', function() {
+    if (technologies) {
+      const techRect = technologies.getBoundingClientRect();
+      if (techRect.top <= 0) {
+        sidebar.classList.add('hide-profile');
+        sidebar.classList.remove('sticky');
+      } else {
+        sidebar.classList.remove('hide-profile');
+        if (window.scrollY > 100) {
+          sidebar.classList.add('sticky');
+        } else {
+          sidebar.classList.remove('sticky');
+        }
+      }
+    }
+  });
+});
