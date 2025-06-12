@@ -206,9 +206,18 @@ document.addEventListener('DOMContentLoaded', () => {
 // Toggle background on profile picture click
 document.addEventListener('DOMContentLoaded', () => {
     const profileContainer = document.querySelector('.profile-pic-container');
+    const profilePic = document.querySelector('.profile-pic');
     
-    if (profileContainer) {
-        profileContainer.addEventListener('click', () => {
+    if (profileContainer && profilePic) {
+        profileContainer.addEventListener('click', (e) => {
+            const rect = profilePic.getBoundingClientRect();
+            const centerX = rect.left + (rect.width / 2);
+            const centerY = rect.top + (rect.height / 2);
+            
+            // Set the CSS variables for the animation origin
+            profileContainer.style.setProperty('--x', `${centerX}px`);
+            profileContainer.style.setProperty('--y', `${centerY}px`);
+            
             profileContainer.classList.toggle('show-background');
         });
     }
