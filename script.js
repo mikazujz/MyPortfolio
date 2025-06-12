@@ -163,7 +163,7 @@ window.addEventListener('scroll', function() {
 // Hide header/sidebar on scroll down, show on scroll up
 let lastScrollTop = 0;
 const sidebar = document.querySelector('.sidebar-fixed');
-const trigger = document.querySelector('#about'); // Section after header
+const trigger = document.querySelector('#technologies'); // Section after header
 function getTriggerOffset() {
   if (!trigger) return 0;
   const rect = trigger.getBoundingClientRect();
@@ -174,7 +174,7 @@ window.addEventListener('scroll', function() {
   let st = window.scrollY || document.documentElement.scrollTop;
   const triggerOffset = getTriggerOffset();
   if (st > lastScrollTop && st > triggerOffset) {
-    // Scrolling down past the about section
+    // Scrolling down past the technologies section
     sidebar.classList.add('hide-on-scroll');
   } else {
     // Scrolling up or above trigger
