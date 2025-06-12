@@ -403,6 +403,37 @@ html {
     font-weight: 500;
     letter-spacing: 0.2px;
   }
+  /* New/updated classes for hiding profile info */
+  .sidebar-fixed.hide-profile {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #181828;
+    z-index: 999;
+    padding: 0.5rem !important;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  }
+
+  .sidebar-fixed.hide-profile .profile-pic,
+  .sidebar-fixed.hide-profile div:not(nav),
+  .sidebar-fixed.hide-profile > div:first-child,
+  .sidebar-fixed.hide-profile .mt-0.mt-md-auto {
+    display: none !important;
+  }
+
+  .sidebar-fixed.hide-profile nav {
+    margin: 0 !important;
+    width: 100%;
+  }
+
+  .sidebar-fixed.hide-profile nav ul {
+    flex-direction: row !important;
+    justify-content: center !important;
+    width: 100%;
+    gap: 1rem !important;
+    margin: 0 !important;
+  }
 }
 .project-list {
   max-width: 600px;

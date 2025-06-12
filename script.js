@@ -160,33 +160,28 @@ window.addEventListener('scroll', function() {
   }
 });
 
-// Hide header/sidebar on scroll down, show on scroll up (MOBILE ONLY)
+// Hide profile section when Technologies is active (MOBILE ONLY)
 let lastScrollTop = 0;
 const sidebar = document.querySelector('.sidebar-fixed');
 const techLink = document.querySelector('a[href="#technologies"]');
-const aboutLink = document.querySelector('a[href="#about"]');
 
 function isMobile() {
   return window.innerWidth <= 900;
 }
 
 window.addEventListener('scroll', function() {
-  if (!sidebar || !isMobile() || !techLink || !aboutLink) return;
-  let st = window.scrollY || document.documentElement.scrollTop;
+  if (!sidebar || !isMobile() || !techLink) return;
   
-  // Check if we're in Technologies section or below
-  const isPastTech = !aboutLink.classList.contains('active');
-  
-  if (st > lastScrollTop && isPastTech) {
-    // Scrolling down and past About section
-    sidebar.classList.add('hide-on-scroll');
-  } else if (st < lastScrollTop && aboutLink.classList.contains('active')) {
-    // Scrolling up and reached About section
-    sidebar.classList.remove('hide-on-scroll');
-  } else if (st < lastScrollTop) {
-    // Scrolling up, temporarily show header
-    sidebar.classList.remove('hide-on-scroll');
+  // Check if Technologies section is active
+  if (techLink.classList.contains('active')) {
+    // In Technologies section or below, hide profile
+    sidebar.classList.add('hide-profile');
+    sidebar.classList.remove('sticky'); // Remove sticky to prevent conflicts
+  } else {
+    // Above Technologies section, show full header
+    sidebar.classList.remove('hide-profile');
+    if (window.scrollY > 40) {
+      sidebar.classList.add('sticky');
+    }
   }
-  
-  lastScrollTop = st <= 0 ? 0 : st;
 });
