@@ -147,4 +147,15 @@ window.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', updateActiveNav);
     updateActiveNav();
   }
-}); 
+});
+
+// Sticky sidebar on scroll (mobile header shrink)
+window.addEventListener('scroll', function() {
+  const sidebar = document.querySelector('.sidebar-fixed');
+  if (!sidebar) return;
+  if (window.scrollY > 40) {
+    sidebar.classList.add('sticky');
+  } else {
+    sidebar.classList.remove('sticky');
+  }
+});
