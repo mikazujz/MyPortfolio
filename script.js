@@ -160,24 +160,25 @@ window.addEventListener('scroll', function() {
   }
 });
 
-// Hide header/sidebar on scroll down, show on scroll up
+// Hide header/sidebar on scroll down, show on scroll up (MOBILE ONLY)
 let lastScrollTop = 0;
 const sidebar = document.querySelector('.sidebar-fixed');
-const trigger = document.querySelector('#technologies'); // Section after header
+const trigger = document.querySelector('#technologies');
 function getTriggerOffset() {
   if (!trigger) return 0;
   const rect = trigger.getBoundingClientRect();
-  return rect.top + window.scrollY - 20; // 20px buffer
+  return rect.top + window.scrollY;
+}
+function isMobile() {
+  return window.innerWidth <= 900;
 }
 window.addEventListener('scroll', function() {
-  if (!sidebar) return;
+  if (!sidebar || !isMobile()) return;
   let st = window.scrollY || document.documentElement.scrollTop;
   const triggerOffset = getTriggerOffset();
   if (st > lastScrollTop && st > triggerOffset) {
-    // Scrolling down past the technologies section
     sidebar.classList.add('hide-on-scroll');
   } else {
-    // Scrolling up or above trigger
     sidebar.classList.remove('hide-on-scroll');
   }
   lastScrollTop = st <= 0 ? 0 : st;
