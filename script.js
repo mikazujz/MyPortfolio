@@ -163,22 +163,24 @@ window.addEventListener('scroll', function() {
 // Hide header/sidebar on scroll down, show on scroll up (MOBILE ONLY)
 let lastScrollTop = 0;
 const sidebar = document.querySelector('.sidebar-fixed');
-const trigger = document.querySelector('#technologies');
-function getTriggerBottomOffset() {
-  if (!trigger) return 0;
-  const rect = trigger.getBoundingClientRect();
-  return rect.bottom + window.scrollY;
-}
+const techLink = document.querySelector('a[href="#technologies"]');
+
 function isMobile() {
   return window.innerWidth <= 900;
 }
+
 window.addEventListener('scroll', function() {
-  if (!sidebar || !isMobile()) return;
+  if (!sidebar || !isMobile() || !techLink) return;
   let st = window.scrollY || document.documentElement.scrollTop;
-  const triggerBottom = getTriggerBottomOffset();
-  if (st > lastScrollTop && st > triggerBottom) {
+  
+  // Check if Technologies link is active
+  const isTechActive = techLink.classList.contains('active');
+  
+  if (st > lastScrollTop && isTechActive) {
+    // Scrolling down and Technologies is active
     sidebar.classList.add('hide-on-scroll');
   } else {
+    // Scrolling up or Technologies not active yet
     sidebar.classList.remove('hide-on-scroll');
   }
   lastScrollTop = st <= 0 ? 0 : st;
