@@ -413,11 +413,14 @@ html {
     right: 0;
     background: #181828;
     z-index: 999;
-    padding: 0.8rem 1rem !important;
+    padding: 0.5rem !important;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,0.15);
   }
 
   .sidebar-fixed.hide-profile .profile-pic,
+  .sidebar-fixed.hide-profile h1,
+  .sidebar-fixed.hide-profile h5,
+  .sidebar-fixed.hide-profile p,
   .sidebar-fixed.hide-profile div:not(nav),
   .sidebar-fixed.hide-profile > div:first-child,
   .sidebar-fixed.hide-profile .mt-0.mt-md-auto {
@@ -426,21 +429,22 @@ html {
 
   .sidebar-fixed.hide-profile nav {
     margin: 0 !important;
+    padding: 0 !important;
     width: 100%;
   }
 
   .sidebar-fixed.hide-profile nav ul {
     flex-direction: row !important;
-    justify-content: space-around !important;
+    justify-content: center !important;
     width: 100%;
-    gap: 0.8rem !important;
+    gap: 1.5rem !important;
     margin: 0 !important;
-    padding: 0 0.5rem !important;
+    padding: 0.3rem !important;
   }
 
   .sidebar-fixed.hide-profile .nav-link {
-    font-size: 0.95rem;
-    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+    padding: 0.3rem 0.5rem;
     opacity: 0.85;
     font-weight: 500;
   }
