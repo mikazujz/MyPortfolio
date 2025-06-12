@@ -248,6 +248,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transition: padding 0.3s ease, background-color 0.3s ease;
 }
 .content-scroll {
   height: 100vh;
@@ -356,7 +357,8 @@ html {
     margin-bottom: 0 !important;
     margin-right: 8px !important;
   }
-  .sidebar-fixed.sticky h1 {
+  .sidebar-fixed.sticky h1,
+  .sidebar-fixed.hide-profile h1 {
     font-size: 0.98rem !important;
     margin-bottom: 0;
     font-weight: 600;
@@ -366,9 +368,9 @@ html {
     margin-right: 0.7rem;
     white-space: nowrap;
     flex-shrink: 0;
-    max-width: 120px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    max-width: none;
+    overflow: visible;
+    text-overflow: unset;
   }
   .sidebar-fixed.sticky h5,
   .sidebar-fixed.sticky p,
@@ -411,8 +413,8 @@ html {
     right: 0;
     background: #181828;
     z-index: 999;
-    padding: 0.5rem !important;
-    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+    padding: 0.8rem 1rem !important;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.15);
   }
 
   .sidebar-fixed.hide-profile .profile-pic,
@@ -429,10 +431,24 @@ html {
 
   .sidebar-fixed.hide-profile nav ul {
     flex-direction: row !important;
-    justify-content: center !important;
+    justify-content: space-around !important;
     width: 100%;
-    gap: 1rem !important;
+    gap: 0.8rem !important;
     margin: 0 !important;
+    padding: 0 0.5rem !important;
+  }
+
+  .sidebar-fixed.hide-profile .nav-link {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.6rem;
+    opacity: 0.85;
+    font-weight: 500;
+  }
+
+  .sidebar-fixed.hide-profile .nav-link:hover,
+  .sidebar-fixed.hide-profile .nav-link.active {
+    opacity: 1;
+    color: #b983ff;
   }
 }
 .project-list {
@@ -482,6 +498,28 @@ html {
     width: 100%;
     height: 90px;
     margin-bottom: 0.5rem;
+  }
+}
+@media (max-width: 768px) {
+  .sidebar nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0;
+    margin-top: 2rem;
+  }
+
+  .sidebar .nav-link {
+    font-size: 1.05rem;
+    padding: 0.5rem 0.8rem;
+    transition: all 0.3s ease;
+    opacity: 0.85;
+  }
+
+  .sidebar .nav-link:hover,
+  .sidebar .nav-link.active {
+    opacity: 1;
+    transform: translateX(4px);
   }
 }
 
@@ -568,4 +606,17 @@ html {
 }
 .tech-pill.show-percent .skill-percent {
   animation: slideLeft 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+
+.sidebar-fixed .profile-content {
+  transition: opacity 0.3s ease, height 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar-fixed.hide-profile .profile-content {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
 }
