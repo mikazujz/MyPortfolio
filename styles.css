@@ -413,93 +413,46 @@ html {
     right: 0;
     background: #181828;
     z-index: 999;
-    padding: 0.7rem 1rem !important;
+    padding: 0.5rem !important;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,0.15);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 3.5rem;
-    border-bottom: 1px solid rgba(185,131,255,0.1);
-  }
-
-  .sidebar-fixed.hide-profile h1 {
-    font-size: 1.1rem !important;
-    margin: 0;
-    font-weight: 600;
   }
 
   .sidebar-fixed.hide-profile .profile-pic,
+  .sidebar-fixed.hide-profile h1,
   .sidebar-fixed.hide-profile h5,
   .sidebar-fixed.hide-profile p,
-  .sidebar-fixed.hide-profile .mt-0,
-  .sidebar-fixed.hide-profile .mt-auto {
+  .sidebar-fixed.hide-profile div:not(nav),
+  .sidebar-fixed.hide-profile > div:first-child,
+  .sidebar-fixed.hide-profile .mt-0.mt-md-auto {
     display: none !important;
   }
 
   .sidebar-fixed.hide-profile nav {
-    display: none;
-    position: fixed;
-    top: 3.5rem;
-    left: 0;
-    right: 0;
-    background: #181828;
-    padding: 1rem !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    border-bottom: 1px solid rgba(185,131,255,0.1);
-  }
-
-  .sidebar-fixed.hide-profile nav.show {
-    display: block;
-    animation: slideDown 0.2s ease-out;
-  }
-
-  @keyframes slideDown {
-    from {
-      transform: translateY(-10px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
   }
 
   .sidebar-fixed.hide-profile nav ul {
-    flex-direction: column !important;
-    gap: 0.8rem !important;
-    align-items: center;
+    flex-direction: row !important;
+    justify-content: center !important;
     width: 100%;
-    padding: 0.5rem 0 !important;
+    gap: 1.5rem !important;
     margin: 0 !important;
+    padding: 0.3rem !important;
   }
 
   .sidebar-fixed.hide-profile .nav-link {
-    font-size: 1.1rem;
-    padding: 0.6rem;
-    display: block;
-    width: 100%;
-    text-align: center;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.3rem 0.5rem;
     opacity: 0.85;
+    font-weight: 500;
   }
 
   .sidebar-fixed.hide-profile .nav-link:hover,
   .sidebar-fixed.hide-profile .nav-link.active {
-    background: rgba(185,131,255,0.1);
     opacity: 1;
     color: #b983ff;
-  }
-
-  .mobile-nav-toggle {
-    display: block;
-    background: none;
-    border: none;
-    color: #fff;
-    padding: 0.5rem;
-    cursor: pointer;
-    z-index: 1000;
   }
 }
 .project-list {
