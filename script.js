@@ -192,3 +192,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.typewriter').classList.add('done');
   }, 3000); // Add 'done' class after first line finishes typing
 });
+
+// Toggle background on profile picture click
+document.addEventListener('DOMContentLoaded', () => {
+    const profileContainer = document.querySelector('.profile-pic-container');
+    
+    if (profileContainer) {
+        profileContainer.addEventListener('click', () => {
+            profileContainer.classList.toggle('show-background');
+        });
+    }
+});
