@@ -1286,70 +1286,64 @@ html {
 }
 
 /* Mobile view adjustments */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .skills-container {
     min-height: auto;
-    padding: 1rem;
+    padding: 1.5rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-
   .skills-character-bg {
     position: relative;
-    width: 300px;
-    height: 300px;
-    margin: 20px auto !important;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 1.2rem auto !important;
     top: 0;
     left: 0;
     transform: none;
+    z-index: 1;
+    display: block;
   }
-
   .skills-content {
+    width: 100%;
     height: auto;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-
   .skills-layout {
+    width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    padding: 1rem;
+    align-items: center;
+    padding: 0;
   }
-
   .tech-pill {
-    position: relative;
+    position: relative !important;
     top: auto !important;
     left: auto !important;
     right: auto !important;
     bottom: auto !important;
-    width: 100%;
-    transform: none;
+    width: 90vw !important;
+    max-width: 340px;
+    margin: 0 auto;
+    transform: none !important;
+    z-index: 2;
   }
 }
-
-@media (max-width: 480px) {
-  .skills-container {
-    padding: 0.5rem;
-  }
-
+@media (max-width: 600px) {
   .skills-character-bg {
-    width: 250px;
-    height: 250px;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 0.7rem !important;
   }
-
   .tech-pill {
-    padding: 8px 12px;
-  }
-  
-  .tech-pill .skill-icon {
-    font-size: 1.1em;
-    margin-right: 8px;
-  }
-  
-  .tech-pill .skill-name {
-    font-size: 0.95em;
-  }
-  
-  .tech-pill .skill-percent {
-    font-size: 0.95em;
-    margin-left: auto;
+    max-width: 98vw;
+    font-size: 0.98em;
+    padding: 8px 8px;
   }
 }
