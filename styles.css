@@ -1289,16 +1289,17 @@ html {
 @media (max-width: 900px) {
   .skills-container {
     min-height: auto;
-    padding: 1.5rem 0.5rem;
+    padding: 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   .skills-character-bg {
     position: relative;
-    width: 220px;
-    height: 220px;
-    margin: 0 auto 1.2rem auto !important;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 0.7rem !important;
+    margin: 0 auto 0.7rem auto !important;
     top: 0;
     left: 0;
     transform: none;
@@ -1328,8 +1329,10 @@ html {
     left: auto !important;
     right: auto !important;
     bottom: auto !important;
-    width: 90vw !important;
-    max-width: 340px;
+    width: 98vw !important;
+    max-width: 98vw;
+    font-size: 0.98em;
+    padding: 8px 8px;
     margin: 0 auto;
     transform: none !important;
     z-index: 2;
