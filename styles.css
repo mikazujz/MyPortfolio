@@ -94,65 +94,114 @@ nav ul li {
 
 .tech-pill {
   position: relative;
-  display: inline-block;
-  background: #232336;
-  color: #b983ff;
-  border-radius: 20px;
-  padding: 6px 16px;
-  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #18171d;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 16px 10px 16px;
+  min-width: 160px;
+  font-size: 1.1em;
   font-weight: 500;
-  margin-bottom: 4px;
-  border: 1px solid #2d2d44;
-  transition: background 0.2s, color 0.2s, margin-right 0.35s cubic-bezier(0.4,0,0.2,1);
-  cursor: pointer;
-  overflow: visible;
-  opacity: 0;
-  transform: scale(0.5) translateY(20px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  box-shadow: 0 0 0 1px #333;
+}
+
+.tech-pill .skill-icon {
+  display: inline-block;
+  font-size: 1.3em;
+  margin-right: 10px;
+  vertical-align: middle;
+  transition: opacity 0.2s;
 }
 .tech-pill .skill-percent {
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%) translateX(20px);
-  min-width: 48px;
-  font-size: 1.05em;
-  font-weight: 700;
+  display: none;
+
   color: #fff;
-  background: #b983ff;
-  border-radius: 16px;
-  padding: 4px 18px;
-  box-shadow: 0 2px 12px 0 rgba(185,131,255,0.18);
-  z-index: 2;
-  opacity: 0;
-  pointer-events: none;
-  text-shadow: 0 2px 8px #b983ff, 0 0px 2px #fff;
-  transition: opacity 0.2s, background 0.2s, transform 0.35s cubic-bezier(0.4,0,0.2,1);
-}
-.tech-pill:hover .skill-percent {
-  display: block !important;
-  opacity: 1;
   font-size: 1.1em;
-  font-weight: 900;
-  color: #fff;
-  background: #b983ff;
-  text-shadow: 0 2px 16px #b983ff, 0 0px 2px #fff;
-  transform: translateY(-50%) translateX(8px);
+  font-weight: 800;
+  border-radius: 7px;
+  padding: 2px 16px 2px 16px;
+  margin-left: 12px;
+  margin-right: -8px;
+  box-shadow: 0 2px 8px 0 #0002;
+  letter-spacing: 1px;
+  vertical-align: middle;
 }
-.tech-pill:hover {
-  color: #fff;
-  background: #b983ff;
-  border-color: #b983ff;
+.tech-pill.show-percent .skill-icon {
+  display: none;
+}
+.tech-pill.show-percent .skill-percent {
+  display: inline-block;
 }
 
-.tech-pill:hover > i,
-.tech-pill:hover > span:not(.skill-percent) {
-  opacity: 0;
+.tech-pill .skill-name {
+  flex: 1 1 auto;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1.1em;
+  color: #fff;
 }
 
-.tech-pill > i,
-.tech-pill > span:not(.skill-percent) {
+nav ul {
+  /* border-left: 2px solid #fff; */
+  padding-left: 3rem;
+  margin-bottom: 2rem;
+}
+
+nav ul li {
+  margin-bottom: 1.2rem;
+}
+
+.tech-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #18171d;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 16px 10px 16px;
+  min-width: 160px;
+  font-size: 1.1em;
+  font-weight: 500;
+  box-shadow: 0 0 0 1px #333;
+}
+
+.tech-pill .skill-icon {
+  display: inline-block;
+  font-size: 1.3em;
+  margin-right: 10px;
+  vertical-align: middle;
   transition: opacity 0.2s;
+}
+.tech-pill .skill-percent {
+  display: none;
+
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 800;
+  border-radius: 7px;
+  padding: 2px 16px 2px 16px;
+  margin-left: 12px;
+  margin-right: -8px;
+  box-shadow: 0 2px 8px 0 #0002;
+  letter-spacing: 1px;
+  vertical-align: middle;
+}
+.tech-pill.show-percent .skill-icon {
+  display: none;
+}
+.tech-pill.show-percent .skill-percent {
+  display: inline-block;
+}
+
+.tech-pill .skill-name {
+  flex: 1 1 auto;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1.1em;
+  color: #fff;
 }
 
 section {
@@ -1144,6 +1193,75 @@ html {
   opacity: 1;
   z-index: 1;
   pointer-events: none;
+  display: block;
+  margin: 0 auto;
+  margin-top: -150px !important;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.tech-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(24, 23, 29, 0.8);
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin-bottom: 8px;
+}
+
+.tech-pill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 40%;
+
+  opacity: 0.15;
+  border-radius: 0 8px 8px 0;
+  z-index: 0;
+}
+
+.tech-pill .skill-icon {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 1.2em;
+  color: #ffffff;
+  opacity: 0.9;
+  vertical-align: middle;
+}
+
+.tech-pill .skill-name {
+  flex: 1;
+  color: #fff;
+  font-weight: 500;
+}
+
+.tech-pill .skill-percent {
+  display: inline-block;
+  color: #ffffff;
+  font-weight: 600;
+  margin-left: auto;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.tech-pill.show-percent .skill-percent {
+  opacity: 1;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .skills-content {
@@ -1349,4 +1467,7 @@ html {
   height: auto;
   position: relative;
   z-index: 1;
+  display: block;
+  margin: 0 auto;
+  margin-top: -100px !important;
 }

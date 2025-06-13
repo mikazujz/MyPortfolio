@@ -721,3 +721,86 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(skillsSection);
   }
 });
+
+// Toggle skill icon/percent on character click
+window.addEventListener('DOMContentLoaded', function() {
+  const character = document.querySelector('.skills-character-bg, .character-image, .character');
+  const techPills = document.querySelectorAll('.tech-pill');
+  if (!character) return;
+  let show = false;
+  // Set initial percentages
+  techPills.forEach(pill => {
+    const percent = pill.getAttribute('data-skill');
+    const span = pill.querySelector('.skill-percent');
+    if (span && percent) span.textContent = percent + '%';
+  });
+  character.addEventListener('click', function() {
+    show = !show;
+    techPills.forEach(pill => {
+      if (show) {
+        pill.classList.add('show-percent');
+      } else {
+        pill.classList.remove('show-percent');
+      }
+    });
+  });
+});
+
+// Animate skill percentages when section becomes visible
+document.addEventListener('DOMContentLoaded', function() {
+    const techPills = document.querySelectorAll('.tech-pill');
+    let animations = new Map(); // Store active animations
+
+    function animatePercentages() {
+        techPills.forEach(pill => {
+            // Clear any existing animation for this pill
+            if (animations.has(pill)) {
+                clearInterval(animations.get(pill));
+            }
+
+            const percentElement = pill.querySelector('.skill-percent');
+            const targetPercent = parseInt(pill.getAttribute('data-skill'));
+            let currentPercent = 0;
+
+            // Show the percentage element
+            pill.classList.add('show-percent');
+
+            // Animate counting up
+            const duration = 1500; // 1.5 seconds
+            const interval = 16; // ~60fps
+            const steps = duration / interval;
+            const increment = targetPercent / steps;
+
+            const counter = setInterval(() => {
+                currentPercent = Math.min(currentPercent + increment, targetPercent);
+                percentElement.textContent = Math.round(currentPercent) + '%';
+
+                if (currentPercent >= targetPercent) {
+                    clearInterval(counter);
+                    animations.delete(pill);
+                }
+            }, interval);
+
+            // Store the animation
+            animations.set(pill, counter);
+        });
+    }
+
+    // Use Intersection Observer to detect when skills section is visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animatePercentages(); // Animate every time it comes into view
+            }
+        });
+    }, { 
+        threshold: 0.2, // Trigger when 20% of the section is visible
+        rootMargin: '-10% 0px' // Trigger slightly after entering viewport
+    });
+
+    // Observe the skills section
+    const skillsSection = document.getElementById('My Skills');
+    if (skillsSection) {
+        observer.observe(skillsSection);
+    }
+});
