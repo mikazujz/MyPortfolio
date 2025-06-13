@@ -493,6 +493,36 @@ html {
 .project-item:hover {
   background: rgba(185,131,255,0.04);
 }
+.project-thumb-container {
+  position: relative;
+  width: 120px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.project-preview-image {
+  position: absolute;
+  top: 50%;
+  left: 110%;
+  transform: translateY(-50%);
+  width: 180px;
+  height: auto;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.7);
+  border-radius: 10px;
+  background: #18122b;
+  z-index: 10;
+  display: none;
+  pointer-events: none;
+  border: 2px solid #a259ff;
+}
+.project-thumb-container:hover .project-preview-image {
+  display: block;
+  animation: fadeIn 0.2s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-60%) scale(0.95); }
+  to { opacity: 1; transform: translateY(-50%) scale(1); }
+}
 .project-thumb {
   width: 120px;
   height: 70px;
@@ -500,6 +530,14 @@ html {
   background: #232336;
   border: 1px solid #232336;
   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+}
+.project-thumb-hover {
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s;
+  z-index: 2;
+}
+.project-thumb-hover:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 32px 0 rgba(185,131,255,0.18);
 }
 .badge.bg-purple {
   background: #b983ff !important;
@@ -930,4 +968,41 @@ html {
   .video-time {
     font-size: 0.95rem;
   }
+}
+
+#project-preview-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  z-index: 2000;
+  background: #18122b;
+  border: 2px solid #a259ff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.85);
+  padding: 12px;
+  display: none;
+  transition: opacity 0.2s;
+  opacity: 0.98;
+  min-width: 420px;
+  min-height: 240px;
+  max-width: 520px;
+  max-height: 320px;
+  padding: 0;
+  left: auto;
+  right: 40px;
+  top: 120px;
+  transform: none;
+}
+#project-preview-modal img {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  display: block;
+}
+
+/* Ensure project list stays aligned and unaffected by modal */
+.project-list {
+  position: relative;
+  z-index: 1;
 }

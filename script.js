@@ -280,7 +280,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Open modal on PLVGAME image click
 document.addEventListener('DOMContentLoaded', function() {
-  const plvgameImg = document.querySelector('.project-thumb[alt="PLVGAME"]');
+  // PLVGAME Video Modal - trigger on whole project item
+  const plvgameItem = document.getElementById('open-plvgame-video');
   const plvgameModal = document.getElementById('modal-PLVGAME-VIDEO');
   const plvgameVideo = document.getElementById('plvgame-video');
   const plvgamePlay = document.getElementById('plvgame-play');
@@ -290,9 +291,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const plvgameTime = document.getElementById('plvgame-time');
   const plvgameClose = document.getElementById('close-plvgame-video');
 
-  if (plvgameImg && plvgameModal) {
-    plvgameImg.style.cursor = 'pointer';
-    plvgameImg.addEventListener('click', function() {
+  if (plvgameItem && plvgameModal) {
+    plvgameItem.style.cursor = 'pointer';
+    plvgameItem.addEventListener('click', function(e) {
       plvgameModal.classList.add('active');
       plvgameVideo.currentTime = 0;
       plvgameVideo.pause();
@@ -326,19 +327,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   if (plvgameBackward) {
-    plvgameBackward.addEventListener('click', function() {
+    plvgameBackward.addEventListener('click', function(e) {
+      e.stopPropagation();
       plvgameVideo.currentTime = Math.max(0, plvgameVideo.currentTime - 10);
       updateTime();
     });
   }
   if (plvgameForward) {
-    plvgameForward.addEventListener('click', function() {
+    plvgameForward.addEventListener('click', function(e) {
+      e.stopPropagation();
       plvgameVideo.currentTime = Math.min(plvgameVideo.duration, plvgameVideo.currentTime + 10);
       updateTime();
     });
   }
   if (plvgameSlider) {
-    plvgameSlider.addEventListener('input', function() {
+    plvgameSlider.addEventListener('input', function(e) {
+      e.stopPropagation();
       if (plvgameVideo.duration) {
         plvgameVideo.currentTime = (plvgameSlider.value / 100) * plvgameVideo.duration;
         updateTime();
@@ -365,4 +369,130 @@ document.addEventListener('DOMContentLoaded', function() {
     const s = sec % 60;
     return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
   }
+
+  // Deadlock Duel Video Modal - trigger on whole project item
+  const deadlockItem = document.getElementById('open-deadlock-video');
+  const deadlockModal = document.getElementById('modal-Deadlock-VIDEO');
+  const deadlockVideo = document.getElementById('deadlock-video');
+  const deadlockPlay = document.getElementById('deadlock-play');
+  const deadlockBackward = document.getElementById('deadlock-backward');
+  const deadlockForward = document.getElementById('deadlock-forward');
+  const deadlockSlider = document.getElementById('deadlock-slider');
+  const deadlockTime = document.getElementById('deadlock-time');
+  const deadlockClose = document.getElementById('close-deadlock-video');
+
+  if (deadlockItem && deadlockModal) {
+    deadlockItem.style.cursor = 'pointer';
+    deadlockItem.addEventListener('click', function(e) {
+      deadlockModal.classList.add('active');
+      deadlockVideo.currentTime = 0;
+      deadlockVideo.pause();
+      deadlockPlay.innerHTML = '<i class="fas fa-play"></i>';
+      updateDeadlockTime();
+    });
+  }
+  if (deadlockClose) {
+    deadlockClose.addEventListener('click', function() {
+      deadlockModal.classList.remove('active');
+      deadlockVideo.pause();
+    });
+  }
+  if (deadlockModal) {
+    deadlockModal.addEventListener('click', function(e) {
+      if (e.target === deadlockModal) {
+        deadlockModal.classList.remove('active');
+        deadlockVideo.pause();
+      }
+    });
+  }
+  if (deadlockPlay) {
+    deadlockPlay.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (deadlockVideo.paused) {
+        deadlockVideo.play();
+        deadlockPlay.innerHTML = '<i class="fas fa-pause"></i>';
+      } else {
+        deadlockVideo.pause();
+        deadlockPlay.innerHTML = '<i class="fas fa-play"></i>';
+      }
+    });
+  }
+  if (deadlockBackward) {
+    deadlockBackward.addEventListener('click', function(e) {
+      e.stopPropagation();
+      deadlockVideo.currentTime = Math.max(0, deadlockVideo.currentTime - 10);
+      updateDeadlockTime();
+    });
+  }
+  if (deadlockForward) {
+    deadlockForward.addEventListener('click', function(e) {
+      e.stopPropagation();
+      deadlockVideo.currentTime = Math.min(deadlockVideo.duration, deadlockVideo.currentTime + 10);
+      updateDeadlockTime();
+    });
+  }
+  if (deadlockSlider) {
+    deadlockSlider.addEventListener('input', function(e) {
+      e.stopPropagation();
+      if (deadlockVideo.duration) {
+        deadlockVideo.currentTime = (deadlockSlider.value / 100) * deadlockVideo.duration;
+        updateDeadlockTime();
+      }
+    });
+  }
+  if (deadlockVideo) {
+    deadlockVideo.addEventListener('timeupdate', updateDeadlockTime);
+    deadlockVideo.addEventListener('loadedmetadata', updateDeadlockTime);
+    deadlockVideo.addEventListener('ended', function() {
+      deadlockPlay.innerHTML = '<i class="fas fa-play"></i>';
+    });
+  }
+  function updateDeadlockTime() {
+    if (!deadlockVideo.duration) return;
+    const current = deadlockVideo.currentTime;
+    const total = deadlockVideo.duration;
+    deadlockSlider.value = (current / total) * 100;
+    deadlockTime.textContent = formatTime(current) + ' / ' + formatTime(total);
+  }
+});
+
+// Static image preview pop-up on hover for project items
+const thumbContainers = document.querySelectorAll('.project-thumb-container');
+thumbContainers.forEach(container => {
+  const previewImg = container.querySelector('.project-preview-image');
+  if (!previewImg) return;
+  container.addEventListener('mouseenter', () => {
+    previewImg.style.display = 'block';
+  });
+  container.addEventListener('mouseleave', () => {
+    previewImg.style.display = 'none';
+  });
+});
+
+// Floating image preview modal on hover (now works for all .project-thumb)
+const previewModal = document.getElementById('project-preview-modal');
+const previewImg = document.getElementById('project-preview-img');
+
+const previewMap = {
+  'plvgame': 'image/plvgame.jpg',
+  'deadlock': 'image/deadlock.png',
+};
+
+document.querySelectorAll('.project-thumb').forEach(img => {
+  img.addEventListener('mouseenter', (e) => {
+    let key = '';
+    if (img.alt.toLowerCase().includes('plvgame')) key = 'plvgame';
+    if (img.alt.toLowerCase().includes('deadlock')) key = 'deadlock';
+    if (!key) return;
+    previewImg.src = previewMap[key];
+    previewModal.style.display = 'block';
+    previewModal.style.top = '120px';
+    previewModal.style.right = '40px';
+    previewModal.style.left = 'auto';
+    previewModal.style.transform = 'none';
+  });
+  img.addEventListener('mouseleave', () => {
+    previewModal.style.display = 'none';
+    previewImg.src = '';
+  });
 });
