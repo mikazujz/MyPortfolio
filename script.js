@@ -486,9 +486,19 @@ document.querySelectorAll('.project-thumb').forEach(img => {
     if (!key) return;
     previewImg.src = previewMap[key];
     previewModal.style.display = 'block';
-    previewModal.style.top = '120px';
-    previewModal.style.right = '40px';
-    previewModal.style.left = 'auto';
+    // Get bounding rect of image
+    const rect = img.getBoundingClientRect();
+    // Position modal to the right of the image, but not offscreen
+    const modalWidth = 420;
+    let left = rect.right + 20;
+    let top = rect.top + window.scrollY;
+    // If modal will go offscreen right, move to left side
+    if (left + modalWidth > window.innerWidth) {
+      left = rect.left - modalWidth - 20;
+    }
+    previewModal.style.left = left + 'px';
+    previewModal.style.top = top + 'px';
+    previewModal.style.right = 'auto';
     previewModal.style.transform = 'none';
   });
   img.addEventListener('mouseleave', () => {
