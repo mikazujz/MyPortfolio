@@ -853,50 +853,53 @@ html {
 
 /* --- Video Modal Netflix Style --- */
 .project-modal {
-  display: none;
   position: fixed;
-  z-index: 2000;
-  left: 0; top: 0; width: 100vw; height: 100vh;
-  background: rgba(10, 10, 20, 0.92);
-  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none; /* Hide modal by default */
   align-items: center;
-  transition: opacity 0.2s;
+  justify-content: center;
+  z-index: 1050;
+  background: none !important; /* Remove overlay */
+  pointer-events: auto;
 }
 .project-modal.active {
-  display: flex;
+  display: flex !important; /* Show modal only when .active is added by JS */
 }
 .video-modal-content {
-  background: #181828;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.45);
+  background: none !important; /* Remove modal box background */
+  box-shadow: none !important;
+  border: 3px solid #a259ff;
+  border-radius: 18px;
   padding: 0;
-  max-width: 800px;
-  width: 95vw;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-.close-btn {
-  position: absolute;
-  top: 18px;
-  right: 28px;
-  font-size: 2.2rem;
-  color: #fff;
-  cursor: pointer;
-  z-index: 10;
-  transition: color 0.2s;
-}
-.close-btn:hover {
-  color: #b983ff;
-}
-.video-player-container {
+  max-width: 720px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2.5rem 2rem 1.5rem 2rem;
+}
+.close-btn {
+  color: #fff;
+  font-size: 2rem;
+  position: absolute;
+  top: 18px;
+  right: 28px;
+  z-index: 2;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-shadow: 0 2px 8px #000;
+}
+.video-player-container {
+  background: none !important;
+  border-radius: 14px;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .video-player {
   width: 100%;
