@@ -93,18 +93,36 @@ nav ul li {
 }
 
 .tech-pill {
-  position: relative;
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #18171d;
+  background: rgba(24, 23, 29, 0.9);
   color: #fff;
   border-radius: 10px;
-  padding: 10px 16px 10px 16px;
-  min-width: 160px;
+  padding: 10px 16px;
+  width: 200px;
   font-size: 1.1em;
   font-weight: 500;
-  box-shadow: 0 0 0 1px #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.tech-pill .skill-icon {
+  margin-right: 12px;
+  min-width: 16px;
+}
+
+.tech-pill .skill-name {
+  margin-right: 8px;
+  flex: 1;
+}
+
+.tech-pill .skill-percent {
+  margin-left: auto;
+  font-weight: 600;
+  min-width: 45px;
+  text-align: right;
 }
 
 .tech-pill .skill-icon {
@@ -154,54 +172,36 @@ nav ul li {
 }
 
 .tech-pill {
-  position: relative;
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #18171d;
+  background: rgba(24, 23, 29, 0.9);
   color: #fff;
   border-radius: 10px;
-  padding: 10px 16px 10px 16px;
-  min-width: 160px;
+  padding: 10px 16px;
+  width: 200px;
   font-size: 1.1em;
   font-weight: 500;
-  box-shadow: 0 0 0 1px #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 .tech-pill .skill-icon {
-  display: inline-block;
-  font-size: 1.3em;
-  margin-right: 10px;
-  vertical-align: middle;
-  transition: opacity 0.2s;
-}
-.tech-pill .skill-percent {
-  display: none;
-
-  color: #fff;
-  font-size: 1.1em;
-  font-weight: 800;
-  border-radius: 7px;
-  padding: 2px 16px 2px 16px;
-  margin-left: 12px;
-  margin-right: -8px;
-  box-shadow: 0 2px 8px 0 #0002;
-  letter-spacing: 1px;
-  vertical-align: middle;
-}
-.tech-pill.show-percent .skill-icon {
-  display: none;
-}
-.tech-pill.show-percent .skill-percent {
-  display: inline-block;
+  margin-right: 12px;
+  min-width: 16px;
 }
 
 .tech-pill .skill-name {
-  flex: 1 1 auto;
-  text-align: left;
+  margin-right: 8px;
+  flex: 1;
+}
+
+.tech-pill .skill-percent {
+  margin-left: auto;
   font-weight: 600;
-  font-size: 1.1em;
-  color: #fff;
+  min-width: 45px;
+  text-align: right;
 }
 
 section {
@@ -794,6 +794,7 @@ html {
   }
 }
 
+/* Speech bubble styles */
 .speech-bubble {
   position: absolute;
   background: #ffffff;
@@ -805,11 +806,10 @@ html {
   top: -40px;
   right: -20px;
   opacity: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 3;
   transform: scale(0);
   transform-origin: bottom right;
-  z-index: 3;
-  animation: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .speech-bubble::after {
@@ -854,6 +854,17 @@ html {
     opacity: 0;
     transform: scale(0);
   }
+}
+
+/* Light Mode Speech Bubble Override */
+body.light-mode .speech-bubble {
+  background: #18171d !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+body.light-mode .speech-bubble::after {
+  border-top: 8px solid #18171d;
 }
 
 /* --- Video Modal Netflix Style --- */
@@ -1289,6 +1300,7 @@ body.light-mode #settings-modal .form-switch .form-check-input:checked::before {
   position: absolute;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background: rgba(24, 23, 29, 0.9);
   color: #fff;
   border-radius: 10px;
@@ -1367,65 +1379,76 @@ body.light-mode #settings-modal .form-switch .form-check-input:checked::before {
 @media (max-width: 900px) {
   .skills-container {
     min-height: auto;
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 1rem;
   }
+
   .skills-character-bg {
     position: relative;
     width: 140px;
     height: 140px;
-    margin-bottom: 0.7rem !important;
-    margin: 0 auto 0.7rem auto !important;
+    margin: 0 auto 1.5rem auto !important;
     top: 0;
     left: 0;
     transform: none;
-    z-index: 1;
-    display: block;
   }
+
   .skills-content {
-    width: 100%;
     height: auto;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
+
   .skills-layout {
-    width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    align-items: center;
-    padding: 0;
+    padding: 1rem;
   }
+
   .tech-pill {
     position: relative !important;
     top: auto !important;
     left: auto !important;
     right: auto !important;
     bottom: auto !important;
-    width: 98vw !important;
-    max-width: 98vw;
-    font-size: 0.98em;
-    padding: 8px 8px;
-    margin: 0 auto;
+    width: 100% !important;
+    max-width: none;
     transform: none !important;
+    margin: 0;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     z-index: 2;
   }
-}
-@media (max-width: 600px) {
-  .skills-character-bg {
-    width: 140px;
-    height: 140px;
-    margin-bottom: 0.7rem !important;
+
+  .tech-pill .skill-name {
+    flex: 1;
+    white-space: nowrap;
+    margin-right: 16px;
   }
+
+  .tech-pill .skill-percent {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    font-size: 0.95em;
+    color: #fff;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 600px) {
+  .skills-container {
+    padding: 0.5rem;
+  }
+
   .tech-pill {
-    max-width: 98vw;
-    font-size: 0.98em;
-    padding: 8px 8px;
+    padding: 10px 14px;
+    font-size: 0.92em;
+  }
+
+  .tech-pill .skill-percent {
+    min-width: 40px;
   }
 }
 
@@ -1507,12 +1530,12 @@ body.light-mode .badge.bg-secondary {
   color: #18171d !important;
 }
 body.light-mode .speech-bubble {
-  background: #f0f0f0;
-  color: #18171d;
-  box-shadow: 0 2px 8px #e0e0e0;
+  background: #18171d;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 body.light-mode .speech-bubble::after {
-  border-top: 8px solid #f0f0f0;
+  border-top: 8px solid #18171d;
 }
 body.light-mode .text-light,
 body.light-mode .text-secondary,

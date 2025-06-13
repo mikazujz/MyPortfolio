@@ -217,12 +217,16 @@ if (sidebarProfilePic) {
 const speechBubble = document.querySelector('.speech-bubble');
 
 function showSpeechBubble() {
-    if (speechBubble) {
-        speechBubble.classList.add('show');
-        setTimeout(() => {
-            speechBubble.classList.remove('show');
-        }, 5000); // Hide after 5 seconds
-    }
+  if (speechBubble) {
+    // Remove existing show class and animation
+    speechBubble.classList.remove('show');
+    
+    // Force a reflow to restart animation
+    void speechBubble.offsetWidth;
+    
+    // Add show class to start new animation
+    speechBubble.classList.add('show');
+  }
 }
 
 // Show initially after a short delay
