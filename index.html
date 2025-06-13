@@ -105,7 +105,7 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
         <h5 class="text-purple mb-3">Projects</h5>
         <div class="project-list">
           <div class="project-item d-flex mb-4 align-items-start fade-in-up">
-            <img src="image/plvgame.jpg" class="project-thumb me-3 rounded" alt="PLVGAME">
+            <img src="image/plvgame.jpg" class="project-thumb me-3 rounded" alt="PLVGAME" id="open-plvgame-video">
             <div>
               <div class="fw-bold">PLVGAME <span class="text-secondary small ms-2">June 2025</span></div>
               <div class="text-secondary small mb-1">Zombie Survival Quest Game – Unreal Engine (Blueprint/C++). An immersive survival game featuring quest-based gameplay where players collect items, progress through levels, and ultimately face off against a powerful boss zombie. The game combines strategic item collection with intense combat mechanics.</div>
@@ -181,6 +181,25 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
           </div>
         </div>
       </section>
+    </div>
+  </div>
+  <!-- Project Modals -->
+  <div class="project-modals">
+    <!-- PLVGAME Video Modal -->
+    <div class="project-modal" id="modal-PLVGAME-VIDEO">
+      <div class="modal-content video-modal-content">
+        <span class="close-btn" id="close-plvgame-video">&times;</span>
+        <div class="video-player-container">
+          <video id="plvgame-video" class="video-player" src="video/plvgame.mp4" poster="image/plvgame.jpg"></video>
+          <div class="video-controls">
+            <button class="video-btn" id="plvgame-backward"><i class="fas fa-undo"></i> -10s</button>
+            <button class="video-btn" id="plvgame-play"><i class="fas fa-play"></i></button>
+            <button class="video-btn" id="plvgame-forward">+10s <i class="fas fa-redo"></i></button>
+            <input type="range" id="plvgame-slider" class="video-slider" min="0" max="100" value="0">
+            <span class="video-time" id="plvgame-time">00:00 / 00:00</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

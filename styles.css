@@ -812,3 +812,122 @@ html {
     transform: scale(0);
   }
 }
+
+/* --- Video Modal Netflix Style --- */
+.project-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(10, 10, 20, 0.92);
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+.project-modal.active {
+  display: flex;
+}
+.video-modal-content {
+  background: #181828;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.45);
+  padding: 0;
+  max-width: 800px;
+  width: 95vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 28px;
+  font-size: 2.2rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s;
+}
+.close-btn:hover {
+  color: #b983ff;
+}
+.video-player-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 2rem 1.5rem 2rem;
+}
+.video-player {
+  width: 100%;
+  max-width: 720px;
+  max-height: 55vh;
+  border-radius: 12px;
+  background: #000;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.25);
+  margin-bottom: 1.2rem;
+}
+.video-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 720px;
+  background: rgba(20, 10, 30, 0.85);
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  box-shadow: 0 2px 8px 0 rgba(185,131,255,0.08);
+}
+.video-btn {
+  background: #232336;
+  color: #b983ff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.video-btn:hover {
+  background: #b983ff;
+  color: #232336;
+}
+.video-slider {
+  flex: 1 1 0%;
+  margin: 0 1rem;
+  accent-color: #b983ff;
+  height: 4px;
+  border-radius: 4px;
+  background: #232336;
+}
+.video-time {
+  color: #fff;
+  font-size: 1rem;
+  min-width: 110px;
+  text-align: right;
+  font-family: monospace;
+}
+@media (max-width: 600px) {
+  .video-modal-content {
+    padding: 0;
+    max-width: 99vw;
+  }
+  .video-player-container {
+    padding: 1.2rem 0.2rem 1rem 0.2rem;
+  }
+  .video-controls {
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 0.7rem 0.5rem;
+  }
+  .video-time {
+    font-size: 0.95rem;
+  }
+}
