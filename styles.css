@@ -106,6 +106,9 @@ nav ul li {
   transition: background 0.2s, color 0.2s, margin-right 0.35s cubic-bezier(0.4,0,0.2,1);
   cursor: pointer;
   overflow: visible;
+  opacity: 0;
+  transform: scale(0.5) translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 .tech-pill .skill-percent {
   position: absolute;
@@ -645,55 +648,7 @@ html {
   transform: scale(1.05);
 }
 
-.tech-pill.show-percent {
-  margin-right: 70px;
-  z-index: 3;
-}
-.tech-pill .skill-percent {
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%) translateX(-20px);
-  min-width: 48px;
-  font-size: 1.05em;
-  font-weight: 700;
-  color: #fff;
-  background: #b983ff;
-  border-radius: 16px;
-  padding: 4px 18px;
-  box-shadow: 0 2px 12px 0 rgba(185,131,255,0.18);
-  z-index: 2;
-  opacity: 0;
-  pointer-events: none;
-  text-shadow: 0 2px 8px #b983ff, 0 0px 2px #fff;
-  transition: opacity 0.2s, background 0.2s, transform 0.35s cubic-bezier(0.4,0,0.2,1);
-}
-.tech-pill.show-percent .skill-percent {
-  display: block !important;
-  opacity: 1;
-  font-size: 1.1em;
-  font-weight: 900;
-  color: #fff;
-  background: #b983ff;
-  text-shadow: 0 2px 16px #b983ff, 0 0px 2px #fff;
-  transform: translateY(-50%) translateX(8px);
-}
-@media (max-width: 900px) {
-  .tech-pill.show-percent {
-    margin-right: 38px;
-  }
-  .tech-pill .skill-percent {
-    left: 100%;
-    min-width: 38px;
-    font-size: 0.98em;
-    padding: 3px 12px;
-    transform: translateY(-50%) translateX(-10px);
-  }
-  .tech-pill.show-percent .skill-percent {
-    font-size: 1em;
-    transform: translateY(-50%) translateX(4px);
-  }
-}
+/* Hover effects removed */
 
 @keyframes slideLeft {
   0% {
@@ -1163,4 +1118,235 @@ html {
 #settings-modal .form-switch .form-check-input:checked {
   background-color: #b983ff;
   border-color: #b983ff;
+}
+
+/* Skills Section Styles */
+.skills-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.skills-character-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: url('image/character.png') no-repeat center center;
+  background-size: contain;
+  opacity: 1;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.skills-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.skills-layout {
+  position: relative;
+  width: 900px;
+  height: 600px;
+  margin: 0 auto;
+}
+
+/* Technology Pills Styling */
+.tech-pill {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(20, 20, 25, 0.9);
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 3;
+}
+
+.tech-pill i {
+  margin-right: 6px;
+}
+
+/* Position each tech pill */
+.tech-typescript {
+  top: 15%;
+  left: 20%;
+}
+
+.tech-reactnative {
+  top: 35%;
+  left: 15%;
+}
+
+.tech-csharp {
+  top: 50%;
+  left: 18%;
+}
+
+.tech-reactjs {
+  top: 65%;
+  left: 22%;
+}
+
+.tech-unity {
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tech-nodejs {
+  top: 25%;
+  right: 22%;
+}
+
+.tech-firebase {
+  top: 40%;
+  right: 18%;
+}
+
+.tech-github {
+  top: 55%;
+  right: 20%;
+}
+
+.tech-unreal {
+  top: 70%;
+  right: 25%;
+}
+
+.tech-ionic {
+  top: 85%;
+  right: 28%;
+}
+
+/* Custom Tech Pill Styles */
+.tech-pill.dark {
+  background: rgba(15, 15, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Technology Pop-up Animation */
+@keyframes techFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(var(--translate-x, 0), var(--translate-y, 0)) scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.tech-pill {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.tech-pill.animate {
+  animation: techFadeIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Initial positions for animation */
+.tech-typescript { --translate-x: -50px; --translate-y: -30px; }
+.tech-unity { --translate-y: -40px; }
+.tech-nodejs { --translate-x: 50px; --translate-y: -30px; }
+.tech-reactnative { --translate-x: -40px; }
+.tech-firebase { --translate-x: 40px; }
+.tech-csharp { --translate-x: -50px; --translate-y: 30px; }
+.tech-reactjs { --translate-x: -40px; --translate-y: 40px; }
+.tech-github { --translate-x: 40px; }
+.tech-unreal { --translate-x: 50px; --translate-y: 30px; }
+.tech-ionic { --translate-x: 40px; --translate-y: 40px; }
+
+/* Staggered animation delays */
+.tech-typescript.animate { animation-delay: 0s; }
+.tech-unity.animate { animation-delay: 0.1s; }
+.tech-nodejs.animate { animation-delay: 0.2s; }
+.tech-reactnative.animate { animation-delay: 0.15s; }
+.tech-firebase.animate { animation-delay: 0.25s; }
+.tech-csharp.animate { animation-delay: 0.2s; }
+.tech-reactjs.animate { animation-delay: 0.3s; }
+.tech-github.animate { animation-delay: 0.35s; }
+.tech-unreal.animate { animation-delay: 0.4s; }
+.tech-ionic.animate { animation-delay: 0.45s; }
+
+@media (max-width: 1200px) {
+  .skills-layout {
+    width: 100%;
+    height: 500px;
+  }
+  
+  .skills-character-bg {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-container {
+    padding: 1rem;
+    min-height: auto;
+  }
+  
+  .skills-character-bg {
+    width: 300px;
+    height: 300px;
+    opacity: 0.8;
+  }
+  
+  .skills-layout {
+    height: auto;
+    padding: 2rem 0;
+  }
+  
+  .tech-pill {
+    position: relative !important;
+    display: inline-flex;
+    margin: 5px;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+  }
+  
+  .skills-content {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+/* Character container styles */
+.character-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Character image styles */
+.character-image {
+  max-width: 300px;
+  height: auto;
+  position: relative;
+  z-index: 1;
 }

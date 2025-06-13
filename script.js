@@ -104,18 +104,7 @@ function randomizeTechPills() {
 }
 window.addEventListener('DOMContentLoaded', randomizeTechPills);
 
-// Tech pill slide-out percent effect
-function setupTechPillHover() {
-  document.querySelectorAll('.tech-pill').forEach(pill => {
-    pill.addEventListener('mouseenter', function() {
-      pill.classList.add('show-percent');
-    });
-    pill.addEventListener('mouseleave', function() {
-      pill.classList.remove('show-percent');
-    });
-  });
-}
-window.addEventListener('DOMContentLoaded', setupTechPillHover);
+// Tech pill hover function removed
 
 // Improved nav highlight for custom scroll container
 function updateActiveNavCustom() {
@@ -694,3 +683,41 @@ if (toggleCursorLight && mouseLight) {
     mouseLight.style.display = this.checked ? '' : 'none';
   });
 }
+
+// Skills section animation
+document.addEventListener('DOMContentLoaded', () => {
+  const skillsSection = document.querySelector('#My\\ Skills');
+  const techPills = document.querySelectorAll('.tech-pill');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Reset all pills
+        techPills.forEach(pill => {
+          pill.style.opacity = '0';
+          pill.style.transform = 'scale(0.5) translateY(20px)';
+        });
+
+        // Animate each pill with staggered delay
+        techPills.forEach((pill, index) => {
+          setTimeout(() => {
+            pill.style.opacity = '1';
+            pill.style.transform = 'scale(1) translateY(0)';
+          }, index * 100); // 100ms delay between each pill
+        });
+      } else {
+        // When section is out of view, reset pills for next animation
+        techPills.forEach(pill => {
+          pill.style.opacity = '0';
+          pill.style.transform = 'scale(0.5) translateY(20px)';
+        });
+      }
+    });
+  }, {
+    threshold: 0.2 // Trigger when 20% of the section is visible
+  });
+
+  if (skillsSection) {
+    observer.observe(skillsSection);
+  }
+});
