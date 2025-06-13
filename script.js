@@ -685,31 +685,50 @@ if (toggleCursorLight && mouseLight) {
 }
 
 // Skills section animation
+// --- SMOOTH ANIMATION VERSION ---
 document.addEventListener('DOMContentLoaded', () => {
   const skillsSection = document.querySelector('#My\\ Skills');
   const techPills = document.querySelectorAll('.tech-pill');
 
+  function animatePillsSmoothly() {
+    let start = null;
+    const duration = 600; // total duration for all pills
+    const stagger = 100; // ms between each pill
+    const total = techPills.length;
+    // Reset all pills
+    techPills.forEach(pill => {
+      pill.style.opacity = '0';
+      pill.style.transform = 'scale(0.5) translateY(20px)';
+      pill.style.transition = 'none';
+    });
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      const elapsed = timestamp - start;
+      techPills.forEach((pill, i) => {
+        const pillAppear = i * stagger;
+        if (elapsed > pillAppear) {
+          pill.style.transition = 'opacity 0.45s cubic-bezier(0.4,0,0.2,1), transform 0.45s cubic-bezier(0.4,0,0.2,1)';
+          pill.style.opacity = '1';
+          pill.style.transform = 'scale(1) translateY(0)';
+        }
+      });
+      if (elapsed < (total - 1) * stagger + 450) {
+        requestAnimationFrame(step);
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Reset all pills
-        techPills.forEach(pill => {
-          pill.style.opacity = '0';
-          pill.style.transform = 'scale(0.5) translateY(20px)';
-        });
-
-        // Animate each pill with staggered delay
-        techPills.forEach((pill, index) => {
-          setTimeout(() => {
-            pill.style.opacity = '1';
-            pill.style.transform = 'scale(1) translateY(0)';
-          }, index * 100); // 100ms delay between each pill
-        });
+        animatePillsSmoothly();
       } else {
         // When section is out of view, reset pills for next animation
         techPills.forEach(pill => {
           pill.style.opacity = '0';
           pill.style.transform = 'scale(0.5) translateY(20px)';
+          pill.style.transition = 'none';
         });
       }
     });
