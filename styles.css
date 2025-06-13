@@ -1,7 +1,20 @@
 body {
-  background: #000;
-  color: #f5f5f7;
-  font-family: 'Inter', Arial, sans-serif;
+  background: url('image/bgmain.jpg') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.main-split, .content-scroll, .sidebar-fixed {
+  position: relative;
+  z-index: 1;
 }
 
 .container-fluid {
@@ -70,7 +83,7 @@ h5 {
 }
 
 nav ul {
-  border-left: 2px solid #fff;
+  /* border-left: 2px solid #fff; */
   padding-left: 3rem;
   margin-bottom: 2rem;
 }
@@ -183,16 +196,17 @@ footer, .mt-auto {
   pointer-events: none;
   border-radius: 50%;
   background: radial-gradient(circle, 
-    rgba(185,131,255,0.15) 0%, 
-    rgba(185,131,255,0.08) 40%,
-    rgba(185,131,255,0.02) 70%,
+    rgba(185,131,255,0.10) 0%, 
+    rgba(185,131,255,0.04) 40%,
+    rgba(185,131,255,0.01) 70%,
     rgba(0,0,0,0) 100%
   );
-  filter: blur(60px);
+  filter: blur(40px);
   mix-blend-mode: screen;
   z-index: 1;
   transform: translate(-50%, -50%);
-  transition: all 0.15s ease;
+  transition: all 0.07s cubic-bezier(0.4,0,0.2,1);
+  opacity: 0.8;
 }
 
 .experience-list {
@@ -797,46 +811,4 @@ html {
     opacity: 0;
     transform: scale(0);
   }
-}
-
-/* Custom cursor styles */
-* {
-  cursor: none;
-}
-
-.custom-cursor {
-  width: 20px;
-  height: 20px;
-  background: rgba(185, 131, 255, 0.3);
-  border: 2px solid #B983FF;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, background 0.2s;
-  mix-blend-mode: screen;
-}
-
-.cursor-dot {
-  width: 4px;
-  height: 4px;
-  background: #B983FF;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s;
-}
-
-/* Hover effects for interactive elements */
-a:hover ~ .custom-cursor,
-button:hover ~ .custom-cursor,
-.tech-pill:hover ~ .custom-cursor,
-.profile-pic-container:hover ~ .custom-cursor {
-  width: 40px;
-  height: 40px;
-  background: rgba(185, 131, 255, 0.2);
-  mix-blend-mode: screen;
 }
