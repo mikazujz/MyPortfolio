@@ -1176,18 +1176,15 @@ html {
   width: 100%;
   padding: 2rem;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .skills-character-bg {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
-  height: 500px;
+  height: 700px;
   background: url('image/character.png') no-repeat center center;
   background-size: contain;
   opacity: 1;
@@ -1195,279 +1192,164 @@ html {
   pointer-events: none;
   display: block;
   margin: 0 auto;
-  margin-top: -150px !important;
-  cursor: pointer;
-  pointer-events: auto;
-}
-
-.tech-pill {
-  position: relative;
-  display: flex;
-  align-items: center;
-  background: rgba(24, 23, 29, 0.8);
-  border-radius: 8px;
-  padding: 8px 16px;
-  margin-bottom: 8px;
-}
-
-.tech-pill::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 40%;
-
-  opacity: 0.15;
-  border-radius: 0 8px 8px 0;
-  z-index: 0;
-}
-
-.tech-pill .skill-icon {
-  display: inline-block;
-  margin-right: 10px;
-  font-size: 1.2em;
-  color: #ffffff;
-  opacity: 0.9;
-  vertical-align: middle;
-}
-
-.tech-pill .skill-name {
-  flex: 1;
-  color: #fff;
-  font-weight: 500;
-}
-
-.tech-pill .skill-percent {
-  display: inline-block;
-  color: #ffffff;
-  font-weight: 600;
-  margin-left: auto;
-  position: relative;
-  z-index: 1;
-  opacity: 0;
-  animation: fadeIn 0.5s ease forwards;
-}
-
-.tech-pill.show-percent .skill-percent {
-  opacity: 1;
-}
-
-@keyframes fadeIn {
-  from { 
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to { 
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .skills-content {
-  position: absolute;
+  position: relative;
   width: 100%;
-  height: 100%;
   z-index: 2;
+  height: 100vh;
 }
 
 .skills-layout {
   position: relative;
-  width: 900px;
-  height: 600px;
-  margin: 0 auto;
+  height: 100%;
+  padding: 4rem 2rem;
 }
 
-/* Technology Pills Styling */
 .tech-pill {
   position: absolute;
   display: flex;
   align-items: center;
-  padding: 8px 12px;
-  background: rgba(20, 20, 25, 0.9);
-  border-radius: 4px;
+  background: rgba(24, 23, 29, 0.9);
   color: #fff;
-  font-size: 0.85rem;
-  white-space: nowrap;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 3;
+  border-radius: 10px;
+  padding: 10px 16px;
+  width: 200px;
+  font-size: 1.1em;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.tech-pill i {
-  margin-right: 6px;
+.tech-pill .skill-icon {
+  margin-right: 8px;
 }
 
-/* Position each tech pill */
+.tech-pill .skill-name {
+  margin-right: 8px;
+}
+
+.tech-pill .skill-percent {
+  margin-left: auto;
+  font-weight: 600;
+}
+
+/* Exact positions based on screenshot */
 .tech-typescript {
   top: 15%;
-  left: 20%;
-}
-
-.tech-reactnative {
-  top: 35%;
-  left: 15%;
-}
-
-.tech-csharp {
-  top: 50%;
-  left: 18%;
-}
-
-.tech-reactjs {
-  top: 65%;
-  left: 22%;
+  left: 30%;
 }
 
 .tech-unity {
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 10%;
+  right: 30%;
 }
 
 .tech-nodejs {
   top: 25%;
-  right: 22%;
-}
-
-.tech-firebase {
-  top: 40%;
-  right: 18%;
-}
-
-.tech-github {
-  top: 55%;
-  right: 20%;
-}
-
-.tech-unreal {
-  top: 70%;
   right: 25%;
 }
 
+.tech-reactnative {
+  top: 25%;
+  left: 25%;
+}
+
+.tech-firebase {
+  top: 35%;
+  right: 20%;
+}
+
+.tech-csharp {
+  top: 35%;
+  left: 20%;
+}
+
+.tech-reactjs {
+  top: 45%;
+  left: 25%;
+}
+
+.tech-github {
+  top: 45%;
+  right: 25%;
+}
+
+.tech-unreal {
+  top: 55%;
+  right: 30%;
+}
+
 .tech-ionic {
-  top: 85%;
-  right: 28%;
+  top: 65%;
+  right: 35%;
 }
 
-/* Custom Tech Pill Styles */
-.tech-pill.dark {
-  background: rgba(15, 15, 20, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Technology Pop-up Animation */
-@keyframes techFadeIn {
-  0% {
-    opacity: 0;
-    transform: translate(var(--translate-x, 0), var(--translate-y, 0)) scale(0.7);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-}
-
-.tech-pill {
-  opacity: 0;
-  transform: scale(0.7);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.tech-pill.animate {
-  animation: techFadeIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-
-/* Initial positions for animation */
-.tech-typescript { --translate-x: -50px; --translate-y: -30px; }
-.tech-unity { --translate-y: -40px; }
-.tech-nodejs { --translate-x: 50px; --translate-y: -30px; }
-.tech-reactnative { --translate-x: -40px; }
-.tech-firebase { --translate-x: 40px; }
-.tech-csharp { --translate-x: -50px; --translate-y: 30px; }
-.tech-reactjs { --translate-x: -40px; --translate-y: 40px; }
-.tech-github { --translate-x: 40px; }
-.tech-unreal { --translate-x: 50px; --translate-y: 30px; }
-.tech-ionic { --translate-x: 40px; --translate-y: 40px; }
-
-/* Staggered animation delays */
-.tech-typescript.animate { animation-delay: 0s; }
-.tech-unity.animate { animation-delay: 0.1s; }
-.tech-nodejs.animate { animation-delay: 0.2s; }
-.tech-reactnative.animate { animation-delay: 0.15s; }
-.tech-firebase.animate { animation-delay: 0.25s; }
-.tech-csharp.animate { animation-delay: 0.2s; }
-.tech-reactjs.animate { animation-delay: 0.3s; }
-.tech-github.animate { animation-delay: 0.35s; }
-.tech-unreal.animate { animation-delay: 0.4s; }
-.tech-ionic.animate { animation-delay: 0.45s; }
-
-@media (max-width: 1200px) {
-  .skills-layout {
-    width: 100%;
-    height: 500px;
-  }
-  
-  .skills-character-bg {
-    width: 400px;
-    height: 400px;
-  }
-}
-
+/* Mobile view adjustments */
 @media (max-width: 768px) {
   .skills-container {
-    padding: 1rem;
     min-height: auto;
+    padding: 1rem;
   }
-  
+
   .skills-character-bg {
+    position: relative;
     width: 300px;
     height: 300px;
-    opacity: 0.8;
+    margin: 20px auto !important;
+    top: 0;
+    left: 0;
+    transform: none;
   }
-  
+
+  .skills-content {
+    height: auto;
+  }
+
   .skills-layout {
     height: auto;
-    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1rem;
   }
-  
+
   .tech-pill {
-    position: relative !important;
-    display: inline-flex;
-    margin: 5px;
+    position: relative;
     top: auto !important;
     left: auto !important;
     right: auto !important;
-    transform: none !important;
+    bottom: auto !important;
+    width: 100%;
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-container {
+    padding: 0.5rem;
+  }
+
+  .skills-character-bg {
+    width: 250px;
+    height: 250px;
+  }
+
+  .tech-pill {
+    padding: 8px 12px;
   }
   
-  .skills-content {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+  .tech-pill .skill-icon {
+    font-size: 1.1em;
+    margin-right: 8px;
   }
-}
-
-/* Character container styles */
-.character-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Character image styles */
-.character-image {
-  max-width: 300px;
-  height: auto;
-  position: relative;
-  z-index: 1;
-  display: block;
-  margin: 0 auto;
-  margin-top: -100px !important;
+  
+  .tech-pill .skill-name {
+    font-size: 0.95em;
+  }
+  
+  .tech-pill .skill-percent {
+    font-size: 0.95em;
+    margin-left: auto;
+  }
 }
