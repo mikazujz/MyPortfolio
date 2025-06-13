@@ -854,19 +854,15 @@ html {
 /* --- Video Modal Netflix Style --- */
 .project-modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: none; /* Hide modal by default */
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  display: none;
   align-items: center;
   justify-content: center;
   z-index: 1050;
-  background: none !important; /* Remove overlay */
-  pointer-events: auto;
 }
 .project-modal.active {
-  display: flex !important; /* Show modal only when .active is added by JS */
+  display: flex !important;
 }
 .video-modal-content {
   background: none !important; /* Remove modal box background */
@@ -1095,4 +1091,12 @@ html {
 .project-list {
   position: relative;
   z-index: 1;
+}
+
+.blur-bg {
+  filter: blur(8px);
+  transition: filter 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.blur-bg.blur-out {
+  filter: blur(0);
 }

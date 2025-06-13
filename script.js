@@ -291,6 +291,19 @@ document.addEventListener('DOMContentLoaded', function() {
   const plvgameTime = document.getElementById('plvgame-time');
   const plvgameClose = document.getElementById('close-plvgame-video');
 
+  // Hanapin ang main content container
+  const mainContent = document.querySelector('.main-content');
+
+  // Function to remove blur with animation
+  function removeBlurWithAnimation() {
+    if (mainContent) {
+      mainContent.classList.add('blur-out');
+      setTimeout(() => {
+        mainContent.classList.remove('blur-bg', 'blur-out');
+      }, 400); // dapat match sa transition duration ng CSS
+    }
+  }
+
   if (plvgameItem && plvgameModal) {
     plvgameItem.style.cursor = 'pointer';
     plvgameItem.addEventListener('click', function(e) {
@@ -299,21 +312,37 @@ document.addEventListener('DOMContentLoaded', function() {
       plvgameVideo.pause();
       plvgamePlay.innerHTML = '<i class="fas fa-play"></i>';
       updateTime();
+      // Magdagdag ng blur
+      if (mainContent) mainContent.classList.add('blur-bg');
     });
   }
   if (plvgameClose) {
     plvgameClose.addEventListener('click', function() {
       plvgameModal.classList.remove('active');
+      plvgameModal.style.display = 'none';
       plvgameVideo.pause();
+      plvgameVideo.currentTime = 0;
+      removeBlurWithAnimation();
     });
   }
   if (plvgameModal) {
     plvgameModal.addEventListener('click', function(e) {
+      // Only close if the click is directly on the modal background, not on modal-content or its children
       if (e.target === plvgameModal) {
         plvgameModal.classList.remove('active');
+        plvgameModal.style.display = 'none';
         plvgameVideo.pause();
+        plvgameVideo.currentTime = 0;
+        removeBlurWithAnimation();
       }
     });
+    // Prevent clicks inside modal-content from bubbling up to modal (so clicking controls won't close modal)
+    const modalContent = plvgameModal.querySelector('.modal-content');
+    if (modalContent) {
+      modalContent.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    }
   }
   if (plvgamePlay) {
     plvgamePlay.addEventListener('click', function() {
