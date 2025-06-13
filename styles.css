@@ -871,7 +871,7 @@ html {
 .video-modal-content {
   background: none !important; /* Remove modal box background */
   box-shadow: none !important;
-  border: 3px solid #a259ff;
+  border: none !important;
   border-radius: 18px;
   padding: 0;
   max-width: 720px;
