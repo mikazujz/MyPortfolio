@@ -1102,10 +1102,6 @@ html {
   filter: blur(8px);
   transition: filter 0.4s cubic-bezier(0.4,0,0.2,1);
 }
-.blur-bg.blur-out {
-  filter: blur(0);
-}
-
 /* Settings Modal Styles (reuse project-modal styles) */
 #settings-modal {
   position: fixed;
@@ -1167,6 +1163,88 @@ html {
 #settings-modal .form-switch .form-check-input:checked {
   background-color: #b983ff;
   border-color: #b983ff;
+}
+
+/* Toggle Switch Styles Fix */
+#settings-modal .form-switch .form-check-input {
+  width: 40px;
+  height: 20px;
+  border-radius: 20px;
+  margin-right: 8px;
+  background-image: none !important;
+  position: relative;
+  border: none;
+  cursor: pointer;
+}
+
+#settings-modal .form-switch .form-check-input::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+
+#settings-modal .form-switch .form-check-input:checked::before {
+  transform: translateX(20px);
+}
+
+/* Light Mode Styles */
+body.light-mode #settings-modal {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+body.light-mode #settings-modal .modal-content {
+  background: #ffffff !important;
+  border: 2px solid #18171d !important;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode #settings-modal h4 {
+  color: #18171d !important;
+  font-weight: 600;
+}
+
+body.light-mode #settings-modal .form-check-label {
+  color: #18171d !important;
+}
+
+body.light-mode #settings-modal .close-btn {
+  color: #18171d !important;
+}
+
+/* Toggle Switch Light Mode */
+body.light-mode #settings-modal .form-switch .form-check-input {
+  background-color: #e0e0e0 !important;
+  border: 2px solid #18171d !important;
+}
+
+body.light-mode #settings-modal .form-switch .form-check-input:checked {
+  background-color: #6c47ff !important;
+  border-color: #6c47ff !important;
+}
+
+/* Toggle Dot Light Mode */
+body.light-mode #settings-modal .form-switch .form-check-input::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: #18171d;
+  border-radius: 50%;
+  top: 1px;
+  left: 1px;
+  transition: transform 0.3s ease;
+}
+
+body.light-mode #settings-modal .form-switch .form-check-input:checked::before {
+  background-color: #ffffff;
+  transform: translateX(18px);
 }
 
 /* Skills Section Styles */
@@ -1373,7 +1451,7 @@ body.light-mode .nav-link.active, body.light-mode .nav-link:hover {
   opacity: 1;
 }
 body.light-mode .profile-pic-container {
-  background: #fff !important;
+   background: transparent !important;
 }
 body.light-mode .tech-pill {
   background: #fff !important;
