@@ -1350,3 +1350,143 @@ html {
     padding: 8px 8px;
   }
 }
+
+/* Light Mode Styles */
+body.light-mode {
+  background: #f8f9fb !important;
+  color: #18171d !important;
+}
+body.light-mode .main-split,
+body.light-mode .content-scroll,
+body.light-mode .sidebar-fixed {
+  background: transparent !important;
+}
+body.light-mode .sidebar-fixed {
+  border-right: 1px solid #e0e0e0;
+}
+body.light-mode .nav-link {
+  color: #18171d !important;
+  opacity: 0.7;
+}
+body.light-mode .nav-link.active, body.light-mode .nav-link:hover {
+  color: #6c47ff !important;
+  opacity: 1;
+}
+body.light-mode .profile-pic-container {
+  background: #fff !important;
+}
+body.light-mode .tech-pill {
+  background: #fff !important;
+  color: #18171d !important;
+  box-shadow: 0 2px 8px 0 #e0e0e0;
+  border: 1px solid #e0e0e0;
+}
+body.light-mode .tech-pill .skill-percent {
+  color: #6c47ff !important;
+}
+body.light-mode .skills-character-bg {
+  filter: drop-shadow(0 4px 24px #e0e0e0);
+}
+body.light-mode .text-secondary {
+  color: #6c6c6c !important;
+}
+body.light-mode .text-purple {
+  color: #6c47ff !important;
+}
+body.light-mode .project-item {
+  background: #fff !important;
+  color: #18171d !important;
+  border: 1px solid #e0e0e0;
+}
+body.light-mode .badge.bg-purple {
+  background: #6c47ff !important;
+  color: #fff !important;
+}
+body.light-mode .modal-content {
+  background: #fff !important;
+  color: #18171d !important;
+  border: 1px solid #e0e0e0 !important;
+}
+body.light-mode .form-check-label {
+  color: #18171d !important;
+}
+body.light-mode .sidebar-fixed .profile-pic {
+  border: 3px solid #e0e0e0;
+  background: #fff;
+}
+body.light-mode .fade-in-up {
+  background: none !important;
+}
+body.light-mode .project-thumb {
+  background: #e0e0e0;
+  border: 1px solid #e0e0e0;
+}
+body.light-mode .project-thumb-hover:hover {
+  box-shadow: 0 4px 32px 0 #e0e0e0;
+}
+body.light-mode .badge.bg-secondary {
+  background: #f0f0f0 !important;
+  color: #18171d !important;
+}
+body.light-mode .speech-bubble {
+  background: #f0f0f0;
+  color: #18171d;
+  box-shadow: 0 2px 8px #e0e0e0;
+}
+body.light-mode .speech-bubble::after {
+  border-top: 8px solid #f0f0f0;
+}
+body.light-mode .text-light,
+body.light-mode .text-secondary,
+body.light-mode .text-dark,
+body.light-mode .fw-bold,
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode p,
+body.light-mode a,
+body.light-mode .lead {
+  color: #18171d !important;
+}
+body.light-mode .text-purple {
+  color: #6c47ff !important;
+}
+body.light-mode .nav-link.active, body.light-mode .nav-link:hover {
+  color: #6c47ff !important;
+}
+body.light-mode .sidebar-fixed .profile-pic {
+  border: 3px solid #e0e0e0;
+  background: #fff;
+}
+body.light-mode .badge.bg-secondary {
+  background: #f0f0f0 !important;
+  color: #18171d !important;
+}
+body.light-mode .badge.bg-purple {
+  background: #6c47ff !important;
+  color: #fff !important;
+}
+body.light-mode .form-check-label {
+  color: #18171d !important;
+}
+body.light-mode .project-item .fw-bold {
+  color: #18171d !important;
+}
+body.light-mode .project-item .text-secondary {
+  color: #6c6c6c !important;
+}
+body.light-mode .typewriter, body.light-mode .typewriter-2 {
+  color: #18171d !important;
+}
+body.light-mode .typewriter::after, body.light-mode .typewriter-2::after {
+  color: #6c47ff !important;
+}
+body.light-mode #experience,
+body.light-mode #experience * {
+  color: #18171d !important;
+}
+body.light-mode #My\ Skills,
+body.light-mode #My\ Skills * {
+  color: #18171d !important;
+}

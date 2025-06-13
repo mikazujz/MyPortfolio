@@ -684,6 +684,52 @@ if (toggleCursorLight && mouseLight) {
   });
 }
 
+// Dark/Light mode toggle
+function setTheme(mode) {
+  if (mode === 'light') {
+    document.body.classList.add('light-mode');
+    document.body.classList.remove('bg-dark', 'text-light');
+    document.body.classList.add('text-dark');
+  } else {
+    document.body.classList.remove('light-mode');
+    document.body.classList.remove('text-dark');
+    document.body.classList.add('bg-dark', 'text-light');
+  }
+}
+
+function saveTheme(mode) {
+  localStorage.setItem('theme', mode);
+}
+
+function loadTheme() {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') {
+    setTheme('light');
+    const toggle = document.getElementById('toggle-darkmode');
+    if (toggle) toggle.checked = true;
+  } else {
+    setTheme('dark');
+    const toggle = document.getElementById('toggle-darkmode');
+    if (toggle) toggle.checked = false;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  loadTheme();
+  const toggle = document.getElementById('toggle-darkmode');
+  if (toggle) {
+    toggle.addEventListener('change', function() {
+      if (this.checked) {
+        setTheme('light');
+        saveTheme('light');
+      } else {
+        setTheme('dark');
+        saveTheme('dark');
+      }
+    });
+  }
+});
+
 // Skills section animation
 // --- SMOOTH ANIMATION VERSION ---
 document.addEventListener('DOMContentLoaded', () => {
