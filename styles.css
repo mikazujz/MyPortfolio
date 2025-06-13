@@ -792,8 +792,8 @@ html {
 
 .speech-bubble {
   position: absolute;
-  background: #B983FF;
-  color: #232336;
+  background: #ffffff;
+  color: #181828;
   padding: 8px 15px;
   border-radius: 20px;
   font-size: 14px;
@@ -805,6 +805,7 @@ html {
   transform-origin: bottom right;
   z-index: 3;
   animation: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .speech-bubble::after {
@@ -814,7 +815,7 @@ html {
   right: 25px;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 8px solid #B983FF;
+  border-top: 8px solid #ffffff;
 }
 
 .speech-bubble.show {
@@ -1099,4 +1100,67 @@ html {
 }
 .blur-bg.blur-out {
   filter: blur(0);
+}
+
+/* Settings Modal Styles (reuse project-modal styles) */
+#settings-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  background: rgba(0,0,0,0.18);
+  backdrop-filter: blur(2px);
+}
+#settings-modal.active {
+  display: flex;
+}
+/* Settings Modal Specific Styles */
+#settings-modal .modal-content {
+  min-width: 280px;
+  max-width: 320px;
+  padding: 1.5rem 1.8rem;
+  background: #181828 !important;
+  border: 1px solid #232336 !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3) !important;
+}
+
+#settings-modal h4 {
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+#settings-modal .form-check {
+  margin-bottom: 0.5rem;
+}
+
+#settings-modal .form-check-label {
+  font-size: 1rem;
+  color: #b0b0b5;
+}
+
+#settings-modal .form-check-input {
+  margin-right: 0.8rem;
+}
+
+#settings-modal .close-btn {
+  font-size: 1.6rem;
+  top: 12px;
+  right: 16px;
+}
+
+/* Form Switch Specific Styling */
+#settings-modal .form-switch .form-check-input {
+  background-color: #232336;
+  border-color: #2d2d44;
+  cursor: pointer;
+}
+
+#settings-modal .form-switch .form-check-input:checked {
+  background-color: #b983ff;
+  border-color: #b983ff;
 }

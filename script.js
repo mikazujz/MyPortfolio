@@ -214,6 +214,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Add sound effect to sidebar profile picture click
+const sidebarProfilePic = document.querySelector('.sidebar-fixed .profile-pic');
+if (sidebarProfilePic) {
+  const clickSound = new Audio('https://cdn.pixabay.com/audio/2022/10/16/audio_12bfae6b3b.mp3');
+  sidebarProfilePic.addEventListener('click', () => {
+    clickSound.currentTime = 0;
+    clickSound.play();
+  });
+}
+
 // Speech bubble animation
 const speechBubble = document.querySelector('.speech-bubble');
 
@@ -485,19 +495,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Static image preview pop-up on hover for project items
-const thumbContainers = document.querySelectorAll('.project-thumb-container');
-thumbContainers.forEach(container => {
-  const previewImg = container.querySelector('.project-preview-image');
-  if (!previewImg) return;
-  container.addEventListener('mouseenter', () => {
-    previewImg.style.display = 'block';
-  });
-  container.addEventListener('mouseleave', () => {
-    previewImg.style.display = 'none';
-  });
-});
-
 // Video Player Functions
 function initializeVideoPlayer(videoId, prefix) {
   const video = document.getElementById(`${prefix}-video`);
@@ -664,3 +661,36 @@ document.querySelectorAll('.close-btn').forEach(btn => {
     }
   });
 });
+
+// Settings modal logic
+const openSettingsBtn = document.getElementById('open-settings-modal');
+const settingsModal = document.getElementById('settings-modal');
+const closeSettingsBtn = document.getElementById('close-settings-modal');
+const toggleCursorLight = document.getElementById('toggle-cursor-light');
+// Use the already declared mouseLight variable
+if (openSettingsBtn && settingsModal) {
+  openSettingsBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    settingsModal.classList.add('active');
+    document.body.classList.add('modal-open');
+  });
+}
+if (closeSettingsBtn && settingsModal) {
+  closeSettingsBtn.addEventListener('click', function() {
+    settingsModal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+  });
+}
+if (settingsModal) {
+  settingsModal.addEventListener('mousedown', function(e) {
+    if (e.target === settingsModal) {
+      settingsModal.classList.remove('active');
+      document.body.classList.remove('modal-open');
+    }
+  });
+}
+if (toggleCursorLight && mouseLight) {
+  toggleCursorLight.addEventListener('change', function() {
+    mouseLight.style.display = this.checked ? '' : 'none';
+  });
+}
