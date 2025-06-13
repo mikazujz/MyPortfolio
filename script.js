@@ -498,44 +498,6 @@ thumbContainers.forEach(container => {
   });
 });
 
-// Floating image preview modal on hover (now works for all .project-thumb)
-const previewModal = document.getElementById('project-preview-modal');
-const previewImg = document.getElementById('project-preview-img');
-
-const previewMap = {
-  'plvgame': 'image/plvgame.jpg',
-  'deadlock': 'image/deadlock.png',
-};
-
-document.querySelectorAll('.project-thumb').forEach(img => {
-  img.addEventListener('mouseenter', (e) => {
-    let key = '';
-    if (img.alt.toLowerCase().includes('plvgame')) key = 'plvgame';
-    if (img.alt.toLowerCase().includes('deadlock')) key = 'deadlock';
-    if (!key) return;
-    previewImg.src = previewMap[key];
-    previewModal.style.display = 'block';
-    // Get bounding rect of image
-    const rect = img.getBoundingClientRect();
-    // Position modal to the right of the image, but not offscreen
-    const modalWidth = 420;
-    let left = rect.right + 20;
-    let top = rect.top + window.scrollY;
-    // If modal will go offscreen right, move to left side
-    if (left + modalWidth > window.innerWidth) {
-      left = rect.left - modalWidth - 20;
-    }
-    previewModal.style.left = left + 'px';
-    previewModal.style.top = top + 'px';
-    previewModal.style.right = 'auto';
-    previewModal.style.transform = 'none';
-  });
-  img.addEventListener('mouseleave', () => {
-    previewModal.style.display = 'none';
-    previewImg.src = '';
-  });
-});
-
 // Video Player Functions
 function initializeVideoPlayer(videoId, prefix) {
   const video = document.getElementById(`${prefix}-video`);
