@@ -539,14 +539,14 @@ html {
   height: 100%;
   background: rgba(0, 0, 0, 0.3); /* Semi-transparent dark overlay */
   border-radius: 8px;
-  opacity: 0;
+  opacity: 1; /* Always visible */
   transition: opacity 0.2s ease;
   z-index: 1;
   pointer-events: none; /* Allows clicks to pass through to the button */
 }
 
 .project-thumb-container:hover::before {
-  opacity: 1;
+  opacity: 1; /* Overlay remains visible */
 }
 
 .project-play-button {
@@ -565,7 +565,7 @@ html {
   cursor: pointer;
   transition: all 0.2s ease;
   z-index: 2; /* Make sure it's above the overlay */
-  opacity: 0; /* Initially hidden */
+  opacity: 1; /* Always visible */
 }
 
 .project-play-button i {
@@ -575,7 +575,6 @@ html {
 }
 
 .project-thumb-container:hover .project-play-button {
-  opacity: 1; /* Show on hover */
   transform: translate(-50%, -50%) scale(1.1); /* Slight scale up on hover */
 }
 
