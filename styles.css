@@ -334,10 +334,10 @@ html {
   .sidebar-fixed {
     position: relative;
     flex-direction: column !important;
-    align-items: center !important;
+    align-items: flex-start !important;
     justify-content: flex-start !important;
     gap: 0.5rem !important;
-    padding: 2.2rem 0.5rem 1.2rem 0.5rem;
+    padding: 1.5rem 1.5rem 0.8rem 1.5rem;
     background: #181828;
     border-bottom: none;
     width: 100vw;
@@ -347,45 +347,55 @@ html {
     z-index: 100;
     transition: all 0.3s;
   }
-  .sidebar-fixed .profile-pic {
-    width: 90px;
-    height: 90px;
-    margin-bottom: 0.7rem !important;
+  .sidebar-fixed > div.d-flex.flex-row.flex-md-column {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 1rem !important;
+    width: 100%;
+  }
+  .sidebar-fixed .profile-pic-container {
+    margin-bottom: 0 !important;
     margin-right: 0 !important;
     flex-shrink: 0;
-    transition: width 0.3s, height 0.3s;
+  }
+  .sidebar-fixed .profile-pic {
+    width: 70px;
+    height: 70px;
+  }
+  .sidebar-fixed .text-center.text-md-start {
+    text-align: left !important;
+    flex-grow: 1;
+    max-width: calc(100% - 80px);
   }
   .sidebar-fixed h1 {
-    font-size: 2rem !important;
-    margin-bottom: 0.2rem;
-    font-weight: 700;
-    letter-spacing: 0.1px;
-    text-align: center;
-    line-height: 1.1;
-    margin-right: 0;
-    white-space: normal;
-    flex-shrink: 0;
-    max-width: 100%;
-    overflow: visible;
-    text-overflow: unset;
-    transition: font-size 0.3s;
+    font-size: 1.6rem !important;
+    margin-bottom: 0.1rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  .sidebar-fixed h5,
+  .sidebar-fixed h5 {
+    font-size: 1rem !important;
+    margin-bottom: 0 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .sidebar-fixed p,
   .sidebar-fixed .mt-0 {
     display: block !important;
-    text-align: center;
   }
   .sidebar-fixed nav {
     margin: 1.2rem 0 0 0 !important;
     padding: 0 !important;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
   }
   .sidebar-fixed nav ul {
     flex-direction: row !important;
-    gap: 0.5rem !important;
+    gap: 0.3rem !important;
     border-left: none;
     padding-left: 0;
     margin-bottom: 0;
@@ -408,6 +418,9 @@ html {
     letter-spacing: 0;
     white-space: nowrap;
   }
+  .sidebar-fixed .mt-0.mt-md-auto {
+    display: block !important;
+  }
   .sidebar-fixed.sticky {
     position: fixed !important;
     top: 0;
@@ -416,35 +429,42 @@ html {
     flex-direction: row !important;
     align-items: center !important;
     justify-content: flex-start !important;
-    gap: 0.5rem !important;
-    padding: 0.7rem 0.5rem 0.7rem 0.5rem;
+    gap: 0 !important;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
     background: #181828;
     border-bottom: 1px solid #232336;
     z-index: 999;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
   }
+  .sidebar-fixed.sticky > div.d-flex.flex-row.flex-md-column {
+    gap: 0 !important;
+  }
   .sidebar-fixed.sticky .profile-pic {
-    width: 36px;
-    height: 36px;
+    width: 65px;
+    height: 65px;
     margin-bottom: 0 !important;
     margin-right: 8px !important;
   }
-  .sidebar-fixed.sticky h1,
-  .sidebar-fixed.hide-profile h1 {
-    font-size: 0.98rem !important;
+  .sidebar-fixed.sticky h1 {
+    font-size: 0.9rem !important;
     margin-bottom: 0;
     font-weight: 600;
     letter-spacing: 0.1px;
     text-align: left;
     line-height: 1.1;
-    margin-right: 0.7rem;
+    margin-right: 0 !important;
     white-space: nowrap;
     flex-shrink: 0;
     max-width: none;
     overflow: visible;
     text-overflow: unset;
   }
-  .sidebar-fixed.sticky h5,
+  .sidebar-fixed.sticky h5 {
+    font-size: 1.2rem !important;
+    margin-bottom: 0;
+    white-space: nowrap;
+    display: block !important;
+  }
   .sidebar-fixed.sticky p,
   .sidebar-fixed.sticky .mt-0 {
     display: none !important;
@@ -453,10 +473,11 @@ html {
     margin: 0 !important;
     padding: 0 !important;
     flex: 1 1 auto;
+    justify-content: flex-start !important;
   }
   .sidebar-fixed.sticky nav ul {
     flex-direction: row !important;
-    gap: 0.4rem !important;
+    gap: 0.2rem !important;
     justify-content: flex-start;
   }
   .sidebar-fixed.sticky nav ul li {
@@ -466,71 +487,27 @@ html {
     padding: 0;
   }
   .sidebar-fixed.sticky .nav-link {
-    padding: 0 0.18rem;
-    font-size: 0.98em;
+    padding: 0 0.1rem;
+    font-size: 0.85em;
     font-weight: 500;
     letter-spacing: 0.2px;
   }
-  /* New/updated classes for hiding profile info */
-  .sidebar-fixed.hide-profile {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: #181828;
-    z-index: 999;
-    padding: 0.5rem !important;
-    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.15);
-  }
-
-  .sidebar-fixed.hide-profile .profile-pic,
-  .sidebar-fixed.hide-profile h1,
-  .sidebar-fixed.hide-profile h5,
-  .sidebar-fixed.hide-profile p,
-  .sidebar-fixed.hide-profile div:not(nav),
-  .sidebar-fixed.hide-profile > div:first-child,
-  .sidebar-fixed.hide-profile .mt-0.mt-md-auto {
+  .sidebar-fixed.sticky .speech-bubble {
     display: none !important;
   }
+}
 
-  .sidebar-fixed.hide-profile nav {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100%;
+@media (max-width: 400px) {
+  .nav-link {
+    font-size: 0.75em;
+    padding: 0.2rem 0.3rem;
   }
 
-  .sidebar-fixed.hide-profile nav ul {
-    flex-direction: row !important;
-    justify-content: center !important;
-    width: 100%;
-    gap: 1.5rem !important;
-    margin: 0 !important;
-    padding: 0.3rem !important;
-  }
-
-  .sidebar-fixed.hide-profile .nav-link {
-    font-size: 0.95rem;
-    padding: 0.5rem;
-    display: block;
-    width: 100%;
-    text-align: center;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    font-weight: 500;
-    opacity: 0.85;
-  }
-
-  @media (max-width: 400px) {
-    .nav-link {
-      font-size: 0.85em;
-      padding: 0.3rem 0.5rem;
-    }
-
-    .sidebar-fixed nav ul {
-      gap: 0.3rem !important;
-    }
+  .sidebar-fixed nav ul {
+    gap: 0.2rem !important;
   }
 }
+
 .project-list {
   max-width: 600px;
   margin-left: 180px;
@@ -697,8 +674,6 @@ html {
   transform: scale(1.05);
 }
 
-/* Hover effects removed */
-
 @keyframes slideLeft {
   0% {
     opacity: 0;
@@ -718,15 +693,6 @@ html {
   overflow: hidden;
 }
 
-.sidebar-fixed.hide-profile .profile-content {
-  opacity: 0;
-  height: 0;
-  margin: 0;
-  padding: 0;
-  pointer-events: none;
-}
-
-/* Typewriter animations */
 .typewriter, .typewriter-2 {
   position: relative;
   width: 100%;
@@ -794,7 +760,6 @@ html {
   }
 }
 
-/* Speech bubble styles */
 .speech-bubble {
   position: absolute;
   background: #ffffff;
@@ -856,7 +821,6 @@ html {
   }
 }
 
-/* Light Mode Speech Bubble Override */
 body.light-mode .speech-bubble {
   background: #18171d !important;
   color: #ffffff !important;
@@ -867,7 +831,6 @@ body.light-mode .speech-bubble::after {
   border-top: 8px solid #18171d;
 }
 
-/* --- Video Modal Netflix Style --- */
 .project-modal {
   position: fixed;
   top: 0; left: 0;
@@ -881,7 +844,7 @@ body.light-mode .speech-bubble::after {
   display: flex !important;
 }
 .video-modal-content {
-  background: none !important; /* Remove modal box background */
+  background: none !important;
   box-shadow: none !important;
   border: none !important;
   border-radius: 18px;
@@ -923,7 +886,6 @@ body.light-mode .speech-bubble::after {
   margin-bottom: 1.2rem;
 }
 
-/* Video Player Styles */
 .video-player-container {
   position: relative;
   width: 100%;
@@ -972,7 +934,7 @@ body.light-mode .speech-bubble::after {
 .big-play-button i {
   color: white;
   font-size: 32px;
-  margin-left: 5px; /* Optical centering for play icon */
+  margin-left: 5px;
 }
 
 .big-play-button:hover {
@@ -980,7 +942,6 @@ body.light-mode .speech-bubble::after {
   transform: scale(1.1);
 }
 
-/* Video Controls */
 .video-controls {
   position: absolute;
   bottom: 0;
@@ -1014,7 +975,6 @@ body.light-mode .speech-bubble::after {
   opacity: 1;
 }
 
-/* Time Slider */
 .time-slider-container {
   flex-grow: 1;
   display: flex;
@@ -1058,7 +1018,6 @@ body.light-mode .speech-bubble::after {
   min-width: 100px;
 }
 
-/* Volume Control */
 .volume-control {
   position: relative;
   display: flex;
@@ -1103,7 +1062,6 @@ body.light-mode .speech-bubble::after {
   opacity: 1;
 }
 
-/* Ensure project list stays aligned and unaffected by modal */
 .project-list {
   position: relative;
   z-index: 1;
@@ -1113,7 +1071,7 @@ body.light-mode .speech-bubble::after {
   filter: blur(8px);
   transition: filter 0.4s cubic-bezier(0.4,0,0.2,1);
 }
-/* Settings Modal Styles (reuse project-modal styles) */
+
 #settings-modal {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -1127,7 +1085,7 @@ body.light-mode .speech-bubble::after {
 #settings-modal.active {
   display: flex;
 }
-/* Settings Modal Specific Styles */
+
 #settings-modal .modal-content {
   min-width: 280px;
   max-width: 320px;
@@ -1164,7 +1122,6 @@ body.light-mode .speech-bubble::after {
   right: 16px;
 }
 
-/* Form Switch Specific Styling */
 #settings-modal .form-switch .form-check-input {
   background-color: #232336;
   border-color: #2d2d44;
@@ -1176,7 +1133,6 @@ body.light-mode .speech-bubble::after {
   border-color: #b983ff;
 }
 
-/* Toggle Switch Styles Fix */
 #settings-modal .form-switch .form-check-input {
   width: 40px;
   height: 20px;
@@ -1204,7 +1160,6 @@ body.light-mode .speech-bubble::after {
   transform: translateX(20px);
 }
 
-/* Light Mode Styles */
 body.light-mode #settings-modal {
   background: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(8px) !important;
@@ -1229,7 +1184,6 @@ body.light-mode #settings-modal .close-btn {
   color: #18171d !important;
 }
 
-/* Toggle Switch Light Mode */
 body.light-mode #settings-modal .form-switch .form-check-input {
   background-color: #e0e0e0 !important;
   border: 2px solid #18171d !important;
@@ -1240,7 +1194,6 @@ body.light-mode #settings-modal .form-switch .form-check-input:checked {
   border-color: #6c47ff !important;
 }
 
-/* Toggle Dot Light Mode */
 body.light-mode #settings-modal .form-switch .form-check-input::before {
   content: '';
   position: absolute;
@@ -1258,7 +1211,6 @@ body.light-mode #settings-modal .form-switch .form-check-input:checked::before {
   transform: translateX(18px);
 }
 
-/* Skills Section Styles */
 .skills-container {
   position: relative;
   min-height: 100vh;
@@ -1324,7 +1276,6 @@ body.light-mode #settings-modal .form-switch .form-check-input:checked::before {
   font-weight: 600;
 }
 
-/* Exact positions based on screenshot */
 .tech-typescript {
   top: 15%;
   left: 30%;
@@ -1375,7 +1326,6 @@ body.light-mode #settings-modal .form-switch .form-check-input:checked::before {
   right: 35%;
 }
 
-/* Mobile view adjustments */
 @media (max-width: 900px) {
   .skills-container {
     min-height: auto;
@@ -1452,7 +1402,6 @@ body.light-mode #settings-modal .form-switch .form-check-input:checked::before {
   }
 }
 
-/* Force skill icons to always show and be large/visible */
 .tech-pill .skill-icon {
   font-size: 2.2rem !important;
   min-width: 2.2rem;
@@ -1472,7 +1421,6 @@ body.light-mode #settings-modal .form-switch .form-check-input:checked::before {
   vertical-align: middle;
 }
 
-/* For devicon colored icons */
 .devicon-plain.colored,
 .devicon-original.colored {
   color: inherit !important;
@@ -1480,7 +1428,6 @@ body.light-mode #settings-modal .form-switch .form-check-input:checked::before {
   opacity: 1 !important;
 }
 
-/* --- GLOBAL LIGHT MODE OVERRIDES (Safe, No Code Removal) --- */
 body.light-mode, body.light-mode .bg-dark {
   background: #f6f6fa !important;
   color: #18171d !important;

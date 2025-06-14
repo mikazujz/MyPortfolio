@@ -139,39 +139,62 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 // Sticky sidebar on scroll (mobile header shrink)
-window.addEventListener('scroll', function() {
-  const sidebar = document.querySelector('.sidebar-fixed');
-  if (!sidebar) return;
-  if (window.scrollY > 40) {
-    sidebar.classList.add('sticky');
-  } else {
-    sidebar.classList.remove('sticky');
-  }
-});
-
-// Hide profile section when Technologies is active (MOBILE ONLY)
-let lastScrollTop = 0;
-const sidebar = document.querySelector('.sidebar-fixed');
-const techLink = document.querySelector('a[href="#technologies"]');
+let lastScrollTop = 0; // Initialize lastScrollTop outside the event listener
 
 function isMobile() {
   return window.innerWidth <= 900;
 }
 
-window.addEventListener('scroll', function() {
-  if (!sidebar || !isMobile() || !techLink) return;
-  
-  // Check if Technologies section is active
-  if (techLink.classList.contains('active')) {
-    // In Technologies section or below, hide profile
-    sidebar.classList.add('hide-profile');
-    sidebar.classList.remove('sticky'); // Remove sticky to prevent conflicts
+function handleSidebarScroll() {
+  const sidebar = document.querySelector('.sidebar-fixed');
+  const contentScroll = document.querySelector('.content-scroll');
+  if (!sidebar) return;
+
+  let currentScrollTop;
+  if (contentScroll && isMobile()) {
+    currentScrollTop = contentScroll.scrollTop;
   } else {
-    // Above Technologies section, show full header
-    sidebar.classList.remove('hide-profile');
+    currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  }
+  
+  const shrinkThreshold = 40; // Pixels scrolled before the sidebar shrinks
+
+  if (isMobile()) {
+    if (currentScrollTop > shrinkThreshold) {
+      // Scrolling down past the shrink threshold, apply sticky (shrunken state)
+      sidebar.classList.add('sticky');
+      // Ensure hide-profile is not active if it was accidentally applied before
+      sidebar.classList.remove('hide-profile'); 
+    } else {
+      // At or near the top: remove sticky, show full profile
+      sidebar.classList.remove('sticky');
+      // Ensure hide-profile is not active
+      sidebar.classList.remove('hide-profile');
+    }
+    lastScrollTop = currentScrollTop; // Update lastScrollTop
+  } else {
+    // Original sticky behavior for desktop
     if (window.scrollY > 40) {
       sidebar.classList.add('sticky');
+      sidebar.classList.remove('hide-profile'); // Ensure profile is visible on desktop
+    } else {
+      sidebar.classList.remove('sticky');
+      sidebar.classList.remove('hide-profile');
     }
+  }
+}
+
+// Attach the scroll listener
+document.addEventListener('DOMContentLoaded', function() {
+  const contentScroll = document.querySelector('.content-scroll');
+  if (contentScroll) {
+    contentScroll.addEventListener('scroll', handleSidebarScroll);
+    // Also call it once on load to set initial state if already scrolled
+    handleSidebarScroll();
+  } else {
+    // Fallback for non-content-scroll setups or initial desktop load
+    window.addEventListener('scroll', handleSidebarScroll);
+    handleSidebarScroll();
   }
 });
 
