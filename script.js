@@ -896,3 +896,55 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(skillsSection);
     }
 });
+
+// Scroll-to-top button functionality
+const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+
+function handleScrollToTopButton() {
+  const contentScroll = document.querySelector('.content-scroll');
+  let currentScrollPos;
+
+  if (contentScroll) {
+    currentScrollPos = contentScroll.scrollTop;
+  } else {
+    currentScrollPos = window.pageYOffset || document.documentElement.scrollTop;
+  }
+
+  if (currentScrollPos > 200) { // Show button after scrolling 200px down
+    scrollToTopBtn.classList.add('show');
+  } else {
+    scrollToTopBtn.classList.remove('show');
+  }
+}
+
+function scrollToTop() {
+  const contentScroll = document.querySelector('.content-scroll');
+  if (contentScroll) {
+    contentScroll.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  } else {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+}
+
+// Attach scroll event listener
+document.addEventListener('DOMContentLoaded', function() {
+  const contentScroll = document.querySelector('.content-scroll');
+  if (contentScroll) {
+    contentScroll.addEventListener('scroll', handleScrollToTopButton);
+  } else {
+    window.addEventListener('scroll', handleScrollToTopButton);
+  }
+  // Initial check on load
+  handleScrollToTopButton();
+});
+
+// Attach click event listener
+if (scrollToTopBtn) {
+  scrollToTopBtn.addEventListener('click', scrollToTop);
+}

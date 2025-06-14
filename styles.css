@@ -1515,3 +1515,36 @@ body.light-mode #experience .text-secondary {
 body.light-mode #experience .text-purple {
   color: #7c3aed !important;
 }
+
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #b983ff; /* Purple background */
+  color: #fff; /* White arrow */
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-to-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 900px) {
+  .project-item .text-secondary {
+    color: #b0b0b5 !important;
+  }
+}
