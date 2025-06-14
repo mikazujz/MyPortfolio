@@ -1548,3 +1548,114 @@ body.light-mode #experience .text-purple {
     color: #b0b0b5 !important;
   }
 }
+
+/* Contact Form Styles (Gmail UI Inspired) */
+.contact-form-container {
+  background-color: #1a1a2e; /* Slightly lighter than main bg, for a distinct card */
+  border-radius: 8px;
+  padding: 25px 30px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3); /* Softer, more pronounced shadow */
+  max-width: 650px; /* Slightly wider */
+  margin: 0 auto; /* Center the form */
+  border: 1px solid #282840; /* Subtle border */
+}
+
+.contact-form .form-group {
+  margin-bottom: 25px; /* More vertical spacing */
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #c0c0c0; /* Slightly brighter for better contrast */
+  font-size: 0.95rem; /* Slightly smaller label font */
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 14px 15px; /* Increased padding for input fields */
+  border: 1px solid #3a3a5e; /* Default subtle border */
+  border-radius: 4px; /* Slightly less rounded corners */
+  background-color: #0f0f1d; /* Very dark background for inputs */
+  color: #f0f0f0; /* Lighter text color for input */
+  font-size: 1.05rem; /* Slightly larger input text */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email" ]:focus,
+.contact-form textarea:focus {
+  border-color: #7a42ed; /* Brighter purple on focus */
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(122, 66, 237, 0.3); /* Subtle glow on focus */
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px; /* Minimum height for textarea */
+}
+
+.contact-form .send-button {
+  display: inline-flex;
+  align-items: center;
+  background-color: #b983ff; /* Primary purple color */
+  color: #181828; /* Dark text on button */
+  padding: 12px 28px; /* Slightly more padding */
+  border: none;
+  border-radius: 6px; /* Slightly rounded corners */
+  cursor: pointer;
+  font-size: 1.05rem; /* Slightly larger font */
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for the button */
+}
+
+.contact-form .send-button i {
+  margin-right: 10px; /* More space for icon */
+  font-size: 1.1rem; /* Slightly larger icon */
+}
+
+.contact-form .send-button:hover {
+  background-color: #a259ff; /* Slightly darker on hover */
+  transform: translateY(-1px); /* Subtle lift effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* More prominent shadow on hover */
+}
+
+/* Light mode for Contact Form */
+body.light-mode .contact-form-container {
+  background-color: #ffffff; /* White background for light mode */
+  border: 1px solid #e0e0e0; /* Lighter border */
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08); /* Lighter shadow */
+}
+
+body.light-mode .contact-form label {
+  color: #333333; /* Darker labels for contrast */
+}
+
+body.light-mode .contact-form input[type="text"],
+body.light-mode .contact-form input[type="email"],
+body.light-mode .contact-form textarea {
+  background-color: #f6f6fa; /* Light background for inputs */
+  border: 1px solid #d0d0d0; /* Subtle light border */
+  color: #18171d; /* Dark text for inputs */
+}
+
+body.light-mode .contact-form input[type="text"]:focus,
+body.light-mode .contact-form input[type="email" ]:focus,
+body.light-mode .contact-form textarea:focus {
+  border-color: #7a42ed; /* Maintain purple focus border */
+  box-shadow: 0 0 0 3px rgba(122, 66, 237, 0.15); /* Lighter glow on focus */
+}
+
+body.light-mode .contact-form .send-button {
+  background-color: #7c3aed; /* Slightly darker purple for light mode button */
+  color: #ffffff; /* White text on button */
+}
+
+body.light-mode .contact-form .send-button:hover {
+  background-color: #6a2cd8; /* Even darker purple on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Lighter shadow on hover */
+}
