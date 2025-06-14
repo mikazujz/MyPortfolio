@@ -948,3 +948,10 @@ document.addEventListener('DOMContentLoaded', function() {
 if (scrollToTopBtn) {
   scrollToTopBtn.addEventListener('click', scrollToTop);
 }
+
+// Disable Ctrl+scroll zoom
+window.addEventListener('wheel', function(e) {
+  if (e.ctrlKey) {
+    e.preventDefault();
+  }
+}, { passive: false }); // Use passive: false to allow preventDefault()
