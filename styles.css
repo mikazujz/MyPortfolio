@@ -1659,3 +1659,38 @@ body.light-mode .contact-form .send-button:hover {
   background-color: #6a2cd8; /* Even darker purple on hover */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Lighter shadow on hover */
 }
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Adjust spacing as needed */
+  align-items: flex-start; /* Align icons to the left */
+}
+
+.social-links a {
+  margin-right: 0 !important; /* Remove horizontal margin */
+  padding: 5px 0;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 900px) {
+  .sidebar-fixed .social-links {
+    flex-direction: row !important;
+    gap: 1rem !important;
+    width: 100%;
+    justify-content: center !important;
+    margin-left: 0 !important;
+  }
+  .sidebar-fixed .social-links a {
+    margin-right: 0.5rem !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .sidebar-fixed .social-links a {
+    font-size: 1.2em;
+  }
+  .sidebar-fixed .social-links a span {
+    display: none !important;
+  }
+}
