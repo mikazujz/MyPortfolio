@@ -914,6 +914,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const alertIconContainer = customAlert ? customAlert.querySelector('.alert-icon') : null;
     const alertIcon = alertIconContainer ? alertIconContainer.querySelector('i') : null;
     const successSound = document.getElementById('success-sound');
+    const errorSound = document.getElementById('error-sound');
 
     // Photo Gallery elements
     const photoGalleryModal = document.getElementById('photo-gallery-modal');
@@ -976,6 +977,10 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 customAlert.classList.add('error');
                 alertIcon.classList.add('fas', 'fa-times-circle'); 
+                if (errorSound) {
+                    errorSound.currentTime = 0;
+                    errorSound.play(); // Play the error sound
+                }
             }
             
             customAlert.classList.add('show');
