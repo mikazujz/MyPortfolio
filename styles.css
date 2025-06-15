@@ -2059,8 +2059,10 @@ body.light-mode .gallery-thumbnail:hover {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.global-view-counter .fas {
-  color: #b0b0b5; /* Icon color */
+.global-view-counter img#view-count-badge {
+  height: 20px; /* Adjust height to match typical text size */
+  vertical-align: middle; /* Align with other content if any */
+  border: none; /* Remove any default image border */
 }
 
 body.light-mode .global-view-counter {
@@ -2069,6 +2071,6 @@ body.light-mode .global-view-counter {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-body.light-mode .global-view-counter .fas {
-  color: #6c6c7a;
+body.light-mode .global-view-counter img#view-count-badge {
+  /* No specific light mode image styling needed unless color inversion/filter is desired */
 }
