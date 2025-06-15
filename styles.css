@@ -2232,3 +2232,76 @@ body.light-mode #ticket-shop-modal #buy-ticket-btn:disabled {
   background-color: rgba(124, 58, 237, 0.3); /* Muted light mode purple for disabled */
   color: rgba(255, 255, 255, 0.6); /* Muted text color */
 }
+
+.tooltip-icon {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 0.9em; /* Smaller icon */
+  color: #b0b0b5; /* Subtle color */
+  margin-left: 5px; /* Space from coin text */
+}
+
+.tooltip-icon .fas.fa-question-circle {
+  vertical-align: middle; /* Align with text */
+}
+
+.tooltip-icon::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%; /* Position above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(24, 23, 29, 0.95); /* Dark, slightly opaque background */
+  color: #f8f8f8;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  white-space: nowrap; /* Prevent text wrapping */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip-icon:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Optional: Add a small triangle 'arrow' to the tooltip */
+.tooltip-icon::after {
+  content: '';
+  position: absolute;
+  bottom: 95%; /* Position just below the tooltip box */
+  left: 50%;
+  transform: translateX(-50%) translateY(5px); /* Adjust to align with tooltip bottom */
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(24, 23, 29, 0.95) transparent transparent transparent;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 101;
+}
+
+.tooltip-icon:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Light mode for tooltip */
+body.light-mode .tooltip-icon {
+  color: #6c6c7a !important; /* Darker subtle color */
+}
+
+body.light-mode .tooltip-icon::before {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #18171d !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode .tooltip-icon::after {
+  border-color: rgba(255, 255, 255, 0.95) transparent transparent transparent !important;
+}
