@@ -639,6 +639,28 @@ if (toggleCursorLight && mouseLight) {
   });
 }
 
+// Unique view counter using hits.sh and localStorage
+const viewCountBadge = document.getElementById('view-count-badge');
+const HITS_SH_URL = 'https://hits.sh/mikazujzportfolio.netlify.app.svg?style=for-the-badge&label=VIEW&color=dacfda&labelColor=2a2a2a';
+const VISIT_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+if (viewCountBadge) {
+    const lastVisitTime = localStorage.getItem('last_visit_timestamp');
+    const currentTime = new Date().getTime();
+
+    if (lastVisitTime === null || (currentTime - parseInt(lastVisitTime)) > VISIT_COOLDOWN_MS) {
+        // First visit or cooldown period has passed, trigger a new hit
+        viewCountBadge.src = HITS_SH_URL;
+        localStorage.setItem('last_visit_timestamp', currentTime.toString());
+    } else {
+        // Within cooldown period, load the image without incrementing (if already loaded once)
+        // To avoid flickering, we still set the src, but only after checking the timestamp
+        // This ensures the image loads if it wasn't loaded from a previous session.
+        viewCountBadge.src = HITS_SH_URL; 
+    }
+    viewCountBadge.style.display = 'inline-block'; // Make it visible
+}
+
 // Dark/Light mode toggle
 function setTheme(mode) {
   if (mode === 'light') {
