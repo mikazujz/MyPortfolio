@@ -361,19 +361,22 @@ document.addEventListener('DOMContentLoaded', function() {
     if (item && modal && video) {
       item.style.cursor = 'pointer';
       item.addEventListener('click', function(e) {
+        // Check if the click was on a photo gallery button, if so, do nothing
+        if (e.target.closest('.project-gallery-btn')) return;
+        
         modal.classList.add('active');
         modal.style.display = 'flex'; // Ensure display is flex for animation
         video.currentTime = 0;
         video.pause();
         // The initializeVideoPlayer handles play button icon update and time update
         initializeVideoPlayer(prefix, prefix);
-        if (mainContent) mainContent.classList.add('blur-bg');
-      });
-    }
+      if (mainContent) mainContent.classList.add('blur-bg');
+    });
+  }
   }
 
-  // Generic function to close video modal
-  function closeVideoModal(modal, video) {
+  // Generic function to close any modal
+  function closeAnyModal(modal, video = null) {
     if (modal) {
       modal.classList.remove('active');
       // Delay display: none to allow for CSS transition
@@ -389,7 +392,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (overlay) {
       overlay.classList.remove('hidden');
     }
-    removeBlurWithAnimation();
+    // Only remove blur if no other modals are open
+    const activeModals = document.querySelectorAll('.project-modal.active');
+    if (activeModals.length === 0) {
+        removeBlurWithAnimation();
+    }
   }
 
   // Initialize all video modals
@@ -405,7 +412,7 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.addEventListener('click', () => {
       const modal = btn.closest('.project-modal');
       const video = modal?.querySelector('video');
-      closeVideoModal(modal, video);
+      closeAnyModal(modal, video);
     });
   });
 
@@ -415,7 +422,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Only close if the click is directly on the modal background, not on modal-content or its children
       if (e.target === modal) {
         const video = modal?.querySelector('video');
-        closeVideoModal(modal, video);
+        closeAnyModal(modal, video);
       }
     });
   });
@@ -569,7 +576,7 @@ document.querySelectorAll('.close-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const modal = btn.closest('.project-modal');
     const video = modal?.querySelector('video');
-    closeVideoModal(modal, video);
+    closeAnyModal(modal, video);
   });
 });
 
@@ -578,7 +585,7 @@ document.querySelectorAll('.project-modal').forEach(modal => {
   modal.addEventListener('click', function(e) {
     if (e.target === modal) {
       const video = modal?.querySelector('video');
-      closeVideoModal(modal, video);
+      closeAnyModal(modal, video);
     }
   });
 });
@@ -608,7 +615,10 @@ if (closeSettingsBtn && settingsModal) {
   closeSettingsBtn.addEventListener('click', function() {
     settingsModal.classList.remove('active');
     document.body.classList.remove('modal-open');
-    removeBlurWithAnimation(); // Remove blur for settings modal
+    const activeModals = document.querySelectorAll('.project-modal.active');
+    if (activeModals.length === 0) {
+      removeBlurWithAnimation(); // Only remove blur if no other modals are open
+    }
   });
 }
 if (settingsModal) {
@@ -616,7 +626,10 @@ if (settingsModal) {
     if (e.target === settingsModal) {
       settingsModal.classList.remove('active');
       document.body.classList.remove('modal-open');
-      removeBlurWithAnimation(); // Remove blur for settings modal
+      const activeModals = document.querySelectorAll('.project-modal.active');
+      if (activeModals.length === 0) {
+        removeBlurWithAnimation(); // Only remove blur if no other modals are open
+      }
     }
   });
 }
@@ -869,9 +882,7 @@ window.addEventListener('wheel', function(e) {
   if (e.ctrlKey) {
     e.preventDefault();
   }
-}, { passive: false });
-
-// EmailJS functionality for contact form
+}, { passive: false });// EmailJS functionality for contact form
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contact-form');
     const customAlert = document.getElementById('custom-alert');
@@ -879,6 +890,50 @@ document.addEventListener('DOMContentLoaded', function() {
     const alertIconContainer = customAlert ? customAlert.querySelector('.alert-icon') : null;
     const alertIcon = alertIconContainer ? alertIconContainer.querySelector('i') : null;
     const successSound = document.getElementById('success-sound');
+
+    // Photo Gallery elements
+    const photoGalleryModal = document.getElementById('photo-gallery-modal');
+    const galleryMainImage = document.getElementById('gallery-main-image');
+    const galleryPrevBtn = document.getElementById('gallery-prev-btn');
+    const galleryNextBtn = document.getElementById('gallery-next-btn');
+    const galleryThumbnailsContainer = document.getElementById('gallery-thumbnails');
+    const closePhotoGalleryBtn = document.getElementById('close-photo-gallery');
+    let currentGalleryImages = [];
+    let currentImageIndex = 0;
+
+    // Define project images (UPDATE THESE PATHS WITH YOUR ACTUAL IMAGE PATHS)
+    const projectImages = {
+        'plvgame': [
+            'image/plv1.png',
+            'image/plv2.png',
+            'image/plv3.png'
+        ],
+        'deadlock': [
+            'image/deadlock-gallery/1.jpg',
+            'image/deadlock-gallery/2.jpg',
+            'image/deadlock-gallery/3.jpg'
+        ],
+        'maharlika': [
+            'image/maharlika-gallery/1.jpg',
+            'image/maharlika-gallery/2.jpg',
+            'image/maharlika-gallery/3.jpg'
+        ],
+        'plvvotes': [
+            'image/plvvotes-gallery/1.jpg',
+            'image/plvvotes-gallery/2.jpg',
+            'image/plvvotes-gallery/3.jpg'
+        ],
+        'koleksyon': [
+            'image/koleksyon-gallery/1.jpg',
+            'image/koleksyon-gallery/2.jpg',
+            'image/koleksyon-gallery/3.jpg'
+        ],
+        'growbrain': [
+            'image/growbrain-gallery/1.jpg',
+            'image/growbrain-gallery/2.jpg',
+            'image/growbrain-gallery/3.jpg'
+        ]
+    };
 
     function showCustomAlert(message, isSuccess) {
         if (customAlert && alertMessage && alertIcon) {
@@ -923,4 +978,215 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
         });
     }
+
+    // Generic function to open video modal
+    function openVideoModal(item, modal, video, prefix) {
+      if (item && modal && video) {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', function(e) {
+          // Check if the click was on a photo gallery button, if so, do nothing
+          if (e.target.closest('.project-gallery-btn')) return;
+          
+          modal.classList.add('active');
+          modal.style.display = 'flex'; // Ensure display is flex for animation
+          video.currentTime = 0;
+          video.pause();
+          // The initializeVideoPlayer handles play button icon update and time update
+          initializeVideoPlayer(prefix, prefix);
+          if (mainContent) mainContent.classList.add('blur-bg');
+        });
+      }
+    }
+  
+    // Generic function to close any modal
+    function closeAnyModal(modal, video = null) {
+      if (modal) {
+        modal.classList.remove('active');
+        // Delay display: none to allow for CSS transition
+        setTimeout(() => {
+          modal.style.display = 'none';
+        }, 300); // Match CSS transition duration for modal-content
+      }
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+      }
+      const overlay = modal?.querySelector('.video-poster-overlay');
+      if (overlay) {
+        overlay.classList.remove('hidden');
+      }
+      // Only remove blur if no other modals are open
+      const activeModals = document.querySelectorAll('.project-modal.active');
+      if (activeModals.length === 0) {
+          removeBlurWithAnimation();
+      }
+    }
+
+    // Photo Gallery Functions
+    function openPhotoGallery(projectId) {
+        currentGalleryImages = projectImages[projectId];
+        currentImageIndex = 0;
+        if (currentGalleryImages && currentGalleryImages.length > 0) {
+            updateGalleryImage();
+            updateThumbnails();
+            photoGalleryModal.classList.add('active');
+            photoGalleryModal.style.display = 'flex';
+            if (mainContent) mainContent.classList.add('blur-bg');
+        }
+    }
+
+    function updateGalleryImage() {
+        if (galleryMainImage && currentGalleryImages.length > 0) {
+            galleryMainImage.src = currentGalleryImages[currentImageIndex];
+            // Update active thumbnail
+            document.querySelectorAll('.gallery-thumbnail').forEach((thumb, index) => {
+                if (index === currentImageIndex) {
+                    thumb.classList.add('active');
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+    }
+
+    function updateThumbnails() {
+        if (galleryThumbnailsContainer) {
+            galleryThumbnailsContainer.innerHTML = ''; // Clear existing thumbnails
+            currentGalleryImages.forEach((imagePath, index) => {
+                const thumb = document.createElement('img');
+                thumb.src = imagePath;
+                thumb.classList.add('gallery-thumbnail');
+                thumb.alt = `Thumbnail ${index + 1}`;
+                thumb.addEventListener('click', () => {
+                    currentImageIndex = index;
+                    updateGalleryImage();
+                });
+                galleryThumbnailsContainer.appendChild(thumb);
+            });
+            updateGalleryImage(); // Highlight the current image thumbnail
+        }
+    }
+
+    function navigateGallery(direction) {
+        if (currentGalleryImages.length === 0) return;
+        currentImageIndex += direction;
+        if (currentImageIndex < 0) {
+            currentImageIndex = currentGalleryImages.length - 1;
+        } else if (currentImageIndex >= currentGalleryImages.length) {
+            currentImageIndex = 0;
+        }
+        updateGalleryImage();
+    }
+
+    // Event listeners for Photo Gallery buttons
+    document.querySelectorAll('.project-gallery-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const projectId = this.dataset.projectId;
+            if (projectId && projectImages[projectId]) {
+                // If it's a video button, let the video modal handle it
+                if (projectId.endsWith('-video')) {
+                    const videoPrefix = projectId.replace('-video', '');
+                    const videoModal = document.getElementById(`modal-${videoPrefix.toUpperCase()}-VIDEO`);
+                    const videoElement = document.getElementById(`${videoPrefix}-video`);
+                    openVideoModal(this, videoModal, videoElement, videoPrefix);
+                } else { // It's a photo gallery button
+                    openPhotoGallery(projectId);
+                }
+            } 
+        });
+    });
+
+    galleryPrevBtn?.addEventListener('click', () => navigateGallery(-1));
+    galleryNextBtn?.addEventListener('click', () => navigateGallery(1));
+    closePhotoGalleryBtn?.addEventListener('click', () => closeAnyModal(photoGalleryModal));
+
+    // Existing modal initialization (adjusted to use generic functions)
+    const projectItems = document.querySelectorAll('.project-item[id^="open-"]');
+    projectItems.forEach(item => {
+        const id = item.id;
+        const videoPrefix = id.replace('open-', '').replace('-video', '');
+        const modalId = `modal-${videoPrefix.toUpperCase()}-VIDEO`;
+        const videoId = `${videoPrefix}-video`;
+
+        const modal = document.getElementById(modalId);
+        const video = document.getElementById(videoId);
+
+        if (modal && video) {
+            // Event listener for the project item itself (excluding clicks on gallery buttons inside)
+            item.addEventListener('click', function(e) {
+                if (!e.target.closest('.project-gallery-btn')) {
+                    openVideoModal(item, modal, video, videoPrefix);
+                }
+            });
+        }
+    });
+
+    // Universal close button for all project modals (now uses closeAnyModal)
+    document.querySelectorAll('.project-modal .close-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modal = btn.closest('.project-modal');
+        const video = modal?.querySelector('video');
+        closeAnyModal(modal, video);
+      });
+    });
+  
+    // Close modals when clicking outside content (universal handler now uses closeAnyModal)
+    document.querySelectorAll('.project-modal').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          const video = modal?.querySelector('video');
+          closeAnyModal(modal, video);
+        }
+      });
+    });
+  
+    // Prevent clicks inside modal-content from bubbling up to modal (so clicking controls won't close modal)
+    document.querySelectorAll('.project-modal .modal-content').forEach(modalContent => {
+      modalContent.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    });
+  
+    // Settings modal logic (updated to use removeBlurWithAnimation)
+    const openSettingsBtn = document.getElementById('open-settings-modal');
+    const settingsModal = document.getElementById('settings-modal');
+    const closeSettingsBtn = document.getElementById('close-settings-modal');
+    const toggleCursorLight = document.getElementById('toggle-cursor-light');
+    // Use the already declared mouseLight variable
+    if (openSettingsBtn && settingsModal) {
+      openSettingsBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        settingsModal.classList.add('active');
+        document.body.classList.add('modal-open');
+        if (mainContent) mainContent.classList.add('blur-bg'); // Apply blur for settings modal
+      });
+    }
+    if (closeSettingsBtn && settingsModal) {
+      closeSettingsBtn.addEventListener('click', function() {
+        settingsModal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+        const activeModals = document.querySelectorAll('.project-modal.active');
+        if (activeModals.length === 0) {
+          removeBlurWithAnimation(); // Only remove blur if no other modals are open
+        }
+      });
+    }
+    if (settingsModal) {
+      settingsModal.addEventListener('mousedown', function(e) {
+        if (e.target === settingsModal) {
+          settingsModal.classList.remove('active');
+          document.body.classList.remove('modal-open');
+          const activeModals = document.querySelectorAll('.project-modal.active');
+          if (activeModals.length === 0) {
+            removeBlurWithAnimation(); // Only remove blur if no other modals are open
+          }
+        }
+      });
+    }
+    if (toggleCursorLight && mouseLight) {
+      toggleCursorLight.addEventListener('change', function() {
+        mouseLight.style.display = this.checked ? '' : 'none';
+      });
+    }
 });
+

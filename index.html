@@ -179,6 +179,11 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
                   <span class="badge bg-secondary">Game Dev</span>
                 </div>
               </div>
+              <div class="project-gallery-buttons">
+                <button class="btn btn-sm btn-outline-light project-gallery-btn" data-project-id="plvgame">
+                  <i class="fas fa-images me-1"></i> Photos
+                </button>
+              </div>
             </div>
             <div class="project-item d-flex mb-4 align-items-start fade-in-up" id="open-deadlock-video">
               <div class="project-thumb-container me-3">
@@ -193,6 +198,11 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
                   <span class="badge bg-secondary me-1">C#</span>
                   <span class="badge bg-secondary">Game Dev</span>
                 </div>
+              </div>
+              <div class="project-gallery-buttons">
+                <button class="btn btn-sm btn-outline-light project-gallery-btn" data-project-id="deadlock">
+                  <i class="fas fa-images me-1"></i> Photos
+                </button>
               </div>
             </div>
             <div class="project-item d-flex mb-4 align-items-start fade-in-up" id="open-maharlika-video">
@@ -210,6 +220,11 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
                   <span class="badge bg-secondary">Game Dev</span>
                 </div>
               </div>
+              <div class="project-gallery-buttons">
+                <button class="btn btn-sm btn-outline-light project-gallery-btn" data-project-id="maharlika">
+                  <i class="fas fa-images me-1"></i> Photos
+                </button>
+              </div>
             </div>
             <div class="project-item d-flex mb-4 align-items-start fade-in-up" id="open-plvvotes-video">
               <div class="project-thumb-container me-3">
@@ -224,6 +239,11 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
                   <span class="badge bg-secondary me-1">MySQL</span>
                   <span class="badge bg-secondary">Web</span>
                 </div>
+              </div>
+              <div class="project-gallery-buttons">
+                <button class="btn btn-sm btn-outline-light project-gallery-btn" data-project-id="plvvotes">
+                  <i class="fas fa-images me-1"></i> Photos
+                </button>
               </div>
             </div>
             <div class="project-item d-flex mb-4 align-items-start fade-in-up" id="open-koleksyon-video">
@@ -240,6 +260,11 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
                   <span class="badge bg-secondary">E-commerce</span>
                 </div>
               </div>
+              <div class="project-gallery-buttons">
+                <button class="btn btn-sm btn-outline-light project-gallery-btn" data-project-id="koleksyon">
+                  <i class="fas fa-images me-1"></i> Photos
+                </button>
+              </div>
             </div>
             <div class="project-item d-flex mb-4 align-items-start fade-in-up" id="open-growbrain-video">
               <div class="project-thumb-container me-3">
@@ -255,6 +280,11 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
                   <span class="badge bg-secondary me-1">PHP</span>
                   <span class="badge bg-secondary">Firebase</span>
                 </div>
+              </div>
+              <div class="project-gallery-buttons">
+                <button class="btn btn-sm btn-outline-light project-gallery-btn" data-project-id="growbrain">
+                  <i class="fas fa-images me-1"></i> Photos
+                </button>
               </div>
             </div>
           </div>
@@ -484,6 +514,20 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
       </div>
     </div>
   </div>
+
+  <!-- Photo Gallery Modal -->
+  <div class="project-modal" id="photo-gallery-modal">
+    <div class="modal-content photo-gallery-content">
+      <span class="close-btn" id="close-photo-gallery">&times;</span>
+      <div class="gallery-image-container">
+        <img id="gallery-main-image" src="" alt="Project Image" class="gallery-main-image">
+        <button id="gallery-prev-btn" class="gallery-nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+        <button id="gallery-next-btn" class="gallery-nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="gallery-thumbnail-container" id="gallery-thumbnails"></div>
+    </div>
+  </div>
+
   <!-- Settings Modal -->
   <div class="project-modal" id="settings-modal">
     <div class="modal-content">

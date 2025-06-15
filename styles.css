@@ -1841,3 +1841,201 @@ body.light-mode .custom-alert.error {
   background-color: rgba(0, 0, 0, 0.85);
   color: #ffffff;
 }
+
+.project-item .text-secondary {
+  color: #b0b0b5 !important;
+}
+
+.project-gallery-buttons {
+  display: flex;
+  margin-top: 10px; /* Space below description */
+  gap: 5px; /* Space between buttons */
+}
+
+.project-gallery-btn {
+  background-color: rgba(255, 255, 255, 0.08); /* Semi-transparent background */
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
+  color: #f8f8f8; /* Light text */
+  padding: 8px 12px; /* Comfortable padding */
+  border-radius: 8px; /* Rounded corners */
+  font-size: 0.9rem; /* Smaller font size */
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-gallery-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15); /* Slightly more opaque on hover */
+  border-color: rgba(255, 255, 255, 0.25); /* More visible border on hover */
+  transform: translateY(-1px); /* Subtle lift */
+}
+
+.project-gallery-btn i {
+  margin-right: 5px;
+}
+
+/* Photo Gallery Modal Styles */
+#photo-gallery-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4000;
+  background: transparent; /* Make background fully transparent */
+  backdrop-filter: blur(25px) saturate(160%);
+  -webkit-backdrop-filter: blur(25px) saturate(160%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#photo-gallery-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#photo-gallery-modal .photo-gallery-content {
+  position: relative;
+  background: transparent; /* Make content background fully transparent */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Keep subtle light border */
+  border-radius: 20px;
+  box-shadow: none; /* Remove box-shadow */
+  padding: 15px;
+  max-width: 95vw;
+  max-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+}
+
+#photo-gallery-modal.active .photo-gallery-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.gallery-image-container {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: transparent; /* Make image container background fully transparent */
+}
+
+.gallery-main-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px; /* Slightly smaller border-radius for the image itself */
+}
+
+.gallery-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15); /* More subtle, semi-transparent white */
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 44px; /* Slightly larger buttons */
+  height: 44px; /* Slightly larger buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.3rem; /* Slightly larger icon */
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.gallery-nav-btn.prev-btn {
+  left: 15px; /* Adjust position */
+}
+
+.gallery-nav-btn.next-btn {
+  right: 15px; /* Adjust position */
+}
+
+.gallery-nav-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25); /* More visible on hover */
+  transform: translateY(-50%) scale(1.08); /* Slight scale up on hover */
+}
+
+.gallery-thumbnail-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+  overflow-x: auto;
+  padding-bottom: 5px; /* For scrollbar */
+}
+
+.gallery-thumbnail {
+  width: 80px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-thumbnail.active,
+.gallery-thumbnail:hover {
+  border-color: #b983ff; /* Purple border for active/hover */
+  transform: scale(1.05);
+}
+
+/* Light mode adjustments for photo gallery */
+body.light-mode .project-gallery-btn {
+  background-color: rgba(0, 0, 0, 0.05); /* Light mode background */
+  border: 1px solid rgba(0, 0, 0, 0.1); 
+  color: #18171d;
+}
+
+body.light-mode .project-gallery-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode #photo-gallery-modal {
+  background: transparent; /* Light mode: Make background fully transparent */
+  backdrop-filter: blur(25px) saturate(160%);
+  -webkit-backdrop-filter: blur(25px) saturate(160%);
+}
+
+body.light-mode #photo-gallery-modal .photo-gallery-content {
+  background: transparent; /* Light mode: Make content background fully transparent */
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: none; /* Light mode: Remove box-shadow */
+}
+
+body.light-mode .gallery-image-container {
+  background-color: transparent; /* Light mode: Make image container background fully transparent */
+}
+
+body.light-mode .gallery-nav-btn {
+  background: rgba(0, 0, 0, 0.1); /* Light mode nav button */
+  color: #18171d;
+}
+
+body.light-mode .gallery-nav-btn:hover {
+  background-color: rgba(0, 0, 0, 0.2); /* More visible on hover */
+}
+
+body.light-mode .gallery-thumbnail.active,
+body.light-mode .gallery-thumbnail:hover {
+  border-color: #7c3aed; /* Light mode purple border */
+}
