@@ -2039,3 +2039,36 @@ body.light-mode .gallery-thumbnail.active,
 body.light-mode .gallery-thumbnail:hover {
   border-color: #7c3aed; /* Light mode purple border */
 }
+
+.global-view-counter {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: rgba(24, 23, 29, 0.7); /* Subtle dark background */
+  backdrop-filter: blur(8px); /* Frosted glass effect */
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 8px 15px;
+  color: #f8f8f8;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.global-view-counter .fas {
+  color: #b0b0b5; /* Icon color */
+}
+
+body.light-mode .global-view-counter {
+  background: rgba(255, 255, 255, 0.7); /* Subtle light background */
+  color: #18171d;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .global-view-counter .fas {
+  color: #6c6c7a;
+}

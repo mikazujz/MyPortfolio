@@ -1188,5 +1188,22 @@ document.addEventListener('DOMContentLoaded', function() {
         mouseLight.style.display = this.checked ? '' : 'none';
       });
     }
+
+    // Website View Counter
+    const viewCountElement = document.getElementById('view-count');
+    if (viewCountElement) {
+        let visitCount = localStorage.getItem('website_visit_count');
+
+        if (visitCount === null) {
+            // First visit
+            visitCount = 1;
+        } else {
+            // Subsequent visit
+            visitCount = parseInt(visitCount) + 1;
+        }
+
+        localStorage.setItem('website_visit_count', visitCount);
+        viewCountElement.textContent = visitCount;
+    }
 });
 
