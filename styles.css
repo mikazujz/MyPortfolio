@@ -712,7 +712,8 @@ html {
 }
 
 .profile-pic-container.show-background::before {
-  opacity: 0.3;
+  opacity: 0.1; /* Extremely low opacity for subtle effect */
+  filter: blur(5px) grayscale(50%) sepia(20%); /* Adjusted blur, added grayscale and sepia for a lighter, muted background */
 }
 
 .profile-pic {
