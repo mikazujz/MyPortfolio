@@ -987,20 +987,111 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Helper functions for managing sent emails in localStorage
+    function getSentEmails() {
+        const sentEmailsJson = localStorage.getItem('sent_emails');
+        return sentEmailsJson ? JSON.parse(sentEmailsJson) : [];
+    }
+
+    function addSentEmail(email) {
+        const sentEmails = getSentEmails();
+        if (!sentEmails.includes(email)) {
+            sentEmails.push(email);
+            localStorage.setItem('sent_emails', JSON.stringify(sentEmails));
+        }
+    }
+
     if (contactForm) {
+        let storedFormData = null; // Variable to temporarily store form data
+
+        const ticketShopModal = document.getElementById('ticket-shop-modal');
+        const buyTicketBtn = document.getElementById('buy-ticket-btn');
+        const emailCoinBalance = document.getElementById('email-coin-balance');
+        const closeTicketShopModalBtn = document.getElementById('close-ticket-shop-modal');
+        const emailInput = document.getElementById('email'); // Get email input
+
         contactForm.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
-            // Replace with your EmailJS Service ID and Template ID
-            emailjs.sendForm('service_4sgjzdn', 'template_5epppvn', this)
-                .then(function() {
-                    showCustomAlert('Your message has been sent successfully!', true);
-                    contactForm.reset(); // Clear the form
-                }, function(error) {
-                    showCustomAlert('Failed to send your message. Please try again later.', false);
-                    console.error('EmailJS Error:', error);
-                });
+            const nameInput = document.getElementById('name');
+            const nameValue = nameInput ? nameInput.value.trim() : '';
+            const emailValue = emailInput ? emailInput.value.trim() : ''; // Get email value
+
+            // Regular expression for a real name (allows letters, spaces, hyphens, apostrophes)
+            // Minimum 2 characters, maximum 50 characters.
+            const nameRegex = /^[a-zA-Z\s'-]{2,50}$/;
+
+            if (!nameRegex.test(nameValue)) {
+                showCustomAlert('Please enter a valid name (2-50 characters, letters, spaces, hyphens, and apostrophes only).', false);
+                return; // Stop form submission if validation fails
+            }
+
+            // Check if email has already been used
+            const sentEmails = getSentEmails();
+            if (sentEmails.includes(emailValue)) {
+                showCustomAlert('This email address has already sent a message. You need a new ticket for each email.', false);
+                if (emailCoinBalance) emailCoinBalance.textContent = '0';
+                if (buyTicketBtn) buyTicketBtn.disabled = true; // Disable button if email used
+            } else {
+                if (emailCoinBalance) emailCoinBalance.textContent = '1';
+                if (buyTicketBtn) buyTicketBtn.disabled = false; // Enable button if email new
+            }
+
+            // Store form data for later use
+            storedFormData = new FormData(this);
+
+            // Show ticket shop modal
+            ticketShopModal.classList.add('active');
+            ticketShopModal.style.display = 'flex';
+            if (mainContent) mainContent.classList.add('blur-bg');
         });
+
+        if (buyTicketBtn) {
+            buyTicketBtn.addEventListener('click', function() {
+                let currentCoins = parseInt(emailCoinBalance.textContent || '0'); // Get current coins from display
+
+                if (currentCoins >= 1) {
+                    // "Spend" the coin
+                    currentCoins -= 1;
+                    if (emailCoinBalance) {
+                        emailCoinBalance.textContent = currentCoins.toString();
+                    }
+                    this.disabled = true; // Disable button after click
+
+                    // Proceed to send the email using stored form data
+                    emailjs.sendForm('service_4sgjzdn', 'template_5epppvn', contactForm)
+                        .then(function() {
+                            showCustomAlert('Your message has been sent successfully!', true);
+                            addSentEmail(contactForm.elements.email.value.trim()); // Add email to sent list
+                            contactForm.reset(); // Clear the form
+                            closeAnyModal(ticketShopModal); // Close the shop modal
+                        }, function(error) {
+                            showCustomAlert('Failed to send your message. Please try again later.', false);
+                            console.error('EmailJS Error:', error);
+                            closeAnyModal(ticketShopModal); // Close the shop modal even on error
+                        });
+                } else {
+                    showCustomAlert('You need 1 coin to send an email! Please try again later.', false);
+                    closeAnyModal(ticketShopModal); // Close if no coins
+                }
+            });
+        }
+
+        // Close ticket shop modal via close button
+        if (closeTicketShopModalBtn) {
+            closeTicketShopModalBtn.addEventListener('click', () => {
+                closeAnyModal(ticketShopModal);
+            });
+        }
+
+        // Close ticket shop modal when clicking outside content
+        if (ticketShopModal) {
+            ticketShopModal.addEventListener('click', function(e) {
+                if (e.target === ticketShopModal) {
+                    closeAnyModal(ticketShopModal);
+                }
+            });
+        }
     }
 
     // Generic function to open video modal

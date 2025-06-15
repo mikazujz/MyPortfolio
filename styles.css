@@ -1192,6 +1192,12 @@ body.light-mode .speech-bubble::after {
   font-size: 1.6rem;
   top: 12px;
   right: 16px;
+  color: #fff; /* Ensure it's white in dark mode */
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-shadow: 0 2px 8px #000; /* Subtle shadow for visibility */
+  z-index: 10; /* Ensure it's above other content */
 }
 
 #settings-modal .form-switch .form-check-input {
@@ -1254,7 +1260,7 @@ body.light-mode #settings-modal .form-check-label {
 }
 
 body.light-mode #settings-modal .close-btn {
-  color: #18171d !important;
+  color: #18171d !important; /* Dark color in light mode */
 }
 
 body.light-mode #settings-modal .form-switch .form-check-input {
@@ -2078,4 +2084,151 @@ body.light-mode .global-view-counter {
 
 body.light-mode .global-view-counter img#view-count-badge {
   /* No specific light mode image styling needed unless color inversion/filter is desired */
+}
+
+#ticket-shop-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000; /* Same as settings modal */
+  background: rgba(0, 0, 0, 0.4); /* Darker backdrop */
+  backdrop-filter: blur(10px); /* Frosted glass effect for backdrop */
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#ticket-shop-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#ticket-shop-modal .modal-content {
+  min-width: 280px;
+  max-width: 380px;
+  padding: 1.8rem 2.2rem;
+  background: rgba(24, 23, 29, 0.9); /* Semi-transparent background */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle light border */
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Frosted glass shadow */
+  transform: translateY(20px); /* Start slightly below center */
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#ticket-shop-modal.active .modal-content {
+  transform: translateY(0);
+}
+
+#ticket-shop-modal h4 {
+  font-size: 1.6rem; /* Slightly larger title */
+  margin-bottom: 1rem;
+  color: #fff;
+  font-weight: 700; /* Bolder title */
+  text-align: center;
+}
+
+#ticket-shop-modal .text-secondary.mb-3 {
+  font-size: 0.95rem;
+  text-align: center;
+  color: #b0b0b5;
+  margin-bottom: 25px !important; /* More space below subtitle */
+}
+
+#ticket-shop-modal .d-flex.align-items-center.justify-content-between.mb-4 {
+  background: rgba(255, 255, 255, 0.08); /* Subtle background for balance area */
+  border-radius: 10px;
+  padding: 12px 20px; /* Padding for balance box */
+  margin-bottom: 30px !important; /* More space above button */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#ticket-shop-modal .mb-0 {
+  font-size: 1.05rem; /* Slightly larger balance label */
+  font-weight: 500;
+  color: #e0e0e0;
+}
+
+#ticket-shop-modal #email-coin-balance {
+  font-size: 2rem; /* Much larger coin number */
+  font-weight: 800; /* Very bold */
+  color: #b983ff; /* Consistent purple color */
+  margin-left: 8px;
+}
+
+#ticket-shop-modal #buy-ticket-btn {
+  background-color: #b983ff; /* Primary purple color */
+  color: #181828; /* Dark text on button */
+  padding: 16px 30px; /* Larger padding for a more prominent button */
+  border: none;
+  border-radius: 12px; /* More rounded corners */
+  cursor: pointer;
+  font-size: 1.2rem; /* Larger font size */
+  font-weight: 700;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35); /* Stronger shadow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px; /* Space between icon and text */
+}
+
+#ticket-shop-modal #buy-ticket-btn:hover:not(:disabled) {
+  background-color: #a259ff; /* Slightly darker on hover */
+  transform: translateY(-3px); /* More noticeable lift effect */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45); /* Even stronger shadow on hover */
+}
+
+#ticket-shop-modal #buy-ticket-btn:disabled {
+  background-color: rgba(185, 131, 255, 0.3); /* Muted purple for disabled */
+  color: rgba(24, 23, 29, 0.5); /* Muted text color */
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Light mode for Ticket Shop Modal */
+body.light-mode #ticket-shop-modal .modal-content {
+  background: rgba(255, 255, 255, 0.95) !important; /* More opaque white */
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1) !important; /* Lighter shadow */
+}
+
+body.light-mode #ticket-shop-modal h4 {
+  color: #18171d !important;
+}
+
+body.light-mode #ticket-shop-modal .text-secondary.mb-3 {
+  color: #6c6c7a !important;
+}
+
+body.light-mode #ticket-shop-modal .d-flex.align-items-center.justify-content-between.mb-4 {
+  background: rgba(0, 0, 0, 0.05); /* Subtle light background for balance area */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode #ticket-shop-modal .mb-0 {
+  color: #333333;
+}
+
+body.light-mode #ticket-shop-modal #email-coin-balance {
+  color: #7c3aed !important; /* Light mode purple */
+}
+
+body.light-mode #ticket-shop-modal #buy-ticket-btn {
+  background-color: #7c3aed; /* Light mode purple */
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Lighter shadow */
+}
+
+body.light-mode #ticket-shop-modal #buy-ticket-btn:hover:not(:disabled) {
+  background-color: #6a2cd8; /* Even darker purple on hover */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Lighter hover shadow */
+}
+
+body.light-mode #ticket-shop-modal #buy-ticket-btn:disabled {
+  background-color: rgba(124, 58, 237, 0.3); /* Muted light mode purple for disabled */
+  color: rgba(255, 255, 255, 0.6); /* Muted text color */
 }
