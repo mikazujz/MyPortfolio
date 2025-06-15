@@ -2045,30 +2045,29 @@ body.light-mode .gallery-thumbnail:hover {
   top: 20px;
   right: 20px;
   z-index: 1000;
-  background: rgba(24, 23, 29, 0.7); /* Subtle dark background */
-  backdrop-filter: blur(8px); /* Frosted glass effect */
-  -webkit-backdrop-filter: blur(8px);
+  background: transparent; /* Remove background */
+  backdrop-filter: none; /* Remove blur */
+  -webkit-backdrop-filter: none;
   border-radius: 12px;
-  padding: 8px 15px;
+  padding: 10px 18px; /* Slightly increased padding */
   color: #f8f8f8;
   font-size: 0.9rem;
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: none; /* Remove shadow */
 }
 
 .global-view-counter img#view-count-badge {
-  height: 20px; /* Adjust height to match typical text size */
   vertical-align: middle; /* Align with other content if any */
   border: none; /* Remove any default image border */
 }
 
 body.light-mode .global-view-counter {
-  background: rgba(255, 255, 255, 0.7); /* Subtle light background */
+  background: transparent; /* Remove background in light mode */
   color: #18171d;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: none; /* Remove shadow in light mode */
 }
 
 body.light-mode .global-view-counter img#view-count-badge {
