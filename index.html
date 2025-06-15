@@ -195,7 +195,7 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
                 </div>
               </div>
             </div>
-            <div class="project-item d-flex mb-4 align-items-start fade-in-up">
+            <div class="project-item d-flex mb-4 align-items-start fade-in-up" id="open-maharlika-video">
               <div class="project-thumb-container me-3">
                 <img src="image/maharlika.png" class="project-thumb rounded" alt="Maharlika Game">
                 <button class="project-play-button"><i class="fas fa-play"></i></button>
@@ -211,7 +211,7 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
                 </div>
               </div>
             </div>
-            <div class="project-item d-flex mb-4 align-items-start fade-in-up">
+            <div class="project-item d-flex mb-4 align-items-start fade-in-up" id="open-plvvotes-video">
               <div class="project-thumb-container me-3">
                 <img src="image/plvvotes.jpg" class="project-thumb rounded" alt="PLVites Election System">
                 <button class="project-play-button"><i class="fas fa-play"></i></button>
@@ -226,7 +226,7 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
                 </div>
               </div>
             </div>
-            <div class="project-item d-flex mb-4 align-items-start fade-in-up">
+            <div class="project-item d-flex mb-4 align-items-start fade-in-up" id="open-koleksyon-video">
               <div class="project-thumb-container me-3">
                 <img src="image/koleksyon.png" class="project-thumb rounded" alt="Koleksyon">
                 <button class="project-play-button"><i class="fas fa-play"></i></button>
@@ -241,7 +241,7 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
                 </div>
               </div>
             </div>
-            <div class="project-item d-flex mb-4 align-items-start fade-in-up">
+            <div class="project-item d-flex mb-4 align-items-start fade-in-up" id="open-growbrain-video">
               <div class="project-thumb-container me-3">
                 <img src="image/GrowBrain.png" class="project-thumb rounded" alt="GrowBrain">
                 <button class="project-play-button"><i class="fas fa-play"></i></button>
@@ -277,7 +277,7 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
               </div>
               <div class="form-group">
                 <label for="message">Message</label>
-                <textarea id="message" name="message" rows="6" required></textarea>
+                <textarea id="message" name="message" rows="5" required></textarea>
               </div>
               <button type="submit" class="send-button"><i class="fas fa-paper-plane"></i> Send Message</button>
             </form>
@@ -349,6 +349,134 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
               </button>
               <div class="volume-slider-container">
                 <input type="range" class="volume-slider" id="deadlock-volume-slider" value="100" min="0" max="100">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Maharlika Game Video Modal -->
+    <div class="project-modal" id="modal-MAHARLIKA-VIDEO">
+      <div class="modal-content video-modal-content">
+        <span class="close-btn" id="close-maharlika-video">&times;</span>
+        <div class="video-player-container">
+          <video id="maharlika-video" class="video-player" src="video/maharlika.mp4" poster="image/maharlika.png" preload="metadata"></video>
+          <div class="video-poster-overlay" id="maharlika-overlay">
+            <button class="big-play-button">
+              <i class="fas fa-play"></i>
+            </button>
+          </div>
+          <div class="video-controls">
+            <button class="video-btn" id="maharlika-backward"><i class="fas fa-undo"></i> -10s</button>
+            <button class="video-btn" id="maharlika-play"><i class="fas fa-play"></i></button>
+            <button class="video-btn" id="maharlika-forward"><i class="fas fa-redo"></i> +10s</button>
+            <div class="time-slider-container">
+              <input type="range" class="time-slider" id="maharlika-slider" value="0" min="0" max="100" step="0.1">
+              <div class="time-display" id="maharlika-time">0:00 / 0:00</div>
+            </div>
+            <div class="volume-control">
+              <button class="video-btn" id="maharlika-volume">
+                <i class="fas fa-volume-up"></i>
+              </button>
+              <div class="volume-slider-container">
+                <input type="range" class="volume-slider" id="maharlika-volume-slider" value="100" min="0" max="100">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLVites Election System Video Modal -->
+    <div class="project-modal" id="modal-PLVVOTES-VIDEO">
+      <div class="modal-content video-modal-content">
+        <span class="close-btn" id="close-plvvotes-video">&times;</span>
+        <div class="video-player-container">
+          <video id="plvvotes-video" class="video-player" src="video/plvvotes.mp4" poster="image/plvvotes.jpg" preload="metadata"></video>
+          <div class="video-poster-overlay" id="plvvotes-overlay">
+            <button class="big-play-button">
+              <i class="fas fa-play"></i>
+            </button>
+          </div>
+          <div class="video-controls">
+            <button class="video-btn" id="plvvotes-backward"><i class="fas fa-undo"></i> -10s</button>
+            <button class="video-btn" id="plvvotes-play"><i class="fas fa-play"></i></button>
+            <button class="video-btn" id="plvvotes-forward"><i class="fas fa-redo"></i> +10s</button>
+            <div class="time-slider-container">
+              <input type="range" class="time-slider" id="plvvotes-slider" value="0" min="0" max="100" step="0.1">
+              <div class="time-display" id="plvvotes-time">0:00 / 0:00</div>
+            </div>
+            <div class="volume-control">
+              <button class="video-btn" id="plvvotes-volume">
+                <i class="fas fa-volume-up"></i>
+              </button>
+              <div class="volume-slider-container">
+                <input type="range" class="volume-slider" id="plvvotes-volume-slider" value="100" min="0" max="100">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Koleksyon Video Modal -->
+    <div class="project-modal" id="modal-KOLEKSYON-VIDEO">
+      <div class="modal-content video-modal-content">
+        <span class="close-btn" id="close-koleksyon-video">&times;</span>
+        <div class="video-player-container">
+          <video id="koleksyon-video" class="video-player" src="video/koleksyon.mp4" poster="image/koleksyon.png" preload="metadata"></video>
+          <div class="video-poster-overlay" id="koleksyon-overlay">
+            <button class="big-play-button">
+              <i class="fas fa-play"></i>
+            </button>
+          </div>
+          <div class="video-controls">
+            <button class="video-btn" id="koleksyon-backward"><i class="fas fa-undo"></i> -10s</button>
+            <button class="video-btn" id="koleksyon-play"><i class="fas fa-play"></i></button>
+            <button class="video-btn" id="koleksyon-forward"><i class="fas fa-redo"></i> +10s</button>
+            <div class="time-slider-container">
+              <input type="range" class="time-slider" id="koleksyon-slider" value="0" min="0" max="100" step="0.1">
+              <div class="time-display" id="koleksyon-time">0:00 / 0:00</div>
+            </div>
+            <div class="volume-control">
+              <button class="video-btn" id="koleksyon-volume">
+                <i class="fas fa-volume-up"></i>
+              </button>
+              <div class="volume-slider-container">
+                <input type="range" class="volume-slider" id="koleksyon-volume-slider" value="100" min="0" max="100">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GrowBrain Video Modal -->
+    <div class="project-modal" id="modal-GROWBRAIN-VIDEO">
+      <div class="modal-content video-modal-content">
+        <span class="close-btn" id="close-growbrain-video">&times;</span>
+        <div class="video-player-container">
+          <video id="growbrain-video" class="video-player" src="video/growbrain.mp4" poster="image/GrowBrain.png" preload="metadata"></video>
+          <div class="video-poster-overlay" id="growbrain-overlay">
+            <button class="big-play-button">
+              <i class="fas fa-play"></i>
+            </button>
+          </div>
+          <div class="video-controls">
+            <button class="video-btn" id="growbrain-backward"><i class="fas fa-undo"></i> -10s</button>
+            <button class="video-btn" id="growbrain-play"><i class="fas fa-play"></i></button>
+            <button class="video-btn" id="growbrain-forward"><i class="fas fa-redo"></i> +10s</button>
+            <div class="time-slider-container">
+              <input type="range" class="time-slider" id="growbrain-slider" value="0" min="0" max="100" step="0.1">
+              <div class="time-display" id="growbrain-time">0:00 / 0:00</div>
+            </div>
+            <div class="volume-control">
+              <button class="video-btn" id="growbrain-volume">
+                <i class="fas fa-volume-up"></i>
+              </button>
+              <div class="volume-slider-container">
+                <input type="range" class="volume-slider" id="growbrain-volume-slider" value="100" min="0" max="100">
               </div>
             </div>
           </div>

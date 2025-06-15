@@ -311,11 +311,37 @@ document.addEventListener('DOMContentLoaded', function() {
   const plvgameModal = document.getElementById('modal-PLVGAME-VIDEO');
   const plvgameVideo = document.getElementById('plvgame-video');
   const plvgamePlay = document.getElementById('plvgame-play');
-  const plvgameBackward = document.getElementById('plvgame-backward');
-  const plvgameForward = document.getElementById('plvgame-forward');
-  const plvgameSlider = document.getElementById('plvgame-slider');
-  const plvgameTime = document.getElementById('plvgame-time');
-  const plvgameClose = document.getElementById('close-plvgame-video');
+  
+  // Deadlock Duel Video Modal - trigger on whole project item
+  const deadlockItem = document.getElementById('open-deadlock-video');
+  const deadlockModal = document.getElementById('modal-Deadlock-VIDEO');
+  const deadlockVideo = document.getElementById('deadlock-video');
+  const deadlockPlay = document.getElementById('deadlock-play');
+
+  // Maharlika Game Video Modal
+  const maharlikaItem = document.getElementById('open-maharlika-video');
+  const maharlikaModal = document.getElementById('modal-MAHARLIKA-VIDEO');
+  const maharlikaVideo = document.getElementById('maharlika-video');
+  const maharlikaPlay = document.getElementById('maharlika-play');
+
+  // PLVites Election System Video Modal
+  const plvvotesItem = document.getElementById('open-plvvotes-video');
+  const plvvotesModal = document.getElementById('modal-PLVVOTES-VIDEO');
+  const plvvotesVideo = document.getElementById('plvvotes-video');
+  const plvvotesPlay = document.getElementById('plvvotes-play');
+
+  // Koleksyon Video Modal
+  const koleksyonItem = document.getElementById('open-koleksyon-video');
+  const koleksyonModal = document.getElementById('modal-KOLEKSYON-VIDEO');
+  const koleksyonVideo = document.getElementById('koleksyon-video');
+  const koleksyonPlay = document.getElementById('koleksyon-play');
+
+  // GrowBrain Video Modal
+  const growbrainItem = document.getElementById('open-growbrain-video');
+  const growbrainModal = document.getElementById('modal-GROWBRAIN-VIDEO');
+  const growbrainVideo = document.getElementById('growbrain-video');
+  const growbrainPlay = document.getElementById('growbrain-play');
+
 
   // Hanapin ang main content container
   const mainContent = document.querySelector('.main-content');
@@ -330,185 +356,76 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  if (plvgameItem && plvgameModal) {
-    plvgameItem.style.cursor = 'pointer';
-    plvgameItem.addEventListener('click', function(e) {
-      plvgameModal.classList.add('active');
-      plvgameVideo.currentTime = 0;
-      plvgameVideo.pause();
-      plvgamePlay.innerHTML = '<i class="fas fa-play"></i>';
-      updateTime();
-      // Magdagdag ng blur
-      if (mainContent) mainContent.classList.add('blur-bg');
-    });
-  }
-  if (plvgameClose) {
-    plvgameClose.addEventListener('click', function() {
-      plvgameModal.classList.remove('active');
-      plvgameModal.style.display = 'none';
-      plvgameVideo.pause();
-      plvgameVideo.currentTime = 0;
-      removeBlurWithAnimation();
-    });
-  }
-  if (plvgameModal) {
-    plvgameModal.addEventListener('click', function(e) {
-      // Only close if the click is directly on the modal background, not on modal-content or its children
-      if (e.target === plvgameModal) {
-        plvgameModal.classList.remove('active');
-        plvgameModal.style.display = 'none';
-        plvgameVideo.pause();
-        plvgameVideo.currentTime = 0;
-        removeBlurWithAnimation();
-      }
-    });
-    // Prevent clicks inside modal-content from bubbling up to modal (so clicking controls won't close modal)
-    const modalContent = plvgameModal.querySelector('.modal-content');
-    if (modalContent) {
-      modalContent.addEventListener('click', function(e) {
-        e.stopPropagation();
+  // Generic function to open video modal
+  function openVideoModal(item, modal, video, prefix) {
+    if (item && modal && video) {
+      item.style.cursor = 'pointer';
+      item.addEventListener('click', function(e) {
+        modal.classList.add('active');
+        modal.style.display = 'flex'; // Ensure display is flex for animation
+        video.currentTime = 0;
+        video.pause();
+        // The initializeVideoPlayer handles play button icon update and time update
+        initializeVideoPlayer(prefix, prefix);
+        if (mainContent) mainContent.classList.add('blur-bg');
       });
     }
   }
-  if (plvgamePlay) {
-    plvgamePlay.addEventListener('click', function() {
-      if (plvgameVideo.paused) {
-        plvgameVideo.play();
-        plvgamePlay.innerHTML = '<i class="fas fa-pause"></i>';
-      } else {
-        plvgameVideo.pause();
-        plvgamePlay.innerHTML = '<i class="fas fa-play"></i>';
-      }
-    });
-  }
-  if (plvgameBackward) {
-    plvgameBackward.addEventListener('click', function(e) {
-      e.stopPropagation();
-      plvgameVideo.currentTime = Math.max(0, plvgameVideo.currentTime - 10);
-      updateTime();
-    });
-  }
-  if (plvgameForward) {
-    plvgameForward.addEventListener('click', function(e) {
-      e.stopPropagation();
-      plvgameVideo.currentTime = Math.min(plvgameVideo.duration, plvgameVideo.currentTime + 10);
-      updateTime();
-    });
-  }
-  if (plvgameSlider) {
-    plvgameSlider.addEventListener('input', function(e) {
-      e.stopPropagation();
-      if (plvgameVideo.duration) {
-        plvgameVideo.currentTime = (plvgameSlider.value / 100) * plvgameVideo.duration;
-        updateTime();
-      }
-    });
-  }
-  if (plvgameVideo) {
-    plvgameVideo.addEventListener('timeupdate', updateTime);
-    plvgameVideo.addEventListener('loadedmetadata', updateTime);
-    plvgameVideo.addEventListener('ended', function() {
-      plvgamePlay.innerHTML = '<i class="fas fa-play"></i>';
-    });
-  }
-  function updateTime() {
-    if (!plvgameVideo.duration) return;
-    const current = plvgameVideo.currentTime;
-    const total = plvgameVideo.duration;
-    plvgameSlider.value = (current / total) * 100;
-    plvgameTime.textContent = formatTime(current) + ' / ' + formatTime(total);
-  }
-  function formatTime(sec) {
-    sec = Math.floor(sec);
-    const m = Math.floor(sec / 60);
-    const s = sec % 60;
-    return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+
+  // Generic function to close video modal
+  function closeVideoModal(modal, video) {
+    if (modal) {
+      modal.classList.remove('active');
+      // Delay display: none to allow for CSS transition
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 300); // Match CSS transition duration for modal-content
+    }
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+    const overlay = modal?.querySelector('.video-poster-overlay');
+    if (overlay) {
+      overlay.classList.remove('hidden');
+    }
+    removeBlurWithAnimation();
   }
 
-  // Deadlock Duel Video Modal - trigger on whole project item
-  const deadlockItem = document.getElementById('open-deadlock-video');
-  const deadlockModal = document.getElementById('modal-Deadlock-VIDEO');
-  const deadlockVideo = document.getElementById('deadlock-video');
-  const deadlockPlay = document.getElementById('deadlock-play');
-  const deadlockBackward = document.getElementById('deadlock-backward');
-  const deadlockForward = document.getElementById('deadlock-forward');
-  const deadlockSlider = document.getElementById('deadlock-slider');
-  const deadlockTime = document.getElementById('deadlock-time');
-  const deadlockClose = document.getElementById('close-deadlock-video');
+  // Initialize all video modals
+  openVideoModal(plvgameItem, plvgameModal, plvgameVideo, 'plvgame');
+  openVideoModal(deadlockItem, deadlockModal, deadlockVideo, 'deadlock');
+  openVideoModal(maharlikaItem, maharlikaModal, maharlikaVideo, 'maharlika');
+  openVideoModal(plvvotesItem, plvvotesModal, plvvotesVideo, 'plvvotes');
+  openVideoModal(koleksyonItem, koleksyonModal, koleksyonVideo, 'koleksyon');
+  openVideoModal(growbrainItem, growbrainModal, growbrainVideo, 'growbrain');
 
-  if (deadlockItem && deadlockModal) {
-    deadlockItem.style.cursor = 'pointer';
-    deadlockItem.addEventListener('click', function(e) {
-      deadlockModal.classList.add('active');
-      deadlockVideo.currentTime = 0;
-      deadlockVideo.pause();
-      deadlockPlay.innerHTML = '<i class="fas fa-play"></i>';
-      updateDeadlockTime();
+  // Universal close button for all project modals
+  document.querySelectorAll('.project-modal .close-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modal = btn.closest('.project-modal');
+      const video = modal?.querySelector('video');
+      closeVideoModal(modal, video);
     });
-  }
-  if (deadlockClose) {
-    deadlockClose.addEventListener('click', function() {
-      deadlockModal.classList.remove('active');
-      deadlockVideo.pause();
-    });
-  }
-  if (deadlockModal) {
-    deadlockModal.addEventListener('click', function(e) {
-      if (e.target === deadlockModal) {
-        deadlockModal.classList.remove('active');
-        deadlockVideo.pause();
+  });
+
+  // Close modal when clicking outside content
+  document.querySelectorAll('.project-modal').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+      // Only close if the click is directly on the modal background, not on modal-content or its children
+      if (e.target === modal) {
+        const video = modal?.querySelector('video');
+        closeVideoModal(modal, video);
       }
     });
-  }
-  if (deadlockPlay) {
-    deadlockPlay.addEventListener('click', function(e) {
+  });
+
+  // Prevent clicks inside modal-content from bubbling up to modal (so clicking controls won't close modal)
+  document.querySelectorAll('.project-modal .modal-content').forEach(modalContent => {
+    modalContent.addEventListener('click', function(e) {
       e.stopPropagation();
-      if (deadlockVideo.paused) {
-        deadlockVideo.play();
-        deadlockPlay.innerHTML = '<i class="fas fa-pause"></i>';
-      } else {
-        deadlockVideo.pause();
-        deadlockPlay.innerHTML = '<i class="fas fa-play"></i>';
-      }
     });
-  }
-  if (deadlockBackward) {
-    deadlockBackward.addEventListener('click', function(e) {
-      e.stopPropagation();
-      deadlockVideo.currentTime = Math.max(0, deadlockVideo.currentTime - 10);
-      updateDeadlockTime();
-    });
-  }
-  if (deadlockForward) {
-    deadlockForward.addEventListener('click', function(e) {
-      e.stopPropagation();
-      deadlockVideo.currentTime = Math.min(deadlockVideo.duration, deadlockVideo.currentTime + 10);
-      updateDeadlockTime();
-    });
-  }
-  if (deadlockSlider) {
-    deadlockSlider.addEventListener('input', function(e) {
-      e.stopPropagation();
-      if (deadlockVideo.duration) {
-        deadlockVideo.currentTime = (deadlockSlider.value / 100) * deadlockVideo.duration;
-        updateDeadlockTime();
-      }
-    });
-  }
-  if (deadlockVideo) {
-    deadlockVideo.addEventListener('timeupdate', updateDeadlockTime);
-    deadlockVideo.addEventListener('loadedmetadata', updateDeadlockTime);
-    deadlockVideo.addEventListener('ended', function() {
-      deadlockPlay.innerHTML = '<i class="fas fa-play"></i>';
-    });
-  }
-  function updateDeadlockTime() {
-    if (!deadlockVideo.duration) return;
-    const current = deadlockVideo.currentTime;
-    const total = deadlockVideo.duration;
-    deadlockSlider.value = (current / total) * 100;
-    deadlockTime.textContent = formatTime(current) + ' / ' + formatTime(total);
-  }
+  });
 });
 
 // Video Player Functions
@@ -645,36 +562,31 @@ function initializeVideoPlayer(videoId, prefix) {
 }
 
 // Initialize video players when modals are opened
-document.getElementById('open-plvgame-video')?.addEventListener('click', () => {
-  const modal = document.getElementById('modal-PLVGAME-VIDEO');
-  if (!modal) return;
-  modal.style.display = 'flex';
-  initializeVideoPlayer('plvgame', 'plvgame');
-});
+// REMOVED individual click listeners and consolidated into openVideoModal/closeVideoModal
 
-document.getElementById('open-deadlock-video')?.addEventListener('click', () => {
-  const modal = document.getElementById('modal-Deadlock-VIDEO');
-  if (!modal) return;
-  modal.style.display = 'flex';
-  initializeVideoPlayer('deadlock', 'deadlock');
-});
-
-// Close modals and pause videos
+// Close modals and pause videos (universal handler now uses closeVideoModal)
 document.querySelectorAll('.close-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const modal = btn.closest('.project-modal');
     const video = modal?.querySelector('video');
-    if (video) {
-      video.pause();
-      video.currentTime = 0;
+    closeVideoModal(modal, video);
+  });
+});
+
+// Close modals when clicking outside content (universal handler now uses closeVideoModal)
+document.querySelectorAll('.project-modal').forEach(modal => {
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      const video = modal?.querySelector('video');
+      closeVideoModal(modal, video);
     }
-    const overlay = modal?.querySelector('.video-poster-overlay');
-    if (overlay) {
-      overlay.classList.remove('hidden');
-    }
-    if (modal) {
-      modal.style.display = 'none';
-    }
+  });
+});
+
+// Prevent clicks inside modal-content from bubbling up to modal (so clicking controls won't close modal)
+document.querySelectorAll('.project-modal .modal-content').forEach(modalContent => {
+  modalContent.addEventListener('click', function(e) {
+    e.stopPropagation();
   });
 });
 
@@ -689,12 +601,14 @@ if (openSettingsBtn && settingsModal) {
     e.preventDefault();
     settingsModal.classList.add('active');
     document.body.classList.add('modal-open');
+    if (mainContent) mainContent.classList.add('blur-bg'); // Apply blur for settings modal
   });
 }
 if (closeSettingsBtn && settingsModal) {
   closeSettingsBtn.addEventListener('click', function() {
     settingsModal.classList.remove('active');
     document.body.classList.remove('modal-open');
+    removeBlurWithAnimation(); // Remove blur for settings modal
   });
 }
 if (settingsModal) {
@@ -702,6 +616,7 @@ if (settingsModal) {
     if (e.target === settingsModal) {
       settingsModal.classList.remove('active');
       document.body.classList.remove('modal-open');
+      removeBlurWithAnimation(); // Remove blur for settings modal
     }
   });
 }

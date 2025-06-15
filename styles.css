@@ -1135,25 +1135,37 @@ body.light-mode .speech-bubble::after {
 #settings-modal {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  display: none;
+  display: flex; /* Always flex to center content, hide with opacity/transform */
   align-items: center;
   justify-content: center;
   z-index: 3000;
-  background: rgba(0,0,0,0.18);
-  backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.4); /* Darker backdrop */
+  backdrop-filter: blur(10px); /* Frosted glass effect for backdrop */
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0; /* Start hidden */
+  visibility: hidden; /* Hide completely when not active */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition for backdrop */
 }
+
 #settings-modal.active {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
 }
 
 #settings-modal .modal-content {
   min-width: 280px;
-  max-width: 320px;
-  padding: 1.5rem 1.8rem;
-  background: #181828 !important;
-  border: 1px solid #232336 !important;
-  border-radius: 12px;
-  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3) !important;
+  max-width: 380px; /* Slightly wider */
+  padding: 1.8rem 2.2rem; /* Increased padding */
+  background: rgba(24, 23, 29, 0.9); /* Semi-transparent background */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle light border */
+  border-radius: 20px; /* More rounded corners */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Frosted glass shadow */
+  transform: translateY(20px); /* Start slightly below center */
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bounce-like transition */
+}
+
+#settings-modal.active .modal-content {
+  transform: translateY(0); /* Slide up to center */
 }
 
 #settings-modal h4 {
@@ -1221,14 +1233,15 @@ body.light-mode .speech-bubble::after {
 }
 
 body.light-mode #settings-modal {
-  background: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(8px) !important;
+  background: rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
 }
 
 body.light-mode #settings-modal .modal-content {
-  background: #ffffff !important;
-  border: 2px solid #18171d !important;
-  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.1) !important;
+  background: rgba(255, 255, 255, 0.9) !important; /* Semi-transparent white */
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15) !important;
 }
 
 body.light-mode #settings-modal h4 {
