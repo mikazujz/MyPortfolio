@@ -12,8 +12,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 </head>
 <body class="bg-dark text-light">
+  <div id="custom-alert" class="custom-alert">
+    <div class="alert-icon"><i class="fas fa-check-circle"></i></div>
+    <div class="alert-message">Your message has been sent successfully!</div>
+  </div>
   <div class="cursor-dot"></div>  
   <div class="custom-cursor"></div>
+  <audio id="success-sound" src="audio/Note.mp3" preload="auto"></audio>
   <div id="mouse-light"></div>
   <div class="main-split d-flex flex-column flex-md-row">
     <!-- Header/Sidebar Section -->
@@ -257,7 +262,7 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
         <section id="contact" class="mb-5 fade-in-up">
           <h5 class="text-purple mb-3">Contact Me</h5>
           <div class="contact-form-container">
-            <form action="YOUR_FORMSPREE_URL" method="POST" class="contact-form">
+            <form id="contact-form" class="contact-form">
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" required>
@@ -368,6 +373,14 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
   </div>
   <div id="scroll-to-top-btn" class="scroll-to-top-btn"><i class="fas fa-arrow-up"></i></div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+      emailjs.init({
+        publicKey: "D6TjeibTOxjYgusVy",
+      });
+    })();
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -1611,51 +1611,54 @@ body.light-mode #experience .text-purple {
 
 /* Contact Form Styles (Gmail UI Inspired) */
 .contact-form-container {
-  background-color: transparent; /* Changed to transparent */
-  border-radius: 8px;
-  padding: 25px 30px;
-  box-shadow: none; /* Removed shadow */
-  max-width: 650px;
+  background-color: rgba(24, 23, 29, 0.6); /* Semi-transparent background */
+  backdrop-filter: blur(20px) saturate(180%); /* Glassmorphism effect */
+  -webkit-backdrop-filter: blur(20px) saturate(180%); /* For Safari */
+  border-radius: 18px; /* More rounded corners */
+  padding: 30px 40px; /* Increased padding */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Frosted glass shadow */
+  max-width: 680px; /* Slightly wider */
   margin: 0 auto;
-  border: 1px solid #282840; /* Subtle border */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* Subtle light border */
 }
 
 .contact-form .form-group {
-  margin-bottom: 25px; /* More vertical spacing */
+  margin-bottom: 28px; /* More vertical spacing */
 }
 
 .contact-form label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-weight: 500;
-  color: #c0c0c0; /* Slightly brighter for better contrast */
-  font-size: 0.95rem; /* Slightly smaller label font */
+  color: #e0e0e0; /* Lighter for better contrast on blurred background */
+  font-size: 1rem; /* Standard label font size */
 }
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
   width: 100%;
-  padding: 14px 15px; /* Increased padding for input fields */
-  border: 1px solid #3a3a5e; /* Default subtle border */
-  border-radius: 4px; /* Slightly less rounded corners */
-  background-color: #0f0f1d; /* Very dark background for inputs */
-  color: #f0f0f0; /* Lighter text color for input */
+  padding: 16px 18px; /* Increased padding for input fields */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Very subtle border */
+  border-radius: 10px; /* More rounded input corners */
+  background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent dark background for inputs */
+  color: #f8f8f8; /* Lighter text color for input */
   font-size: 1.05rem; /* Slightly larger input text */
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  transition: all 0.3s ease; /* Smooth transition */
 }
 
 .contact-form input[type="text"]:focus,
 .contact-form input[type="email" ]:focus,
 .contact-form textarea:focus {
-  border-color: #7a42ed; /* Brighter purple on focus */
+  border-color: rgba(185, 131, 255, 0.6); /* Subtle violet glow on focus */
   outline: none;
-  box-shadow: 0 0 0 3px rgba(122, 66, 237, 0.3); /* Subtle glow on focus */
+  box-shadow: 0 0 0 4px rgba(185, 131, 255, 0.2); /* More prominent glow on focus */
+  background-color: rgba(0, 0, 0, 0.3); /* Slightly darker on focus */
 }
 
 .contact-form textarea {
   resize: vertical;
-  min-height: 120px; /* Minimum height for textarea */
+  min-height: 140px; /* Slightly increased minimum height for textarea */
 }
 
 .contact-form .send-button {
@@ -1663,51 +1666,52 @@ body.light-mode #experience .text-purple {
   align-items: center;
   background-color: #b983ff; /* Primary purple color */
   color: #181828; /* Dark text on button */
-  padding: 12px 28px; /* Slightly more padding */
+  padding: 14px 32px; /* Increased padding */
   border: none;
-  border-radius: 6px; /* Slightly rounded corners */
+  border-radius: 10px; /* More rounded corners */
   cursor: pointer;
-  font-size: 1.05rem; /* Slightly larger font */
+  font-size: 1.1rem; /* Slightly larger font */
   font-weight: 600;
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for the button */
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25); /* More pronounced shadow */
 }
 
 .contact-form .send-button i {
-  margin-right: 10px; /* More space for icon */
-  font-size: 1.1rem; /* Slightly larger icon */
+  margin-right: 12px; /* More space for icon */
+  font-size: 1.2rem; /* Slightly larger icon */
 }
 
 .contact-form .send-button:hover {
   background-color: #a259ff; /* Slightly darker on hover */
-  transform: translateY(-1px); /* Subtle lift effect */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* More prominent shadow on hover */
+  transform: translateY(-2px); /* More noticeable lift effect */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35); /* More prominent shadow on hover */
 }
 
-/* Light mode for Contact Form */
+/* Light mode for Contact Form (adjusting for glass effect) */
 body.light-mode .contact-form-container {
-  background-color: #fcfcfc; /* Very light background for distinction */
-  border: none; /* Remove border for cleaner look */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Very subtle shadow */
+  background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle dark border */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15); /* Lighter shadow */
 }
 
 body.light-mode .contact-form label {
-  color: #555555; /* Darker labels for contrast */
+  color: #333333; /* Darker labels */
 }
 
 body.light-mode .contact-form input[type="text"],
 body.light-mode .contact-form input[type="email"],
 body.light-mode .contact-form textarea {
-  background-color: #ffffff; /* White background for inputs */
-  border: 1px solid #eeeeee; /* Very light border for inputs */
-  color: #222222; /* Darker text for inputs */
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+  border: 1px solid rgba(0, 0, 0, 0.08); /* Very light border */
+  color: #18171d; /* Darker text */
 }
 
 body.light-mode .contact-form input[type="text"]:focus,
 body.light-mode .contact-form input[type="email" ]:focus,
 body.light-mode .contact-form textarea:focus {
-  border-color: #7a42ed; /* Maintain purple focus border */
-  box-shadow: 0 0 0 2px rgba(122, 66, 237, 0.1); /* Even lighter glow on focus */
+  border-color: rgba(124, 58, 237, 0.6); /* Maintain purple focus border */
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15); /* Lighter glow */
+  background-color: rgba(255, 255, 255, 0.7); /* Slightly lighter on focus */
 }
 
 body.light-mode .contact-form .send-button {
@@ -1717,7 +1721,7 @@ body.light-mode .contact-form .send-button {
 
 body.light-mode .contact-form .send-button:hover {
   background-color: #6a2cd8; /* Even darker purple on hover */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Lighter shadow on hover */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Lighter shadow on hover */
 }
 
 .social-links {
@@ -1753,4 +1757,74 @@ body.light-mode .contact-form .send-button:hover {
   .sidebar-fixed .social-links a span {
     display: none !important;
   }
+}
+
+/* Custom Alert Notification (iPhone-style) */
+.custom-alert {
+  position: fixed;
+  top: -100px; /* Start off-screen */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999; /* Ensure it's on top of everything */
+  background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+  color: #181828;
+  padding: 15px 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 15px;
+  font-weight: 500;
+  transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease; /* Bounce-like transition */
+  opacity: 0;
+  max-width: 320px; /* Typical notification width */
+  text-align: center;
+}
+
+.custom-alert.show {
+  top: 20px; /* Slide down to 20px from top */
+  opacity: 1;
+}
+
+.custom-alert .alert-icon {
+  color: #4CAF50; /* Green checkmark */
+  font-size: 20px;
+}
+
+.custom-alert.error .alert-icon {
+  color: #F44336; /* Red for error */
+}
+
+.custom-alert.error {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #181828;
+}
+
+@media (max-width: 600px) {
+  .custom-alert {
+    max-width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+body.light-mode .custom-alert {
+  background-color: rgba(0, 0, 0, 0.85); /* Dark background in light mode */
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+body.light-mode .custom-alert .alert-icon {
+  color: #76FF03; /* Lighter green */
+}
+
+body.light-mode .custom-alert.error .alert-icon {
+  color: #FF5252; /* Lighter red */
+}
+
+body.light-mode .custom-alert.error {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #ffffff;
 }

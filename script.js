@@ -954,4 +954,58 @@ window.addEventListener('wheel', function(e) {
   if (e.ctrlKey) {
     e.preventDefault();
   }
-}, { passive: false }); // Use passive: false to allow preventDefault()
+}, { passive: false });
+
+// EmailJS functionality for contact form
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    const customAlert = document.getElementById('custom-alert');
+    const alertMessage = customAlert ? customAlert.querySelector('.alert-message') : null;
+    const alertIconContainer = customAlert ? customAlert.querySelector('.alert-icon') : null;
+    const alertIcon = alertIconContainer ? alertIconContainer.querySelector('i') : null;
+    const successSound = document.getElementById('success-sound');
+
+    function showCustomAlert(message, isSuccess) {
+        if (customAlert && alertMessage && alertIcon) {
+            alertMessage.textContent = message;
+            // Reset classes on the customAlert div
+            customAlert.classList.remove('show', 'error');
+
+            // Clear all existing Font Awesome icon classes from the i tag
+            alertIcon.className = ''; // Clears all classes from the i tag
+
+            if (isSuccess) {
+                alertIcon.classList.add('fas', 'fa-check-circle');
+                if (successSound) {
+                    successSound.play(); // Play the sound
+                }
+            } else {
+                customAlert.classList.add('error');
+                alertIcon.classList.add('fas', 'fa-times-circle'); 
+            }
+            
+            customAlert.classList.add('show');
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                customAlert.classList.remove('show');
+            }, 3000);
+        }
+    }
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Replace with your EmailJS Service ID and Template ID
+            emailjs.sendForm('service_4sgjzdn', 'template_5epppvn', this)
+                .then(function() {
+                    showCustomAlert('Your message has been sent successfully!', true);
+                    contactForm.reset(); // Clear the form
+                }, function(error) {
+                    showCustomAlert('Failed to send your message. Please try again later.', false);
+                    console.error('EmailJS Error:', error);
+                });
+        });
+    }
+});
