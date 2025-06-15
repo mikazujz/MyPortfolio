@@ -1060,12 +1060,12 @@ body.light-mode .speech-bubble::after {
   background: white;
   border-radius: 50%;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.2s;
+  opacity: 1; /* Always visible */
+  /* transition: opacity 0.2s; */ /* Removed transition for constant visibility */
 }
 
 .time-slider:hover::-webkit-slider-thumb {
-  opacity: 1;
+  opacity: 1; /* Keep visible on hover */
 }
 
 .time-slider:hover {
@@ -1085,15 +1085,15 @@ body.light-mode .speech-bubble::after {
 }
 
 .volume-slider-container {
-  width: 0;
+  width: 100px; /* Always visible width */
   overflow: hidden;
-  transition: width 0.3s ease;
+  /* transition: width 0.3s ease; */ /* Removed transition as it's always wide */
   display: flex;
   align-items: center;
 }
 
 .volume-control:hover .volume-slider-container {
-  width: 100px;
+  width: 100px; /* Keep visible width on hover */
 }
 
 .volume-slider {
@@ -1101,7 +1101,7 @@ body.light-mode .speech-bubble::after {
   appearance: none;
   width: 80px;
   height: 4px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.4); /* Slightly more visible background */
   border-radius: 2px;
   margin-left: 10px;
   outline: none;
@@ -1114,12 +1114,12 @@ body.light-mode .speech-bubble::after {
   background: white;
   border-radius: 50%;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.2s;
+  opacity: 1; /* Always visible */
+  /* transition: opacity 0.2s; */ /* Removed transition for constant visibility */
 }
 
 .volume-slider:hover::-webkit-slider-thumb {
-  opacity: 1;
+  opacity: 1; /* Keep visible on hover */
 }
 
 .project-list {
