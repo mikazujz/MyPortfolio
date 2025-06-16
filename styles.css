@@ -2481,3 +2481,22 @@ body.light-mode #submit-rating-btn {
   height: 100%;
   background: white;
 }
+
+@media (max-width: 768px) {
+  .resume-modal-content {
+    width: 95%;
+    height: 95vh;
+    padding: 10px;
+  }
+
+  .resume-modal-content .close-btn {
+    top: 5px;
+    right: 5px;
+    font-size: 1.5rem;
+  }
+
+  .resume-viewer-container {
+    height: calc(100% - 20px);
+    margin-top: 10px;
+  }
+}
