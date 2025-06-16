@@ -1,4 +1,4 @@
-function showCustomAlert(message, isSuccess) {
+function showCustomAlert(message, isSuccess, iconClass = null) {
   const customAlert = document.getElementById('custom-alert');
   const alertIcon = customAlert.querySelector('.alert-icon i');
   const alertMessage = customAlert.querySelector('.alert-message');
@@ -7,7 +7,9 @@ function showCustomAlert(message, isSuccess) {
 
   alertMessage.textContent = message;
 
-  if (isSuccess) {
+  if (iconClass) {
+    alertIcon.className = iconClass;
+  } else if (isSuccess) {
     alertIcon.className = 'fas fa-check-circle';
     customAlert.classList.add('success');
     if (successSound) {
@@ -1008,7 +1010,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ]
     };
 
-    function showCustomAlert(message, isSuccess) {
+    function showCustomAlert(message, isSuccess, iconClass = null) {
         if (customAlert && alertMessage && alertIcon) {
             alertMessage.textContent = message;
             // Reset classes on the customAlert div
@@ -1017,7 +1019,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Clear all existing Font Awesome icon classes from the i tag
             alertIcon.className = ''; // Clears all classes from the i tag
 
-            if (isSuccess) {
+            if (iconClass) {
+                alertIcon.classList.add('fas', iconClass);
+            } else if (isSuccess) {
                 alertIcon.classList.add('fas', 'fa-check-circle');
                 if (successSound) {
                     successSound.play(); // Play the sound
@@ -1384,12 +1388,12 @@ window.addEventListener('click', (e) => {
 const downloadResumeBtn = document.getElementById('download-resume-btn');
 if (downloadResumeBtn) {
   downloadResumeBtn.addEventListener('click', (event) => {
-    // Display "Downloading..." message immediately
-    showCustomAlert('Downloading...', true); // Use true for success icon/sound for a positive feedback
+    // Display "Downloading..." message immediately with a spinner
+    showCustomAlert('Downloading...', true, 'fa-spinner fa-spin');
 
     // Allow the default download behavior to proceed
 
-    // After a short delay, show "Download Complete!"
+    // After a short delay, show "Download Complete!" with a checkmark
     setTimeout(() => {
       showCustomAlert('Download Complete!', true);
     }, 1500); // Adjust delay as needed (1.5 seconds)
