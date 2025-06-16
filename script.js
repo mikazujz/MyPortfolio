@@ -994,9 +994,16 @@ document.addEventListener('DOMContentLoaded', function() {
             'image/maharlika-gallery/3.jpg'
         ],
         'plvvotes': [
-            'image/plvvotes-gallery/1.jpg',
-            'image/plvvotes-gallery/2.jpg',
-            'image/plvvotes-gallery/3.jpg'
+            'PLVVOTES//1.png',
+            'PLVVOTES/2.png',
+            'PLVVOTES/3.png',
+            'PLVVOTES/4.png',
+            'PLVVOTES/5.png',
+            'PLVVOTES/6.png',
+            'PLVVOTES/7.png',
+            'PLVVOTES/8.png',
+            'PLVVOTES/9.png'
+           
         ],
         'koleksyon': [
             'image/koleksyon-gallery/1.jpg',
