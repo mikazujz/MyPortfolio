@@ -1,3 +1,35 @@
+function showCustomAlert(message, isSuccess) {
+  const customAlert = document.getElementById('custom-alert');
+  const alertIcon = customAlert.querySelector('.alert-icon i');
+  const alertMessage = customAlert.querySelector('.alert-message');
+  const successSound = document.getElementById('success-sound');
+  const errorSound = document.getElementById('error-sound');
+
+  alertMessage.textContent = message;
+
+  if (isSuccess) {
+    alertIcon.className = 'fas fa-check-circle';
+    customAlert.classList.add('success');
+    if (successSound) {
+      successSound.currentTime = 0;
+      successSound.play().catch(e => console.error("Error playing success sound:", e));
+    }
+  } else {
+    alertIcon.className = 'fas fa-times-circle';
+    customAlert.classList.add('error');
+    if (errorSound) {
+      errorSound.currentTime = 0;
+      errorSound.play().catch(e => console.error("Error playing error sound:", e));
+    }
+  }
+
+  customAlert.classList.add('show');
+
+  setTimeout(() => {
+    customAlert.classList.remove('show', 'success', 'error');
+  }, 3000);
+}
+
 // Highlight nav link on scroll
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-link');
@@ -386,9 +418,9 @@ document.addEventListener('DOMContentLoaded', function() {
         video.pause();
         // The initializeVideoPlayer handles play button icon update and time update
         initializeVideoPlayer(prefix, prefix);
-      if (mainContent) mainContent.classList.add('blur-bg');
-    });
-  }
+        if (mainContent) mainContent.classList.add('blur-bg');
+      });
+    }
   }
 
   // Generic function to close any modal
@@ -1327,105 +1359,107 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Rating Modal Functionality
-const openRatingModalBtn = document.getElementById('open-rating-modal');
-const ratingModal = document.getElementById('rating-modal');
-const closeRatingModalBtn = document.getElementById('close-rating-modal');
-const ratingStars = document.querySelector('.rating-stars');
-const submitRatingBtn = document.getElementById('submit-rating-btn');
-// console.log('submitRatingBtn element:', submitRatingBtn);
-const ratingCommentInput = document.getElementById('rating-comment');
+document.addEventListener('DOMContentLoaded', () => {
+  const openRatingModalBtn = document.getElementById('open-rating-modal');
+  const ratingModal = document.getElementById('rating-modal');
+  const closeRatingModalBtn = document.getElementById('close-rating-modal');
+  const ratingStars = document.querySelector('.rating-stars');
+  const submitRatingBtn = document.getElementById('submit-rating-btn');
+  console.log('submitRatingBtn element found:', submitRatingBtn);
+  const ratingCommentInput = document.getElementById('rating-comment');
 
-if (openRatingModalBtn) {
-  openRatingModalBtn.addEventListener('click', () => {
-    ratingModal.classList.add('active');
-    // Reset rating and comment on open
-    ratingStars.setAttribute('data-rating', '0');
-    updateStarDisplay(0);
-    ratingCommentInput.value = '';
-  });
-}
+  if (openRatingModalBtn) {
+    openRatingModalBtn.addEventListener('click', () => {
+      ratingModal.classList.add('active');
+      // Reset rating and comment on open
+      ratingStars.setAttribute('data-rating', '0');
+      updateStarDisplay(0);
+      ratingCommentInput.value = '';
+    });
+  }
 
-if (closeRatingModalBtn) {
-  closeRatingModalBtn.addEventListener('click', () => {
-    ratingModal.classList.remove('active');
-  });
-}
-
-// Close modal if clicked outside modal content
-if (ratingModal) {
-  ratingModal.addEventListener('click', (e) => {
-    if (e.target === ratingModal) {
+  if (closeRatingModalBtn) {
+    closeRatingModalBtn.addEventListener('click', () => {
       ratingModal.classList.remove('active');
-    }
-  });
-}
+    });
+  }
 
-if (ratingStars) {
-  const stars = ratingStars.querySelectorAll('.fa-star');
-  stars.forEach(star => {
-    star.addEventListener('mouseover', () => {
+  // Close modal if clicked outside modal content
+  if (ratingModal) {
+    ratingModal.addEventListener('click', (e) => {
+      if (e.target === ratingModal) {
+        ratingModal.classList.remove('active');
+      }
+    });
+  }
+
+  if (ratingStars) {
+    const stars = ratingStars.querySelectorAll('.fa-star');
+    stars.forEach(star => {
+      star.addEventListener('mouseover', () => {
+        const value = parseInt(star.getAttribute('data-value'));
+        updateStarDisplay(value);
+      });
+      star.addEventListener('mouseout', () => {
+        const currentRating = parseInt(ratingStars.getAttribute('data-rating'));
+        updateStarDisplay(currentRating);
+      });
+      star.addEventListener('click', () => {
+        const value = parseInt(star.getAttribute('data-value'));
+        ratingStars.setAttribute('data-rating', value.toString());
+        updateStarDisplay(value);
+      });
+    });
+  }
+
+  function updateStarDisplay(rating) {
+    const stars = ratingStars.querySelectorAll('.fa-star');
+    stars.forEach(star => {
       const value = parseInt(star.getAttribute('data-value'));
-      updateStarDisplay(value);
+      if (value <= rating) {
+        star.classList.remove('far');
+        star.classList.add('fas');
+      } else {
+        star.classList.remove('fas');
+        star.classList.add('far');
+      }
     });
-    star.addEventListener('mouseout', () => {
-      const currentRating = parseInt(ratingStars.getAttribute('data-rating'));
-      updateStarDisplay(currentRating);
+  }
+
+  if (submitRatingBtn) {
+    submitRatingBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      console.log('Send Rating button clicked inside event listener!');
+
+      const rating = ratingStars.getAttribute('data-rating');
+      const comment = ratingCommentInput.value;
+
+      if (rating === '0') {
+        showCustomAlert('Please select a rating!', false);
+        return;
+      }
+
+      const templateParams = {
+        from_name: 'Portfolio Visitor',
+        to_name: 'John Zel',
+        rating: rating + ' star(s)',
+        message: comment || 'No comment provided.'
+      };
+
+      try {
+        const response = await emailjs.send(
+          'service_4sgjzdn', // Your EmailJS Service ID
+          'template_s496qc8', // Your EmailJS Template ID
+          templateParams
+        );
+        console.log('SUCCESS!', response.status, response.text);
+        showCustomAlert('Thank you for your feedback!', true);
+        ratingModal.classList.remove('active'); // Close modal on success
+      } catch (error) {
+        console.log('FAILED...', error);
+        showCustomAlert('Failed to send feedback.', false);
+      }
     });
-    star.addEventListener('click', () => {
-      const value = parseInt(star.getAttribute('data-value'));
-      ratingStars.setAttribute('data-rating', value.toString());
-      updateStarDisplay(value);
-    });
-  });
-}
-
-function updateStarDisplay(rating) {
-  const stars = ratingStars.querySelectorAll('.fa-star');
-  stars.forEach(star => {
-    const value = parseInt(star.getAttribute('data-value'));
-    if (value <= rating) {
-      star.classList.remove('far');
-      star.classList.add('fas');
-    } else {
-      star.classList.remove('fas');
-      star.classList.add('far');
-    }
-  });
-}
-
-if (submitRatingBtn) {
-  submitRatingBtn.addEventListener('click', async (e) => {
-    e.preventDefault();
-    // console.log('Send Rating button clicked!');
-
-    const rating = ratingStars.getAttribute('data-rating');
-    const comment = ratingCommentInput.value;
-
-    if (rating === '0') {
-      showCustomAlert('Please select a rating!', false);
-      return;
-    }
-
-    const templateParams = {
-      from_name: 'Portfolio Visitor',
-      to_name: 'John Zel',
-      rating: rating + ' star(s)',
-      message: comment || 'No comment provided.'
-    };
-
-    try {
-      const response = await emailjs.send(
-        'service_4sgjzdn', // Your EmailJS Service ID
-        'template_s496qc8', // Your EmailJS Template ID
-        templateParams
-      );
-      console.log('SUCCESS!', response.status, response.text);
-      showCustomAlert('Thank you for your feedback!', true);
-      ratingModal.classList.remove('active'); // Close modal on success
-    } catch (error) {
-      console.log('FAILED...', error);
-      showCustomAlert('Failed to send feedback.', false);
-    }
-  });
-}
+  }
+});
 
