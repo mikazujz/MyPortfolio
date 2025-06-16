@@ -1004,9 +1004,14 @@ document.addEventListener('DOMContentLoaded', function() {
             'image/koleksyon-gallery/3.jpg'
         ],
         'growbrain': [
-            'image/growbrain-gallery/1.jpg',
-            'image/growbrain-gallery/2.jpg',
-            'image/growbrain-gallery/3.jpg'
+            'Growbrain/1.jpg',
+            'Growbrain/2.jpg',
+            'Growbrain/3.jpg',
+            'Growbrain/4.jpg',
+            'Growbrain/5.jpg',
+            'Growbrain/6.jpg',
+            'Growbrain/7.jpg',
+            'Growbrain/8.jpg'
         ]
     };
 
