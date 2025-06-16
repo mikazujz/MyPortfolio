@@ -989,9 +989,14 @@ document.addEventListener('DOMContentLoaded', function() {
             'image/deadlock-gallery/3.jpg'
         ],
         'maharlika': [
-            'image/maharlika-gallery/1.jpg',
-            'image/maharlika-gallery/2.jpg',
-            'image/maharlika-gallery/3.jpg'
+            'Maharlika/1.png',
+            'Maharlika/2.png',
+            'Maharlika/3.png',
+            'Maharlika/4.png',
+            'Maharlika/5.png',
+            'Maharlika/6.png',
+            'Maharlika/7.png',
+            'Maharlika/8.png'
         ],
         'plvvotes': [
             'PLVVOTES//1.png',
