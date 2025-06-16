@@ -59,17 +59,33 @@ document.addEventListener('mousemove', (e) => {
 // Fade-in on scroll animation (repeatable)
 function revealOnScroll(container) {
   const fadeEls = document.querySelectorAll('.fade-in-up');
+  const characterBg = document.querySelector('.skills-character-bg');
   const windowHeight = container.clientHeight;
+  
+  // Handle regular fade-in elements
   fadeEls.forEach(el => {
     const rect = el.getBoundingClientRect();
     const containerRect = container.getBoundingClientRect();
-    // If element is in view, add visible; if not, remove visible
     if (rect.top < containerRect.top + windowHeight - 60 && rect.bottom > containerRect.top + 40) {
       el.classList.add('visible');
     } else {
       el.classList.remove('visible');
     }
   });
+
+  // Handle character background fade-in
+  if (characterBg) {
+    const skillsSection = document.getElementById('My Skills');
+    if (skillsSection) {
+      const rect = skillsSection.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      if (rect.top < containerRect.top + windowHeight - 60 && rect.bottom > containerRect.top + 40) {
+        characterBg.classList.add('fade-in');
+      } else {
+        characterBg.classList.remove('fade-in');
+      }
+    }
+  }
 }
 
 window.addEventListener('load', function() {
