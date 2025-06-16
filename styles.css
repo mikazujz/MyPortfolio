@@ -1431,15 +1431,7 @@ body.light-mode #settings-modal .form-switch .form-check-input:checked::before {
     padding: 1rem;
   }
 
-  .skills-character-bg {
-    position: relative;
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 1.5rem auto !important;
-    top: 0;
-    left: 0;
-    transform: none;
-  }
+  /* Removed the .skills-character-bg block from here to prevent conflicts */
 
   .skills-content {
     height: auto;
@@ -1500,6 +1492,52 @@ body.light-mode #settings-modal .form-switch .form-check-input:checked::before {
 }
 
 @media (max-width: 768px) {
+  .skills-character-bg {
+    display: none;
+  }
+}
+
+/* Tablet Landscape Mode */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .skills-character-bg {
+    display: block !important;
+    width: 100%;
+    height: 100%;
+    opacity: 1 !important; /* Force full visibility for testing */
+    background-color: red !important; /* Add a red background for visibility testing */
+    transition: none !important; /* Temporarily remove transition */
+    animation: none !important; /* Temporarily remove animation */
+    pointer-events: none; /* Keep pointer-events to not interfere with clicks */
+    z-index: 1;
+    filter: none !important; /* Temporarily remove filter */
+  }
+
+  .skills-container {
+    min-height: 600px;
+    position: relative;
+  }
+
+  .skills-content {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .skills-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .tech-pill {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+/* Tablet Portrait Mode */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
   .skills-character-bg {
     display: none;
   }
@@ -2328,4 +2366,92 @@ body.light-mode .tooltip-icon::before {
 
 body.light-mode .tooltip-icon::after {
   border-color: rgba(255, 255, 255, 0.95) transparent transparent transparent !important;
+}
+
+/* Rating Modal Styles */
+#rating-modal .modal-content {
+  width: 90%;
+  max-width: 500px;
+  padding: 30px;
+  z-index: 1001; /* Ensure modal content is above other elements */
+  pointer-events: auto; /* Ensure clicks inside modal are registered */
+  background-color: rgba(24, 23, 29, 0.7); /* Semi-transparent dark background */
+  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Shadow for depth */
+}
+
+.rating-stars {
+  font-size: 2.2rem;
+  color: #b0b0b5; /* Default star color */
+  cursor: pointer;
+  text-align: center;
+}
+
+.rating-stars .fa-star {
+  margin: 0 5px;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.rating-stars .fa-star:hover {
+  transform: scale(1.1);
+}
+
+.rating-stars .fa-star.fas {
+  color: #FFD700; /* Filled star color - Changed to Gold */
+}
+
+#rating-comment {
+  background-color: #1a1a2e;
+  border: 1px solid #232336;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  resize: vertical;
+}
+
+body.light-mode .rating-stars {
+  color: #e0e0e0;
+}
+
+body.light-mode .rating-stars .fa-star.fas {
+  color: #FFD700;
+}
+
+body.light-mode #rating-comment {
+  background-color: #f0f0f0;
+  border: 1px solid #d0d0d0;
+  color: #333;
+}
+
+#submit-rating-btn {
+  z-index: 1002; /* Ensure button is above other modal elements */
+  pointer-events: auto; /* Ensure button is clickable */
+  cursor: pointer; /* Indicate it's clickable */
+  background: linear-gradient(135deg, #b983ff, #8a2be2); /* Purple gradient */
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+#submit-rating-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.light-mode #rating-modal .modal-content {
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent light background */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode #submit-rating-btn {
+  background: linear-gradient(135deg, #8a2be2, #b983ff); /* Adjusted gradient for light mode */
+  color: #fff;
 }

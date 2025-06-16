@@ -313,7 +313,10 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
                 <label for="message">Message</label>
                 <textarea id="message" name="message" rows="5" required></textarea>
               </div>
-              <button type="submit" class="send-button"><i class="fas fa-paper-plane"></i> Send Message</button>
+              <div class="d-flex justify-content-between align-items-center">
+                <button type="submit" class="send-button"><i class="fas fa-paper-plane"></i> Send Message</button>
+                <button type="button" class="send-button" id="open-rating-modal"><i class="fas fa-star"></i> Rate My Portfolio</button>
+              </div>
             </form>
           </div>
         </section>
@@ -326,6 +329,26 @@ Unreal Engine. I am eager to continue expanding my knowledge and skills across a
   </div>
   <!-- Project Modals -->
   <div class="project-modals">
+    <!-- Rating Modal -->
+    <div class="project-modal" id="rating-modal">
+      <div class="modal-content">
+        <span class="close-btn" id="close-rating-modal">&times;</span>
+        <h4>Rate My Portfolio</h4>
+        <p class="text-secondary mb-3">We would love to hear your feedback!</p>
+        <div class="rating-stars mb-4" data-rating="0">
+          <i class="far fa-star" data-value="1"></i>
+          <i class="far fa-star" data-value="2"></i>
+          <i class="far fa-star" data-value="3"></i>
+          <i class="far fa-star" data-value="4"></i>
+          <i class="far fa-star" data-value="5"></i>
+        </div>
+        <div class="form-group mb-4">
+          <label for="rating-comment">Comments (Optional)</label>
+          <textarea id="rating-comment" class="form-control" rows="3"></textarea>
+        </div>
+        <button id="submit-rating-btn" class="send-button w-100"><i class="fas fa-paper-plane"></i> Send Rating</button>
+      </div>
+    </div>
     <!-- Ticket Shop Modal -->
     <div class="project-modal" id="ticket-shop-modal">
       <div class="modal-content">
