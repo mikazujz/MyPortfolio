@@ -1380,3 +1380,11 @@ window.addEventListener('click', (e) => {
   }
 });
 
+// Download Resume Button Alert
+const downloadResumeBtn = document.getElementById('download-resume-btn');
+if (downloadResumeBtn) {
+  downloadResumeBtn.addEventListener('click', () => {
+    showCustomAlert('Download Complete!', true);
+  });
+}
+
