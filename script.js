@@ -1358,108 +1358,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Rating Modal Functionality
-document.addEventListener('DOMContentLoaded', () => {
-  const openRatingModalBtn = document.getElementById('open-rating-modal');
-  const ratingModal = document.getElementById('rating-modal');
-  const closeRatingModalBtn = document.getElementById('close-rating-modal');
-  const ratingStars = document.querySelector('.rating-stars');
-  const submitRatingBtn = document.getElementById('submit-rating-btn');
-  console.log('submitRatingBtn element found:', submitRatingBtn);
-  const ratingCommentInput = document.getElementById('rating-comment');
+// Resume Modal Functionality
+const resumeModal = document.getElementById('resume-modal');
+const openResumeModal = document.getElementById('open-resume-modal');
+const closeResumeModal = document.getElementById('close-resume-modal');
 
-  if (openRatingModalBtn) {
-    openRatingModalBtn.addEventListener('click', () => {
-      ratingModal.classList.add('active');
-      // Reset rating and comment on open
-      ratingStars.setAttribute('data-rating', '0');
-      updateStarDisplay(0);
-      ratingCommentInput.value = '';
-    });
-  }
+openResumeModal.addEventListener('click', () => {
+  resumeModal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+});
 
-  if (closeRatingModalBtn) {
-    closeRatingModalBtn.addEventListener('click', () => {
-      ratingModal.classList.remove('active');
-    });
-  }
+closeResumeModal.addEventListener('click', () => {
+  resumeModal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+});
 
-  // Close modal if clicked outside modal content
-  if (ratingModal) {
-    ratingModal.addEventListener('click', (e) => {
-      if (e.target === ratingModal) {
-        ratingModal.classList.remove('active');
-      }
-    });
-  }
-
-  if (ratingStars) {
-    const stars = ratingStars.querySelectorAll('.fa-star');
-    stars.forEach(star => {
-      star.addEventListener('mouseover', () => {
-        const value = parseInt(star.getAttribute('data-value'));
-        updateStarDisplay(value);
-      });
-      star.addEventListener('mouseout', () => {
-        const currentRating = parseInt(ratingStars.getAttribute('data-rating'));
-        updateStarDisplay(currentRating);
-      });
-      star.addEventListener('click', () => {
-        const value = parseInt(star.getAttribute('data-value'));
-        ratingStars.setAttribute('data-rating', value.toString());
-        updateStarDisplay(value);
-      });
-    });
-  }
-
-  function updateStarDisplay(rating) {
-    const stars = ratingStars.querySelectorAll('.fa-star');
-    stars.forEach(star => {
-      const value = parseInt(star.getAttribute('data-value'));
-      if (value <= rating) {
-        star.classList.remove('far');
-        star.classList.add('fas');
-      } else {
-        star.classList.remove('fas');
-        star.classList.add('far');
-      }
-    });
-  }
-
-  if (submitRatingBtn) {
-    submitRatingBtn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      console.log('Send Rating button clicked inside event listener!');
-
-      const rating = ratingStars.getAttribute('data-rating');
-      const comment = ratingCommentInput.value;
-
-      if (rating === '0') {
-        showCustomAlert('Please select a rating!', false);
-        return;
-      }
-
-      const templateParams = {
-        from_name: 'Portfolio Visitor',
-        to_name: 'John Zel',
-        rating: rating + ' star(s)',
-        message: comment || 'No comment provided.'
-      };
-
-      try {
-        const response = await emailjs.send(
-          'service_4sgjzdn', // Your EmailJS Service ID
-          'template_s496qc8', // Your EmailJS Template ID
-          templateParams
-        );
-        console.log('SUCCESS!', response.status, response.text);
-        showCustomAlert('Thank you for your feedback!', true);
-        ratingModal.classList.remove('active'); // Close modal on success
-      } catch (error) {
-        console.log('FAILED...', error);
-        showCustomAlert('Failed to send feedback.', false);
-      }
-    });
+window.addEventListener('click', (e) => {
+  if (e.target === resumeModal) {
+    resumeModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
   }
 });
 
