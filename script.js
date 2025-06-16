@@ -1383,8 +1383,16 @@ window.addEventListener('click', (e) => {
 // Download Resume Button Alert
 const downloadResumeBtn = document.getElementById('download-resume-btn');
 if (downloadResumeBtn) {
-  downloadResumeBtn.addEventListener('click', () => {
-    showCustomAlert('Download Complete!', true);
+  downloadResumeBtn.addEventListener('click', (event) => {
+    // Display "Downloading..." message immediately
+    showCustomAlert('Downloading...', true); // Use true for success icon/sound for a positive feedback
+
+    // Allow the default download behavior to proceed
+
+    // After a short delay, show "Download Complete!"
+    setTimeout(() => {
+      showCustomAlert('Download Complete!', true);
+    }, 1500); // Adjust delay as needed (1.5 seconds)
   });
 }
 
